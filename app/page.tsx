@@ -170,11 +170,53 @@ export default function Home() {
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const metricValues = Array.from(document.querySelectorAll<HTMLElement>("[data-count-to]"));
     let observer: IntersectionObserver | undefined;
+    let metricObserver: IntersectionObserver | undefined;
+    const metricFrames = new Set<number>();
     let frame = 0;
 
     if (!reducedMotion) {
       document.documentElement.classList.add("motion-enabled");
+      metricValues.forEach((item) => {
+        const decimals = Number(item.dataset.countDecimals ?? 0);
+        const prefix = item.dataset.countPrefix ?? "";
+        const suffix = item.dataset.countSuffix ?? "";
+        item.textContent = `${prefix}${Number(0).toFixed(decimals)}${suffix}`;
+      });
+
+      metricObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const item = entry.target as HTMLElement;
+            const target = Number(item.dataset.countTo ?? 0);
+            const decimals = Number(item.dataset.countDecimals ?? 0);
+            const prefix = item.dataset.countPrefix ?? "";
+            const suffix = item.dataset.countSuffix ?? "";
+            const delay = Number(item.dataset.countDelay ?? 0);
+            const duration = 1450;
+            const start = performance.now() + delay;
+
+            const tick = (now: number) => {
+              const progress = Math.max(0, Math.min(1, (now - start) / duration));
+              const eased = 1 - Math.pow(1 - progress, 4);
+              item.textContent = `${prefix}${(target * eased).toFixed(decimals)}${suffix}`;
+              if (progress < 1) {
+                const request = window.requestAnimationFrame(tick);
+                metricFrames.add(request);
+              }
+            };
+
+            const request = window.requestAnimationFrame(tick);
+            metricFrames.add(request);
+            metricObserver?.unobserve(item);
+          });
+        },
+        { threshold: 0.55 },
+      );
+      metricValues.forEach((item) => metricObserver?.observe(item));
+
       observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -218,7 +260,9 @@ export default function Home() {
         window.removeEventListener("scroll", onScroll);
         window.removeEventListener("scroll", onMotionScroll);
         if (frame) window.cancelAnimationFrame(frame);
+        metricFrames.forEach((request) => window.cancelAnimationFrame(request));
         observer?.disconnect();
+        metricObserver?.disconnect();
       };
     }
 
@@ -226,6 +270,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       observer?.disconnect();
+      metricObserver?.disconnect();
     };
   }, []);
 
@@ -562,28 +607,28 @@ export default function Home() {
             <article className="proof-metric" role="listitem">
               <span className="metric-index">01</span>
               <div className="metric-icon"><CircleDollarSign aria-hidden="true" /></div>
-              <strong>$2.1B+</strong>
+              <strong data-count-to="2.1" data-count-decimals="1" data-count-prefix="$" data-count-suffix="B+" data-count-delay="0" aria-label="2.1 billion dollars plus">$2.1B+</strong>
               <span>Revenue processed</span>
               <div className="metric-progress" aria-hidden="true"><i /></div>
             </article>
             <article className="proof-metric" role="listitem">
               <span className="metric-index">02</span>
               <div className="metric-icon"><Sparkles aria-hidden="true" /></div>
-              <strong>48hr</strong>
+              <strong data-count-to="48" data-count-suffix="hr" data-count-delay="100" aria-label="48 hours">48hr</strong>
               <span>Onboarding time</span>
               <div className="metric-progress" aria-hidden="true"><i /></div>
             </article>
             <article className="proof-metric" role="listitem">
               <span className="metric-index">03</span>
               <div className="metric-icon"><Activity aria-hidden="true" /></div>
-              <strong>8.4d</strong>
+              <strong data-count-to="8.4" data-count-decimals="1" data-count-suffix="d" data-count-delay="200" aria-label="8.4 days">8.4d</strong>
               <span>Average days in A/R</span>
               <div className="metric-progress" aria-hidden="true"><i /></div>
             </article>
             <article className="proof-metric" role="listitem">
               <span className="metric-index">04</span>
               <div className="metric-icon"><ShieldCheck aria-hidden="true" /></div>
-              <strong>99.9%</strong>
+              <strong data-count-to="99.9" data-count-decimals="1" data-count-suffix="%" data-count-delay="300" aria-label="99.9 percent">99.9%</strong>
               <span>HIPAA compliance</span>
               <div className="metric-progress" aria-hidden="true"><i /></div>
             </article>

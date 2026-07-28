@@ -52,6 +52,8 @@ test("keeps core accessibility and project metadata in source", async () => {
   assert.match(page, /aria-label="Primary navigation"/);
   assert.match(page, /aria-live="polite"/);
   assert.match(page, /<label>/);
+  assert.match(page, /data-count-to="99\.9"/);
+  assert.match(page, /IntersectionObserver/);
   assert.match(layout, /ClinoraMedBill \| Medical Billing & Revenue Cycle Management/);
   assert.match(layout, /openGraph:/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);

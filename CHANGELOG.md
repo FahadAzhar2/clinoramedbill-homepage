@@ -20,6 +20,8 @@ also preserved as named Git commits in `docs/DESIGN-HISTORY.md`.
 - Human accountability story evolved through multiple recoverable compositions
 - Specialty presentation redesigned as animated directional streams
 - Metrics redesigned from a static table into an animated proof rail
+- Operational metrics centered and upgraded with scroll-triggered count-up values
+- Magnific-generated healthcare data texture integrated into the metrics background
 - Next.js updated to the latest compatible 16.2 patch available during handoff
 
 ### Security
