@@ -11,6 +11,7 @@ directions can be restored without recreating them.
 | `2f4b301` | Human story with full-center composition |
 | `191f771` | Human story with center-to-left scroll reveal |
 | `22f639c` | Animated operational proof rail |
+| `18f6498` | Centered operational metrics with scroll-triggered counters and Magnific texture |
 
 ## Current visual direction
 
