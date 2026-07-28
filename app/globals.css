@@ -2833,9 +2833,10 @@ h2 {
 
 .human-image {
   object-position: 58% center;
+  transform-origin: left center;
   transform:
     translate3d(
-      calc((1 - var(--human-open)) * 3vw),
+      calc((1 - var(--human-open)) * 2vw),
       calc((var(--human-progress) - 0.5) * -52px),
       0
     )
@@ -2844,8 +2845,8 @@ h2 {
 
 .human-image-shade {
   background:
-    radial-gradient(ellipse at 50% 53%, rgba(7, 31, 46, 0.72) 0%, rgba(8, 34, 49, 0.42) 33%, transparent 67%),
-    linear-gradient(90deg, rgba(8, 33, 49, 0.54) 0%, rgba(12, 40, 57, 0.24) 42%, rgba(12, 39, 56, 0.08) 72%),
+    radial-gradient(ellipse at 50% 53%, rgba(7, 31, 46, 0.6) 0%, rgba(8, 34, 49, 0.3) 33%, transparent 67%),
+    linear-gradient(90deg, rgba(8, 33, 49, 0.9) 0%, rgba(12, 40, 57, 0.68) 29%, rgba(12, 39, 56, 0.08) 68%),
     linear-gradient(0deg, rgba(5, 25, 38, 0.52), transparent 64%);
   opacity: calc(0.72 + var(--human-copy) * 0.28);
 }
@@ -2917,23 +2918,23 @@ h2 {
   z-index: 4;
   top: 50%;
   bottom: auto;
-  left: 50%;
+  left: clamp(52px, 7vw, 120px);
   display: flex;
-  width: min(840px, 78vw);
+  width: min(620px, 44vw);
   min-height: 0;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
-  padding: 26px 32px;
+  padding: 20px 0;
   border: 0;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
   opacity: var(--human-copy);
-  text-align: center;
+  text-align: left;
   backdrop-filter: none;
   transform:
     translate3d(
-      calc(-50% + (1 - var(--human-copy)) * 36px),
+      calc((1 - var(--human-copy)) * 110px),
       -50%,
       0
     );
@@ -2946,9 +2947,9 @@ h2 {
 }
 
 .human-story-copy h2 {
-  max-width: 780px;
+  max-width: 620px;
   margin-bottom: 18px;
-  font-size: clamp(2.5rem, 4.35vw, 4.85rem);
+  font-size: clamp(2.35rem, 3.7vw, 4.2rem);
   letter-spacing: -0.045em;
   line-height: 1.02;
   text-shadow: 0 12px 38px rgba(4, 24, 37, 0.34);
@@ -2956,44 +2957,85 @@ h2 {
 }
 
 .human-story-copy > p {
-  max-width: 650px;
+  max-width: 560px;
   margin-bottom: 0;
   color: #dce8ec;
   font-size: 0.9rem;
   line-height: 1.65;
-  text-align: center;
+  text-align: left;
 }
 
 .human-proof-row {
-  width: min(100%, 660px);
-  gap: 24px;
-  margin: 30px 0 26px;
+  position: relative;
+  display: grid;
+  width: min(100%, 590px);
+  gap: 0;
+  margin: 28px 0 26px;
+  grid-template-columns: 1fr;
   opacity: var(--human-details);
   transform: translateY(calc((1 - var(--human-details)) * 24px));
+}
+
+.human-proof-row::before {
+  position: absolute;
+  top: 28px;
+  bottom: 28px;
+  left: 18px;
+  width: 1px;
+  background: linear-gradient(#82d4cf, rgba(130, 212, 207, 0.08));
+  content: "";
 }
 
 .human-proof-row > div,
 .human-proof-row > div:first-child,
 .human-proof-row > div:last-child {
-  min-height: 92px;
-  justify-content: center;
-  padding: 16px 18px;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 68px;
+  justify-content: initial;
+  padding: 14px 0;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  background: rgba(9, 37, 53, 0.34);
-  text-align: center;
-  backdrop-filter: blur(12px);
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+  background: transparent;
+  grid-template-columns: 38px 126px 1fr;
+  text-align: left;
+  backdrop-filter: none;
   transform: none;
+  transition: background 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+}
+
+.human-proof-row > div:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.human-proof-row > div:hover {
+  padding-right: 12px;
+  padding-left: 10px;
+  background: linear-gradient(90deg, rgba(113, 205, 201, 0.13), transparent);
+  transform: translateX(5px);
 }
 
 .human-proof-row svg {
-  width: 19px;
-  margin-bottom: 9px;
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 9px;
+  border: 1px solid rgba(132, 215, 211, 0.32);
+  border-radius: 50%;
+  background: rgba(33, 112, 122, 0.34);
+}
+
+.human-proof-row span {
+  padding-left: 14px;
 }
 
 .human-proof-row strong {
-  font-size: 0.76rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
 }
 
 .human-story-copy .button {
@@ -3047,6 +3089,7 @@ h2 {
     border-radius: 20px;
     background: rgba(9, 37, 53, 0.76);
     opacity: 1;
+    align-items: flex-start;
     text-align: left;
     backdrop-filter: blur(18px) saturate(125%);
     transform: none;
@@ -3060,7 +3103,14 @@ h2 {
   .human-proof-row > div:first-child,
   .human-proof-row > div:last-child {
     align-items: flex-start;
+    grid-template-columns: 38px 1fr;
     text-align: left;
+  }
+
+  .human-proof-row span,
+  .human-proof-row strong {
+    grid-column: 2;
+    padding-left: 12px;
   }
 
   .human-story-copy h2 {
