@@ -24,6 +24,7 @@ free billing audit.
 | Runtime target | Cloudflare Workers-compatible output |
 | Quality | ESLint, TypeScript compilation and Node test runner |
 | Source control | Git with named design-snapshot commits |
+| Continuous integration | GitHub Actions on pushes and pull requests |
 
 The current homepage does not require a database, authentication, or external
 API credentials.
