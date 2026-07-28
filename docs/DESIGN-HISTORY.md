@@ -12,6 +12,7 @@ directions can be restored without recreating them.
 | `191f771` | Human story with center-to-left scroll reveal |
 | `22f639c` | Animated operational proof rail |
 | `18f6498` | Centered operational metrics with scroll-triggered counters and Magnific texture |
+| `97f5fcf` | Interactive RCM journey, accountability bridge, and scroll-counting hero performance pulse |
 
 ## Current visual direction
 
