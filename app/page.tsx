@@ -547,11 +547,47 @@ export default function Home() {
       </section>
 
       <section className="section proof-section">
-        <div className="container proof-metrics">
-          <div><strong>$2.1B+</strong><span>Revenue processed</span></div>
-          <div><strong>48hr</strong><span>Onboarding time</span></div>
-          <div><strong>8.4d</strong><span>Average days in A/R</span></div>
-          <div><strong>99.9%</strong><span>HIPAA compliance</span></div>
+        <div className="container proof-shell" data-reveal>
+          <div className="proof-intro">
+            <div>
+              <span className="eyebrow eyebrow-light">Operational outcomes</span>
+              <h2>Performance you can see.</h2>
+            </div>
+            <div className="proof-live" aria-label="Performance snapshot">
+              <i aria-hidden="true" />
+              Performance snapshot
+            </div>
+          </div>
+          <div className="proof-metrics" role="list" aria-label="ClinoraMedBill performance metrics">
+            <article className="proof-metric" role="listitem">
+              <span className="metric-index">01</span>
+              <div className="metric-icon"><CircleDollarSign aria-hidden="true" /></div>
+              <strong>$2.1B+</strong>
+              <span>Revenue processed</span>
+              <div className="metric-progress" aria-hidden="true"><i /></div>
+            </article>
+            <article className="proof-metric" role="listitem">
+              <span className="metric-index">02</span>
+              <div className="metric-icon"><Sparkles aria-hidden="true" /></div>
+              <strong>48hr</strong>
+              <span>Onboarding time</span>
+              <div className="metric-progress" aria-hidden="true"><i /></div>
+            </article>
+            <article className="proof-metric" role="listitem">
+              <span className="metric-index">03</span>
+              <div className="metric-icon"><Activity aria-hidden="true" /></div>
+              <strong>8.4d</strong>
+              <span>Average days in A/R</span>
+              <div className="metric-progress" aria-hidden="true"><i /></div>
+            </article>
+            <article className="proof-metric" role="listitem">
+              <span className="metric-index">04</span>
+              <div className="metric-icon"><ShieldCheck aria-hidden="true" /></div>
+              <strong>99.9%</strong>
+              <span>HIPAA compliance</span>
+              <div className="metric-progress" aria-hidden="true"><i /></div>
+            </article>
+          </div>
         </div>
       </section>
 
