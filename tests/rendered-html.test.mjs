@@ -35,6 +35,9 @@ test("server-renders the ClinoraMedBill homepage", async () => {
   );
   assert.match(html, /Medical billing, managed with clarity/i);
   assert.match(html, /Free billing audit/i);
+  assert.match(html, /From visit to payment, nothing gets lost/i);
+  assert.match(html, /Live revenue operations/i);
+  assert.match(html, /Operating benchmarks, made visible/i);
   assert.match(html, /Specialties we serve/i);
   assert.match(html, /Security &amp; Compliance/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
@@ -53,6 +56,8 @@ test("keeps core accessibility and project metadata in source", async () => {
   assert.match(page, /aria-live="polite"/);
   assert.match(page, /<label>/);
   assert.match(page, /data-count-to="99\.9"/);
+  assert.match(page, /data-count-to="98\.7"/);
+  assert.match(page, /aria-pressed=\{isActive\}/);
   assert.match(page, /IntersectionObserver/);
   assert.match(layout, /ClinoraMedBill \| Medical Billing & Revenue Cycle Management/);
   assert.match(layout, /openGraph:/);

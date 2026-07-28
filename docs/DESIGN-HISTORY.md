@@ -19,6 +19,9 @@ directions can be restored without recreating them.
 - Large dropdown navigation and glass treatments
 - Specialty streams with continuous motion and hover gradients
 - Human accountability story with a cinematic scroll transition
+- Interactive RCM journey with stage-driven operating metrics
+- Connected visit-to-revenue transition bridge
+- Scroll-counting hero performance pulse
 - Dark operational proof rail with connected metric motion
 - Large trust-oriented footer
 

@@ -71,12 +71,66 @@ const services = [
 ];
 
 const process = [
-  ["Patient Registration & Eligibility", "Insurance verification and demographic capture before every appointment."],
-  ["Charge Capture & Coding", "Certified coders review every encounter note for accurate ICD-10 and CPT codes."],
-  ["Claims Scrubbing & Submission", "Automated error detection before electronic submission to all major payers."],
-  ["Payment Posting & Reconciliation", "ERA/EOB processing with full audit trail and payer contract verification."],
-  ["Denial Management & Appeals", "Root-cause analysis and rapid appeals process to recover maximum revenue."],
-  ["Reporting & Ongoing Optimization", "Monthly performance reviews to continuously maximize your revenue cycle."],
+  {
+    icon: UserRoundCheck,
+    label: "Patient access",
+    title: "Patient Registration & Eligibility",
+    text: "Insurance verification and demographic capture before every appointment.",
+    metric: "99.4%",
+    metricLabel: "Eligibility verified",
+    signal: "+2.1% verification accuracy",
+    bars: [42, 55, 49, 67, 62, 76, 72, 87, 82, 94],
+  },
+  {
+    icon: Code2,
+    label: "Clinical coding",
+    title: "Charge Capture & Coding",
+    text: "Certified coders review every encounter note for accurate ICD-10 and CPT codes.",
+    metric: "<24h",
+    metricLabel: "Coding turnaround",
+    signal: "Certified review in motion",
+    bars: [48, 62, 57, 73, 69, 82, 79, 91, 87, 97],
+  },
+  {
+    icon: ClipboardCheck,
+    label: "Clean claims",
+    title: "Claims Scrubbing & Submission",
+    text: "Automated error detection before electronic submission to all major payers.",
+    metric: "98.7%",
+    metricLabel: "First-pass acceptance",
+    signal: "+3.2% this month",
+    bars: [44, 58, 51, 72, 67, 82, 78, 91, 88, 98],
+  },
+  {
+    icon: CircleDollarSign,
+    label: "Payment integrity",
+    title: "Payment Posting & Reconciliation",
+    text: "ERA/EOB processing with full audit trail and payer contract verification.",
+    metric: "1:1",
+    metricLabel: "Payment reconciliation",
+    signal: "Every remittance traced",
+    bars: [38, 52, 61, 58, 75, 72, 88, 83, 94, 91],
+  },
+  {
+    icon: RefreshCcw,
+    label: "Revenue recovery",
+    title: "Denial Management & Appeals",
+    text: "Root-cause analysis and rapid appeals process to recover maximum revenue.",
+    metric: "8.4d",
+    metricLabel: "Average days in A/R",
+    signal: "Faster follow-up rhythm",
+    bars: [74, 71, 67, 65, 58, 54, 49, 43, 38, 31],
+  },
+  {
+    icon: BarChart3,
+    label: "Performance",
+    title: "Reporting & Ongoing Optimization",
+    text: "Monthly performance reviews to continuously maximize your revenue cycle.",
+    metric: "Live",
+    metricLabel: "Practice visibility",
+    signal: "Clear next actions",
+    bars: [45, 52, 60, 64, 71, 77, 82, 86, 92, 98],
+  },
 ];
 
 const specialties = [
@@ -162,6 +216,7 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const [videoPaused, setVideoPaused] = useState(false);
   const [headerSolid, setHeaderSolid] = useState(false);
+  const [activeProcess, setActiveProcess] = useState(0);
 
   useEffect(() => {
     const onScroll = () => setHeaderSolid(window.scrollY > 24);
@@ -455,11 +510,60 @@ export default function Home() {
       </section>
 
       <section className="metric-ribbon" aria-label="Performance metrics">
-        <div className="container metrics">
-          <div><strong>98.7%</strong><span>Clean claim rate</span></div>
-          <div><strong>&lt;1%</strong><span>Denial rate</span></div>
-          <div><strong>&lt;28 days</strong><span>A/R days</span></div>
-          <div><strong>99.9%</strong><span>HIPAA compliance</span></div>
+        <div className="container metric-ribbon-shell" data-reveal>
+          <div className="metric-ribbon-head">
+            <span><Activity aria-hidden="true" /> Revenue performance</span>
+            <small>Operating benchmarks, made visible.</small>
+          </div>
+          <div className="metrics">
+            <div>
+              <span className="metric-ribbon-icon"><CheckCircle2 aria-hidden="true" /></span>
+              <strong
+                data-count-to="98.7"
+                data-count-decimals="1"
+                data-count-suffix="%"
+                aria-label="98.7 percent"
+              >98.7%</strong>
+              <span>Clean claim rate</span>
+              <i className="metric-ribbon-progress" aria-hidden="true"><b style={{ width: "98.7%" }} /></i>
+            </div>
+            <div>
+              <span className="metric-ribbon-icon"><FileSearch aria-hidden="true" /></span>
+              <strong
+                data-count-to="1"
+                data-count-prefix="&lt;"
+                data-count-suffix="%"
+                data-count-delay="90"
+                aria-label="Less than 1 percent"
+              >&lt;1%</strong>
+              <span>Denial rate</span>
+              <i className="metric-ribbon-progress" aria-hidden="true"><b style={{ width: "18%" }} /></i>
+            </div>
+            <div>
+              <span className="metric-ribbon-icon"><TrendingUp aria-hidden="true" /></span>
+              <strong
+                data-count-to="28"
+                data-count-prefix="&lt;"
+                data-count-suffix=" days"
+                data-count-delay="180"
+                aria-label="Less than 28 days"
+              >&lt;28 days</strong>
+              <span>Average A/R days</span>
+              <i className="metric-ribbon-progress" aria-hidden="true"><b style={{ width: "72%" }} /></i>
+            </div>
+            <div>
+              <span className="metric-ribbon-icon"><ShieldCheck aria-hidden="true" /></span>
+              <strong
+                data-count-to="99.9"
+                data-count-decimals="1"
+                data-count-suffix="%"
+                data-count-delay="270"
+                aria-label="99.9 percent"
+              >99.9%</strong>
+              <span>HIPAA compliance</span>
+              <i className="metric-ribbon-progress" aria-hidden="true"><b style={{ width: "99.9%" }} /></i>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -531,13 +635,35 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="motion-marquee" aria-label="Revenue cycle stages">
-        <div>
-          <span>Eligibility</span><i>→</i><span>Coding</span><i>→</i><span>Clean claims</span><i>→</i>
-          <span>Payments</span><i>→</i><span>Reporting</span><i>→</i><span>Eligibility</span><i>→</i>
-          <span>Coding</span><i>→</i><span>Clean claims</span><i>→</i><span>Payments</span><i>→</i><span>Reporting</span>
+      <section className="flow-bridge" aria-label="Connected revenue operation">
+        <div className="container flow-bridge-shell" data-reveal>
+          <div className="flow-endpoint">
+            <span><Stethoscope aria-hidden="true" /></span>
+            <div>
+              <small>Starts with</small>
+              <strong>Patient encounter</strong>
+            </div>
+          </div>
+          <div className="flow-bridge-core">
+            <span className="flow-bridge-kicker"><Activity aria-hidden="true" /> One accountable system</span>
+            <strong>From visit to payment, nothing gets lost.</strong>
+            <div className="flow-signal-track" aria-hidden="true">
+              <span />
+              <i />
+              <i />
+              <i />
+            </div>
+            <small>Clinora manages every handoff with clear ownership and visibility.</small>
+          </div>
+          <div className="flow-endpoint flow-endpoint-revenue">
+            <span><CircleDollarSign aria-hidden="true" /></span>
+            <div>
+              <small>Ends with</small>
+              <strong>Collected revenue</strong>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       <section id="process" className="section process-section">
         <div className="container split-heading" data-reveal>
@@ -548,42 +674,77 @@ export default function Home() {
           <p>A transparent, step-by-step process built for healthcare providers who demand accuracy, speed, and complete accountability at every stage.</p>
         </div>
         <div className="container process-layout">
-          <ol className="process-list">
-            {process.map(([title, text], index) => (
-              <li key={title} data-reveal>
-                <span className="process-number">{String(index + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </div>
-                <CheckCircle2 aria-hidden="true" />
+          <ol className="process-list" aria-label="Revenue cycle stages" data-reveal>
+            {process.map((step, index) => {
+              const StepIcon = step.icon;
+              const isActive = activeProcess === index;
+              return (
+              <li key={step.title} className={isActive ? "is-active" : ""}>
+                <button
+                  type="button"
+                  className="process-step"
+                  aria-pressed={isActive}
+                  onClick={() => setActiveProcess(index)}
+                  onFocus={() => setActiveProcess(index)}
+                  onMouseEnter={() => setActiveProcess(index)}
+                >
+                  <span className="process-marker">
+                    <StepIcon aria-hidden="true" />
+                    <small>{String(index + 1).padStart(2, "0")}</small>
+                  </span>
+                  <span className="process-content">
+                    <span>{step.label}</span>
+                    <strong>{step.title}</strong>
+                    <small>{step.text}</small>
+                  </span>
+                  <ArrowRight className="process-arrow" aria-hidden="true" />
+                </button>
               </li>
-            ))}
+              );
+            })}
           </ol>
-          <div className="process-proof" data-reveal>
+          <div
+            className="process-proof"
+            data-reveal
+            data-stage={String(activeProcess + 1).padStart(2, "0")}
+            role="region"
+            aria-label={`Stage ${activeProcess + 1}: ${process[activeProcess].title}`}
+          >
             <div className="dashboard-head">
               <div>
                 <span className="dashboard-dot" />
                 <span className="dashboard-dot" />
                 <span className="dashboard-dot" />
               </div>
-              <span>Revenue operations overview</span>
+              <span>Live revenue operations</span>
+              <strong>{String(activeProcess + 1).padStart(2, "0")} / 06</strong>
             </div>
             <div className="dashboard-body">
+              <div className="dashboard-stage-title">
+                <span>{process[activeProcess].label}</span>
+                <strong>{process[activeProcess].title}</strong>
+              </div>
               <div className="dashboard-kpi">
-                <span>Claims accepted</span>
-                <strong>98.7%</strong>
-                <small><TrendingUp size={13} /> 3.2% this month</small>
+                <span>{process[activeProcess].metricLabel}</span>
+                <strong key={process[activeProcess].metric}>{process[activeProcess].metric}</strong>
+                <small><TrendingUp size={13} /> {process[activeProcess].signal}</small>
               </div>
               <div className="dashboard-graph">
-                {[44, 58, 51, 72, 67, 82, 78, 91, 88, 98].map((height, index) => (
-                  <i key={index} style={{ height: `${height}%` }} />
+                {process[activeProcess].bars.map((height, index) => (
+                  <i key={`${activeProcess}-${index}`} style={{ height: `${height}%`, animationDelay: `${index * 45}ms` }} />
                 ))}
               </div>
               <div className="dashboard-list">
-                <div><span><BadgeCheck size={16} /> Claim validation</span><strong>Complete</strong></div>
-                <div><span><RefreshCcw size={16} /> Payer follow-up</span><strong>Active</strong></div>
-                <div><span><BarChart3 size={16} /> Monthly reporting</span><strong>Ready</strong></div>
+                <div><span><BadgeCheck size={16} /> Stage validation</span><strong>Complete</strong></div>
+                <div><span><RefreshCcw size={16} /> {process[activeProcess].label}</span><strong>Active</strong></div>
+                <div><span><BarChart3 size={16} /> Team visibility</span><strong>Live</strong></div>
+              </div>
+              <div className="dashboard-route" aria-hidden="true">
+                {process.map((step, index) => (
+                  <i key={step.title} className={index <= activeProcess ? "is-complete" : ""}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                  </i>
+                ))}
               </div>
             </div>
             <div className="proof-caption"><LockKeyhole size={15} /> Secure access · Clear audit trail · Actionable reporting</div>

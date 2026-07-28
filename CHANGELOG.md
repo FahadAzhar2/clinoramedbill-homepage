@@ -22,6 +22,10 @@ also preserved as named Git commits in `docs/DESIGN-HISTORY.md`.
 - Metrics redesigned from a static table into an animated proof rail
 - Operational metrics centered and upgraded with scroll-triggered count-up values
 - Magnific-generated healthcare data texture integrated into the metrics background
+- RCM workflow rebuilt as an interactive six-stage claim journey with a reactive operations console
+- Services-to-process transition replaced with a connected visit-to-revenue accountability bridge
+- Hero performance metrics upgraded into a centered scroll-counting performance pulse
+- Human accountability proof rows refined with aligned connectors and stable hover motion
 - Next.js updated to the latest compatible 16.2 patch available during handoff
 
 ### Security
