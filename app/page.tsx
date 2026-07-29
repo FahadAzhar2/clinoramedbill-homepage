@@ -3,6 +3,7 @@
 
 import {
   Activity,
+  ArrowLeft,
   ArrowRight,
   BadgeCheck,
   BarChart3,
@@ -11,6 +12,7 @@ import {
   ChevronDown,
   CircleDollarSign,
   ClipboardCheck,
+  Clock3,
   Code2,
   FileSearch,
   HeartPulse,
@@ -30,7 +32,7 @@ import {
   UsersRound,
   X,
 } from "lucide-react";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 const services = [
   {
@@ -181,6 +183,57 @@ const benefits = [
   },
 ];
 
+const insights = [
+  {
+    category: "Denial prevention",
+    readTime: "7 min read",
+    title: "The strongest denial strategy starts before a claim is submitted.",
+    text: "A practical look at the eligibility, documentation, coding, and claim-scrubbing signals that help practices prevent avoidable revenue loss.",
+    image: "/media/insight-denials-cover.jpg",
+    imageAlt: "Healthcare professionals reviewing revenue data together",
+  },
+  {
+    category: "Revenue visibility",
+    readTime: "5 min read",
+    title: "What your clean-claim rate is—and is not—telling you.",
+    text: "Turn a familiar billing metric into a clearer view of workflow quality, payer friction, and the next operational action.",
+    image: "/media/insight-visibility-cover.jpg",
+    imageAlt: "Abstract data lines representing revenue performance",
+  },
+  {
+    category: "Specialty billing",
+    readTime: "6 min read",
+    title: "Why specialty-aware billing workflows outperform generic playbooks.",
+    text: "Documentation patterns, payer rules, and coding details change by specialty. Your revenue workflow should account for that reality.",
+    image: "/media/insight-specialty-cover.jpg",
+    imageAlt: "Connected digital workflow representing specialty billing operations",
+  },
+  {
+    category: "A/R performance",
+    readTime: "8 min read",
+    title: "A/R aging tells a story. Here is how to read it earlier.",
+    text: "Use payer trends, claim status patterns, and ownership signals to identify stalled revenue before it becomes old revenue.",
+    image: "/media/insight-ar-cover.jpg",
+    imageAlt: "Revenue cycle specialists analyzing accounts receivable trends",
+  },
+  {
+    category: "Compliance",
+    readTime: "4 min read",
+    title: "Clear reporting is part of a secure billing operation.",
+    text: "Operational visibility and thoughtful access controls help teams communicate clearly without compromising sensitive information.",
+    image: "/media/insight-compliance-cover.jpg",
+    imageAlt: "Secure healthcare data and compliance workflow",
+  },
+  {
+    category: "Reporting",
+    readTime: "6 min read",
+    title: "The monthly billing report your practice can actually act on.",
+    text: "Move beyond static totals with context, ownership, and clear next actions for every important revenue-cycle signal.",
+    image: "/media/insight-reporting-cover.jpg",
+    imageAlt: "Healthcare revenue reporting reviewed by an operations team",
+  },
+];
+
 const megaColumns = [
   {
     title: "Revenue operations",
@@ -217,6 +270,24 @@ export default function Home() {
   const [videoPaused, setVideoPaused] = useState(false);
   const [headerSolid, setHeaderSolid] = useState(false);
   const [activeProcess, setActiveProcess] = useState(0);
+  const blogRailRef = useRef<HTMLDivElement>(null);
+  const blogAutoResumeAtRef = useRef(0);
+
+  const scrollBlogs = (direction: -1 | 1) => {
+    const rail = blogRailRef.current;
+    if (!rail) return;
+    const firstCard = rail.querySelector<HTMLElement>(".blog-card");
+    const cardStep = firstCard ? firstCard.offsetWidth + 18 : rail.clientWidth * 0.72;
+    const maxScroll = rail.scrollWidth - rail.clientWidth;
+    const nextPosition = direction > 0 && rail.scrollLeft >= maxScroll - 4
+      ? 0
+      : direction < 0 && rail.scrollLeft <= 4
+        ? maxScroll
+        : Math.max(0, rail.scrollLeft + direction * cardStep);
+
+    blogAutoResumeAtRef.current = performance.now() + 1400;
+    rail.scrollTo({ left: nextPosition, behavior: "smooth" });
+  };
 
   useEffect(() => {
     const onScroll = () => setHeaderSolid(window.scrollY > 24);
@@ -224,6 +295,10 @@ export default function Home() {
     window.addEventListener("scroll", onScroll, { passive: true });
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      setVideoPaused(true);
+      document.querySelector<HTMLVideoElement>(".hero-video")?.pause();
+    }
     const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const metricValues = Array.from(document.querySelectorAll<HTMLElement>("[data-count-to]"));
     let observer: IntersectionObserver | undefined;
@@ -329,6 +404,37 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const rail = blogRailRef.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!rail || reducedMotion) return;
+
+    let frame = 0;
+    let previousTime = 0;
+
+    const autoScroll = (time: number) => {
+      const elapsed = previousTime ? Math.min(time - previousTime, 50) : 0;
+      previousTime = time;
+      const paused = rail.matches(":focus-within")
+        || document.hidden
+        || time < blogAutoResumeAtRef.current;
+
+      if (!paused) {
+        const maxScroll = rail.scrollWidth - rail.clientWidth;
+        if (maxScroll > 0) {
+          rail.scrollLeft = rail.scrollLeft >= maxScroll - 1
+            ? 0
+            : rail.scrollLeft + elapsed * 0.022;
+        }
+      }
+
+      frame = window.requestAnimationFrame(autoScroll);
+    };
+
+    frame = window.requestAnimationFrame(autoScroll);
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   const submitAudit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(true);
@@ -343,7 +449,20 @@ export default function Home() {
       <header className={`site-header ${headerSolid ? "is-solid" : ""}`}>
         <div className="header-inner">
           <a className="logo-link" href="#top" aria-label="ClinoraMedBill home">
-            <img src="/brand/clinora-primary.svg" alt="ClinoraMedBill" width="348" height="180" />
+            <img
+              className="header-logo-mark"
+              src="/brand/clinora-header-mark.svg"
+              alt=""
+              width="112"
+              height="98"
+            />
+            <img
+              className="header-logo-wordmark"
+              src="/brand/clinora-header-wordmark.svg"
+              alt="ClinoraMedBill"
+              width="292"
+              height="70"
+            />
           </a>
 
           <nav className="desktop-nav" aria-label="Primary navigation">
@@ -408,25 +527,31 @@ export default function Home() {
         </nav>
       </header>
 
-      <section id="top" className="hero" aria-labelledby="hero-title">
+      <section id="top" className="hero hero-approved" aria-labelledby="hero-title">
         <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-orb hero-orb-one" aria-hidden="true" />
-        <div className="hero-orb hero-orb-two" aria-hidden="true" />
+        <div className="hero-human-media" aria-hidden="true">
+          <img
+            src="/media/hero-human-centered-v2.jpg"
+            alt=""
+            width="1673"
+            height="940"
+          />
+        </div>
         <video
           className="hero-video"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
-          poster="/media/hero-poster.jpg"
+          preload="auto"
+          poster="/media/hero-human-centered-v2.jpg"
           aria-hidden="true"
           ref={(node) => {
             if (!node) return;
             if (videoPaused) node.pause();
           }}
         >
-          <source src="/media/clinora-hero.mp4" type="video/mp4" />
+          <source src="/media/clinora-hero-human-2k.mp4" type="video/mp4" />
         </video>
         <div className="hero-video-wash" aria-hidden="true" />
 
@@ -436,18 +561,18 @@ export default function Home() {
             Medical billing & revenue cycle management
           </div>
           <h1 id="hero-title">
-            Recover more. <span>Bill smarter.</span><br />
-            Grow with clarity.
+            Medical billing,<br />
+            clearly managed.
           </h1>
           <p className="hero-copy">
-            AI-powered medical billing that maximizes reimbursements, slashes denials, and puts your practice back in full control of its revenue cycle.
+            We streamline your revenue cycle so you can focus on what matters most—your patients.
           </p>
           <div className="hero-actions">
             <a className="button button-large" href="#audit">
-              Request your free billing audit <ArrowRight aria-hidden="true" size={18} />
+              Request a free billing audit <ArrowRight aria-hidden="true" size={18} />
             </a>
             <a className="button button-large button-ghost" href="#process">
-              See how we manage RCM
+              See how it works
             </a>
           </div>
           <div className="hero-assurance" aria-label="Service assurances">
@@ -458,8 +583,12 @@ export default function Home() {
           <form className="hero-audit-form" onSubmit={submitAudit} aria-label="Request a free billing audit">
             <div className="hero-form-intro">
               <span>Start with clarity</span>
-              <strong>Request a free billing audit</strong>
+              <strong>Get a clear picture of your billing performance.</strong>
             </div>
+            <label>
+              <span>Full name</span>
+              <input name="hero-name" type="text" autoComplete="name" placeholder="Your full name" required />
+            </label>
             <label>
               <span>Practice name</span>
               <input name="hero-practice" type="text" autoComplete="organization" placeholder="Your practice" required />
@@ -469,28 +598,16 @@ export default function Home() {
               <input name="hero-email" type="email" autoComplete="email" placeholder="you@practice.com" required />
             </label>
             <label>
-              <span>Specialty</span>
-              <select name="hero-specialty" defaultValue="" required>
-                <option value="" disabled>Select specialty</option>
-                {specialties.map((specialty) => <option value={specialty} key={`hero-${specialty}`}>{specialty}</option>)}
-                <option value="Other">Other</option>
-              </select>
+              <span>Phone number</span>
+              <input name="hero-phone" type="tel" autoComplete="tel" placeholder="Your phone number" />
             </label>
             <button type="submit" aria-label="Submit free billing audit request">
-              Get my audit <ArrowRight aria-hidden="true" size={17} />
+              Request audit <ArrowRight aria-hidden="true" size={17} />
             </button>
             <div className="hero-form-status" role="status" aria-live="polite">
               {submitted ? "Request received for this prototype." : ""}
             </div>
           </form>
-        </div>
-
-        <div className="hero-motion-rail" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
         </div>
 
         <button
@@ -525,7 +642,6 @@ export default function Home() {
                 aria-label="98.7 percent"
               >98.7%</strong>
               <span>Clean claim rate</span>
-              <i className="metric-ribbon-progress" aria-hidden="true"><b style={{ width: "98.7%" }} /></i>
             </div>
             <div>
               <span className="metric-ribbon-icon"><FileSearch aria-hidden="true" /></span>
@@ -537,7 +653,6 @@ export default function Home() {
                 aria-label="Less than 1 percent"
               >&lt;1%</strong>
               <span>Denial rate</span>
-              <i className="metric-ribbon-progress" aria-hidden="true"><b style={{ width: "18%" }} /></i>
             </div>
             <div>
               <span className="metric-ribbon-icon"><TrendingUp aria-hidden="true" /></span>
@@ -549,7 +664,6 @@ export default function Home() {
                 aria-label="Less than 28 days"
               >&lt;28 days</strong>
               <span>Average A/R days</span>
-              <i className="metric-ribbon-progress" aria-hidden="true"><b style={{ width: "72%" }} /></i>
             </div>
             <div>
               <span className="metric-ribbon-icon"><ShieldCheck aria-hidden="true" /></span>
@@ -561,7 +675,6 @@ export default function Home() {
                 aria-label="99.9 percent"
               >99.9%</strong>
               <span>HIPAA compliance</span>
-              <i className="metric-ribbon-progress" aria-hidden="true"><b style={{ width: "99.9%" }} /></i>
             </div>
           </div>
         </div>
@@ -893,6 +1006,44 @@ export default function Home() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section id="insights" className="section insights-section">
+        <div className="container blog-heading centered" data-reveal>
+          <span className="eyebrow">Clinora insights</span>
+          <h2>Practical reads for healthier revenue.</h2>
+          <p>Focused guidance for the people managing claims, billing performance, and specialty workflows.</p>
+          <div className="blog-controls" aria-label="Browse insights">
+            <button type="button" onClick={() => scrollBlogs(-1)} aria-label="View previous insights">
+              <ArrowLeft aria-hidden="true" />
+            </button>
+            <button type="button" onClick={() => scrollBlogs(1)} aria-label="View more insights">
+              <ArrowRight aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+
+        <div className="blog-carousel">
+          <div className="container blog-card-grid" ref={blogRailRef}>
+            {insights.map((insight, index) => (
+              <article key={insight.title} className="blog-card" data-reveal>
+                <a className="blog-card-image" href="#audit" aria-label={`Read insight: ${insight.title}`}>
+                  <img src={insight.image} alt={insight.imageAlt} />
+                  <span className="blog-card-count">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="blog-card-category">{insight.category}</span>
+                </a>
+                <div className="blog-card-body">
+                  <span className="blog-card-time"><Clock3 aria-hidden="true" /> {insight.readTime}</span>
+                  <h3>{insight.title}</h3>
+                  <p>{insight.text}</p>
+                  <a className="blog-card-link" href="#audit">
+                    Read insight <span><ArrowRight aria-hidden="true" /></span>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
