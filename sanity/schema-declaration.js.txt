@@ -1,0 +1,130 @@
+{
+  name: 'siteSettings',
+  title: 'Site settings',
+  type: 'document',
+  fields: [
+    {name: 'companyName', title: 'Company name', type: 'string'},
+    {name: 'phone', title: 'Phone', type: 'string'},
+    {name: 'email', title: 'Email', type: 'string'},
+    {name: 'address', title: 'Office address', type: 'string'},
+    {name: 'googleReviewsUrl', title: 'Google reviews URL', type: 'url'},
+    {name: 'googleRating', title: 'Google rating', type: 'string'},
+    {name: 'footerDescription', title: 'Footer description', type: 'text'},
+  ],
+}
+{
+  name: 'homepage',
+  title: 'Homepage',
+  type: 'document',
+  fields: [
+    {name: 'heroEyebrow', title: 'Hero eyebrow', type: 'string'},
+    {name: 'heroTitle', title: 'Hero title', type: 'string'},
+    {name: 'heroDescription', title: 'Hero description', type: 'text'},
+    {name: 'heroPrimaryCta', title: 'Hero primary CTA', type: 'string'},
+    {name: 'heroSecondaryCta', title: 'Hero secondary CTA', type: 'string'},
+    {name: 'servicesEyebrow', title: 'Services eyebrow', type: 'string'},
+    {name: 'servicesTitle', title: 'Services title', type: 'string'},
+    {name: 'servicesDescription', title: 'Services description', type: 'text'},
+    {name: 'processEyebrow', title: 'Process eyebrow', type: 'string'},
+    {name: 'processTitle', title: 'Process title', type: 'string'},
+    {name: 'processDescription', title: 'Process description', type: 'text'},
+    {name: 'specialtiesEyebrow', title: 'Specialties eyebrow', type: 'string'},
+    {name: 'specialtiesTitle', title: 'Specialties title', type: 'string'},
+    {name: 'specialtiesDescription', title: 'Specialties description', type: 'text'},
+    {name: 'audienceEyebrow', title: 'Who we serve eyebrow', type: 'string'},
+    {name: 'audienceTitle', title: 'Who we serve title', type: 'string'},
+    {name: 'audienceDescription', title: 'Who we serve description', type: 'text'},
+    {name: 'nationwideEyebrow', title: 'Nationwide eyebrow', type: 'string'},
+    {name: 'nationwideTitle', title: 'Nationwide title', type: 'string'},
+    {name: 'nationwideDescription', title: 'Nationwide description', type: 'text'},
+    {name: 'insightsEyebrow', title: 'Insights eyebrow', type: 'string'},
+    {name: 'insightsTitle', title: 'Insights title', type: 'string'},
+    {name: 'insightsDescription', title: 'Insights description', type: 'text'},
+    {name: 'auditEyebrow', title: 'Audit eyebrow', type: 'string'},
+    {name: 'auditTitle', title: 'Audit title', type: 'string'},
+    {name: 'auditDescription', title: 'Audit description', type: 'text'},
+  ],
+}
+{
+  name: 'service',
+  title: 'Service',
+  type: 'document',
+  fields: [
+    {name: 'title', title: 'Title', type: 'string'},
+    {name: 'description', title: 'Description', type: 'text'},
+    {name: 'iconKey', title: 'Icon', type: 'string', options: {list: [{title: 'Layers', value: 'layers'}, {title: 'Dollar', value: 'dollar'}, {title: 'Code', value: 'code'}, {title: 'Refresh', value: 'refresh'}, {title: 'Search', value: 'search'}, {title: 'Audit', value: 'audit'}, {title: 'Credential', value: 'credential'}, {title: 'Phone', value: 'phone'}]}},
+    {name: 'order', title: 'Order', type: 'number'},
+  ],
+}
+{
+  name: 'faq',
+  title: 'FAQ',
+  type: 'document',
+  fields: [
+    {name: 'question', title: 'Question', type: 'string'},
+    {name: 'answer', title: 'Answer', type: 'text'},
+    {name: 'order', title: 'Order', type: 'number'},
+  ],
+}
+{
+  name: 'insight',
+  title: 'Insight / blog card',
+  type: 'document',
+  fields: [
+    {name: 'category', title: 'Category', type: 'string'},
+    {name: 'readTime', title: 'Read time', type: 'string'},
+    {name: 'title', title: 'Title', type: 'string'},
+    {name: 'description', title: 'Description', type: 'text'},
+    {name: 'image', title: 'Image', type: 'image', options: {hotspot: true}},
+    {name: 'imageAlt', title: 'Image alt text', type: 'string'},
+    {name: 'link', title: 'Link', type: 'url'},
+    {name: 'order', title: 'Order', type: 'number'},
+  ],
+}
+{
+  name: 'audience',
+  title: 'Who we serve',
+  type: 'document',
+  fields: [
+    {name: 'title', title: 'Title', type: 'string'},
+    {name: 'description', title: 'Description', type: 'text'},
+    {name: 'image', title: 'Image', type: 'image', options: {hotspot: true}},
+    {name: 'imageAlt', title: 'Image alt text', type: 'string'},
+    {name: 'order', title: 'Order', type: 'number'},
+  ],
+}
+{
+  name: 'specialty',
+  title: 'Medical specialty',
+  type: 'document',
+  fields: [
+    {name: 'name', title: 'Name', type: 'string'},
+    {name: 'category', title: 'Category', type: 'string'},
+    {name: 'description', title: 'Billing description', type: 'text'},
+    {name: 'order', title: 'Order', type: 'number'},
+  ],
+}
+{
+  name: 'state',
+  title: 'Nationwide state',
+  type: 'document',
+  fields: [
+    {name: 'name', title: 'State name', type: 'string'},
+    {name: 'capital', title: 'Capital', type: 'string'},
+    {name: 'region', title: 'Region', type: 'string'},
+    {name: 'description', title: 'Description', type: 'text'},
+    {name: 'image', title: 'City or state image', type: 'image', options: {hotspot: true}},
+    {name: 'order', title: 'Order', type: 'number'},
+  ],
+}
+{
+  name: 'legalPage',
+  title: 'Legal page',
+  type: 'document',
+  fields: [
+    {name: 'title', title: 'Title', type: 'string'},
+    {name: 'slug', title: 'Slug', type: 'slug'},
+    {name: 'summary', title: 'Summary', type: 'text'},
+    {name: 'body', title: 'Body', type: 'array', of: [{type: 'block'}]},
+  ],
+}

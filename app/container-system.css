@@ -1,0 +1,233 @@
+/*
+ * ClinoraMedBill horizontal grid contract.
+ * Loaded last so legacy one-off widths resolve to one shared system without
+ * changing section composition, vertical rhythm, imagery, type, or motion.
+ */
+
+:root {
+  --container-content: 1200px;
+  --container-wide: 1360px;
+  --container-editorial: 1200px;
+  --layout-gutter-total: 80px;
+  --gutter-content: var(--layout-gutter-total);
+  --gutter-wide: var(--layout-gutter-total);
+  --gutter-editorial: var(--layout-gutter-total);
+}
+
+/* Reusable primitives and the existing project aliases. */
+.container,
+.container-content,
+.container-editorial {
+  width: min(var(--container-content), calc(100% - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+.container-wide,
+.site-header .header-inner {
+  width: min(var(--container-wide), calc(100% - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+.container-full { width: 100%; }
+
+/*
+ * Page-level shells resolve against the viewport, not a legacy section's
+ * internal padding. This keeps every visible left/right edge on the same grid
+ * while allowing the section background itself to remain full bleed.
+ */
+.home-refinement .metric-ribbon,
+.home-refinement .clarity-section,
+.home-refinement .services-section,
+.home-refinement .flow-bridge,
+.home-refinement .process-section,
+.home-refinement .proof-section,
+.home-refinement .home-audience-section,
+.home-refinement .specialties-section,
+.home-refinement .nationwide-home-section,
+.home-refinement .why-section,
+.home-refinement .insights-section,
+.home-refinement .audit-section {
+  padding-inline: 0;
+}
+
+/* Homepage hero is the approved cinematic exception. */
+.home-refinement .hero-approved.hero-split .hero-content {
+  width: min(1440px, calc(100% - 96px));
+  max-width: none;
+}
+
+/* Homepage: one shared 1200px reading grid, with only genuine visual panels wide. */
+.home-refinement :where(
+  .clarity-section > .container,
+  .services-section > .container,
+  .services-section .service-grid,
+  .flow-bridge-shell,
+  .process-layout,
+  .proof-shell,
+  .specialties-layout,
+  .home-audience-layout,
+  .nationwide-home-shell,
+  .blog-heading,
+  .blog-card-grid,
+  .audit-shell,
+  .footer-faq,
+  .footer-top,
+  .footer-contact,
+  .footer-bottom
+) {
+  width: min(var(--container-content), calc(100% - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+.home-refinement .metric-ribbon-shell {
+  width: min(var(--container-wide), calc(100vw - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+/* Strong final-cascade aliases for legacy homepage section widths. */
+.home-refinement .clarity-section > .container,
+.home-refinement .services-section > .container,
+.home-refinement .services-section > .service-grid,
+.home-refinement .flow-bridge > .flow-bridge-shell,
+.home-refinement .process-section > .container,
+.home-refinement .proof-section > .proof-shell,
+.home-refinement .home-audience-section > .home-audience-layout,
+.home-refinement .specialties-section > .specialties-layout,
+.home-refinement .nationwide-home-section > .nationwide-home-shell,
+.home-refinement .why-section > .container,
+.home-refinement .insights-section > .blog-heading,
+.home-refinement .insights-section .blog-card-grid,
+.home-refinement .audit-section > .audit-shell,
+.home-refinement > .site-footer > .container {
+  width: min(var(--container-content), calc(100vw - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+/* Human Accountability deliberately expands to the viewport during its scrub. */
+.home-refinement .human-story {
+  max-width: none;
+}
+
+/* Every interior hero follows one 1360px outer frame. */
+.interior-hero {
+  padding-inline: 0;
+}
+
+.interior-hero-frame,
+.service-story-page .interior-hero-frame,
+.blog-detail-hero {
+  width: min(var(--container-wide), calc(100vw - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+/* Service detail pages: identical 1200px middle-content, conversion and footer grid. */
+.service-story-page :where(
+  .service-definition-grid,
+  .service-capabilities-shell,
+  .service-story-heading,
+  .service-capabilities-grid,
+  .service-supporting-cards,
+  .service-supporting-rows,
+  .service-process-layout,
+  .service-why-panel,
+  .service-audience-layout,
+  .audit-shell,
+  .footer-faq,
+  .footer-top,
+  .footer-contact,
+  .footer-bottom
+) {
+  width: min(var(--container-content), calc(100% - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+.service-story-page .service-why-section {
+  padding-inline: 0;
+}
+
+/* Match every service template to the same 1200px middle-content rail. */
+.service-story-page .service-definition-section > .service-definition-grid,
+.service-story-page #service-sections > .service-capabilities-shell,
+.service-story-page #service-sections > .service-story-heading,
+.service-story-page #service-sections > .service-capabilities-grid,
+.service-story-page #service-sections > .service-supporting-cards,
+.service-story-page #service-sections > .service-supporting-rows,
+.service-story-page .service-process-section > .service-process-layout,
+.service-story-page .service-why-section > .service-why-panel,
+.service-story-page .service-audience-section > .service-audience-layout {
+  width: min(var(--container-content), calc(100vw - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+/* Non-container shells that belong to the standard content grid. */
+:where(
+  .contact-form-shell,
+  .contact-map-shell,
+  .blog-detail-layout,
+  .about-page .about-purpose-grid,
+  .about-page .about-commitment
+) {
+  width: min(var(--container-content), calc(100% - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+.about-page .about-purpose-section > .about-purpose-grid,
+.about-page .about-values-section .about-commitment,
+.contact-page .contact-form-shell,
+.contact-page .contact-map-section .contact-map-shell,
+.blog-detail-page .blog-detail-layout {
+  width: min(var(--container-content), calc(100vw - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+/* Shared conversion modules and footer content use the standard grid everywhere. */
+:where(
+  .audit-shell,
+  .footer-faq,
+  .footer-top,
+  .footer-contact,
+  .footer-bottom
+) {
+  width: min(var(--container-content), calc(100% - var(--layout-gutter-total)));
+  max-width: none;
+  margin-inline: auto;
+}
+
+@media (max-width: 1199px) {
+  :root {
+    --layout-gutter-total: 56px;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-content {
+    width: min(100%, calc(100% - 56px));
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --layout-gutter-total: 40px;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-content {
+    width: calc(100% - 24px);
+  }
+
+  .home-refinement .services-section .service-grid,
+  .about-page .about-purpose-grid,
+  .contact-form-shell,
+  .contact-map-shell,
+  .blog-detail-layout,
+  .blog-detail-hero {
+    width: calc(100% - var(--layout-gutter-total));
+  }
+}

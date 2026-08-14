@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
+import "./annotation-pass.css";
+import "./consistency-pass.css";
+import "./redesign-pass.css";
+import "./interior-hero.css";
+import "./service-detail-revision.css";
+import "./final-revisions.css";
+import "./container-system.css";
+import "./current-polish.css";
+import "./mobile-optimization.css";
 
 const inter = Inter({
   variable: "--font-inter",

@@ -1,0 +1,61 @@
+export type StateSolution = {
+  name: string;
+  slug: string;
+  capital: string;
+  region: "Northeast" | "Southeast" | "Midwest" | "Southwest" | "West" | "Pacific";
+  description: string;
+};
+
+export const stateSolutions: StateSolution[] = [
+  { name: "Alabama", slug: "alabama", capital: "Montgomery", region: "Southeast", description: "Strengthen collections with our medical billing services in Alabama, helping reduce denials, billing errors, and payment delays." },
+  { name: "Alaska", slug: "alaska", capital: "Juneau", region: "Pacific", description: "Get dependable medical billing services in Alaska to streamline claims, improve billing accuracy, and support timely reimbursements." },
+  { name: "Arizona", slug: "arizona", capital: "Phoenix", region: "Southwest", description: "Clinora Medbill provides medical billing services in Arizona to reduce claim issues, improve collections, and strengthen your revenue cycle." },
+  { name: "Arkansas", slug: "arkansas", capital: "Little Rock", region: "Southeast", description: "Choose reliable medical billing services in Arkansas to manage claims efficiently, reduce denials, and improve reimbursements." },
+  { name: "California", slug: "california", capital: "Sacramento", region: "Pacific", description: "Our medical billing services in California help practices manage complex billing, improve claim accuracy, and optimize revenue cycle performance." },
+  { name: "Colorado", slug: "colorado", capital: "Denver", region: "West", description: "Improve reimbursements with medical billing services in Colorado designed to reduce claim issues and strengthen collections." },
+  { name: "Connecticut", slug: "connecticut", capital: "Hartford", region: "Northeast", description: "Rely on our medical billing services in Connecticut for accurate claims, effective denial management, and efficient revenue cycle support." },
+  { name: "Delaware", slug: "delaware", capital: "Dover", region: "Northeast", description: "Simplify your billing process with medical billing services in Delaware focused on clean claims, fewer denials, and timely payments." },
+  { name: "Florida", slug: "florida", capital: "Tallahassee", region: "Southeast", description: "Looking for trusted medical billing services in Florida? Clinora Medbill helps streamline claims, denials, payments, and A/R follow-up." },
+  { name: "Georgia", slug: "georgia", capital: "Atlanta", region: "Southeast", description: "Prevent billing issues with our medical billing services in Georgia, helping practices improve collections and maintain steady cash flow." },
+  { name: "Hawaii", slug: "hawaii", capital: "Honolulu", region: "Pacific", description: "Choose medical billing services in Hawaii that support accurate claims, efficient billing workflows, and improved practice revenue." },
+  { name: "Idaho", slug: "idaho", capital: "Boise", region: "West", description: "Strengthen your revenue cycle with medical billing services in Idaho that help reduce errors, denials, and reimbursement delays." },
+  { name: "Illinois", slug: "illinois", capital: "Springfield", region: "Midwest", description: "Clinora Medbill offers medical billing services in Illinois to improve claims management, reduce billing errors, and support stronger collections." },
+  { name: "Indiana", slug: "indiana", capital: "Indianapolis", region: "Midwest", description: "Keep your revenue cycle moving with medical billing services in Indiana, from accurate claims to denial and A/R follow-up." },
+  { name: "Iowa", slug: "iowa", capital: "Des Moines", region: "Midwest", description: "Get reliable medical billing services in Iowa to reduce billing errors, speed up payments, and improve overall reimbursement." },
+  { name: "Kansas", slug: "kansas", capital: "Topeka", region: "Midwest", description: "Our medical billing services in Kansas help healthcare practices manage claims efficiently, reduce rejections, and improve revenue performance." },
+  { name: "Kentucky", slug: "kentucky", capital: "Frankfort", region: "Southeast", description: "Improve financial stability with medical billing services in Kentucky focused on accurate claims, fewer denials, and timely reimbursements." },
+  { name: "Louisiana", slug: "louisiana", capital: "Baton Rouge", region: "Southeast", description: "Rely on medical billing services in Louisiana to simplify billing operations, reduce claim issues, and increase collections." },
+  { name: "Maine", slug: "maine", capital: "Augusta", region: "Northeast", description: "Streamline revenue management with our medical billing services in Maine, helping reduce errors, delays, and outstanding A/R." },
+  { name: "Maryland", slug: "maryland", capital: "Annapolis", region: "Northeast", description: "Clinora Medbill delivers medical billing services in Maryland to improve claim processing, reduce denials, and strengthen reimbursements." },
+  { name: "Massachusetts", slug: "massachusetts", capital: "Boston", region: "Northeast", description: "Improve payment turnaround with medical billing services in Massachusetts designed to reduce rejections and protect practice revenue." },
+  { name: "Michigan", slug: "michigan", capital: "Lansing", region: "Midwest", description: "Choose dependable medical billing services in Michigan to strengthen collections, reduce claim denials, and improve billing efficiency." },
+  { name: "Minnesota", slug: "minnesota", capital: "Saint Paul", region: "Midwest", description: "Our medical billing services in Minnesota help practices improve cash flow through accurate claims, denial management, and payment posting." },
+  { name: "Mississippi", slug: "mississippi", capital: "Jackson", region: "Southeast", description: "Reduce claim denials with medical billing services in Mississippi that help practices maintain accurate billing and improve collections." },
+  { name: "Missouri", slug: "missouri", capital: "Jefferson City", region: "Midwest", description: "Strengthen your revenue cycle with medical billing services in Missouri focused on reducing rejections, delays, and billing errors." },
+  { name: "Montana", slug: "montana", capital: "Helena", region: "West", description: "Clinora Medbill provides medical billing services in Montana to improve reimbursements, prevent errors, and maintain efficient billing operations." },
+  { name: "Nebraska", slug: "nebraska", capital: "Lincoln", region: "Midwest", description: "Improve billing accuracy with medical billing services in Nebraska that help reduce denials, manage claims, and speed up payments." },
+  { name: "Nevada", slug: "nevada", capital: "Carson City", region: "West", description: "Looking for reliable medical billing services in Nevada? We help streamline claims, reduce billing issues, and improve collections." },
+  { name: "New Hampshire", slug: "new-hampshire", capital: "Concord", region: "Northeast", description: "Maintain an efficient revenue cycle with medical billing services in New Hampshire focused on accurate claims and fewer billing errors." },
+  { name: "New Jersey", slug: "new-jersey", capital: "Trenton", region: "Northeast", description: "Optimize revenue cycle management with medical billing services in New Jersey designed to reduce denials and improve reimbursement." },
+  { name: "New Mexico", slug: "new-mexico", capital: "Santa Fe", region: "Southwest", description: "Improve revenue performance through medical billing services in New Mexico that help reduce claim issues, delays, and outstanding A/R." },
+  { name: "New York", slug: "new-york", capital: "Albany", region: "Northeast", description: "Enhance your practice’s revenue with medical billing services in New York, supporting accurate claims, denial management, and timely payments." },
+  { name: "North Carolina", slug: "north-carolina", capital: "Raleigh", region: "Southeast", description: "Strengthen collections with medical billing services in North Carolina that help reduce errors, denials, and payment delays." },
+  { name: "North Dakota", slug: "north-dakota", capital: "Bismarck", region: "Midwest", description: "Choose efficient medical billing services in North Dakota to limit claim rejections, improve payment turnaround, and support steady revenue." },
+  { name: "Ohio", slug: "ohio", capital: "Columbus", region: "Midwest", description: "Our medical billing services in Ohio help improve reimbursement, reduce billing mistakes, and keep your revenue cycle on track." },
+  { name: "Oklahoma", slug: "oklahoma", capital: "Oklahoma City", region: "Southwest", description: "Get dependable medical billing services in Oklahoma to prevent denials, improve collections, and streamline claims processing." },
+  { name: "Oregon", slug: "oregon", capital: "Salem", region: "Pacific", description: "Clinora Medbill offers medical billing services in Oregon to improve claim accuracy, reduce denials, and optimize revenue cycle performance." },
+  { name: "Pennsylvania", slug: "pennsylvania", capital: "Harrisburg", region: "Northeast", description: "Improve your practice’s collections with medical billing services in Pennsylvania, from claims management to denial and A/R follow-up." },
+  { name: "Rhode Island", slug: "rhode-island", capital: "Providence", region: "Northeast", description: "Rely on medical billing services in Rhode Island to reduce claim issues, improve reimbursements, and maintain efficient billing workflows." },
+  { name: "South Carolina", slug: "south-carolina", capital: "Columbia", region: "Southeast", description: "Streamline claims with medical billing services in South Carolina that help reduce denials, accelerate payments, and improve collections." },
+  { name: "South Dakota", slug: "south-dakota", capital: "Pierre", region: "Midwest", description: "Clinora Medbill provides medical billing services in South Dakota to improve billing accuracy, reduce payment delays, and strengthen collections." },
+  { name: "Tennessee", slug: "tennessee", capital: "Nashville", region: "Southeast", description: "Improve reimbursement with medical billing services in Tennessee designed to streamline claims, reduce denials, and support efficient revenue cycles." },
+  { name: "Texas", slug: "texas", capital: "Austin", region: "Southwest", description: "Boost your practice’s revenue with medical billing services in Texas focused on accurate claims, fewer denials, and stronger collections." },
+  { name: "Utah", slug: "utah", capital: "Salt Lake City", region: "West", description: "Choose medical billing services in Utah to improve collections, reduce billing issues, and maintain an efficient revenue cycle." },
+  { name: "Vermont", slug: "vermont", capital: "Montpelier", region: "Northeast", description: "Simplify your billing operations with medical billing services in Vermont that support clean claims, fewer denials, and timely reimbursement." },
+  { name: "Virginia", slug: "virginia", capital: "Richmond", region: "Southeast", description: "Our medical billing services in Virginia help healthcare providers manage claims accurately, reduce payment delays, and strengthen revenue performance." },
+  { name: "Washington", slug: "washington", capital: "Olympia", region: "Pacific", description: "Optimize your revenue cycle with medical billing services in Washington, helping improve claims processing, collections, and denial management." },
+  { name: "West Virginia", slug: "west-virginia", capital: "Charleston", region: "Southeast", description: "Get reliable medical billing services in West Virginia to reduce claim errors, improve reimbursements, and manage outstanding A/R." },
+  { name: "Wisconsin", slug: "wisconsin", capital: "Madison", region: "Midwest", description: "Improve revenue accuracy with medical billing services in Wisconsin designed to reduce rejections, streamline claims, and strengthen collections." },
+  { name: "Wyoming", slug: "wyoming", capital: "Cheyenne", region: "West", description: "Choose dependable medical billing services in Wyoming to simplify claims management, reduce billing issues, and improve payment turnaround." },
+];
+

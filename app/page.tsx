@@ -1,5 +1,5 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-img-element, @next/next/no-html-link-for-pages */
 
 import {
   Activity,
@@ -19,57 +19,113 @@ import {
   Layers3,
   LockKeyhole,
   Mail,
+  Map,
   MapPin,
-  Menu,
   MessageSquareText,
   Phone,
   RefreshCcw,
   ShieldCheck,
   Sparkles,
+  Star,
   Stethoscope,
   TrendingUp,
   UserRoundCheck,
-  UsersRound,
-  X,
 } from "lucide-react";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { CSSProperties, FormEvent, useEffect, useRef, useState } from "react";
+import { audiences } from "./who-we-serve/audiences";
+import { medicalSpecialties } from "./specialties/specialties";
+import { useCmsBundle } from "./lib/useCmsBundle";
+import SiteHeader from "./components/SiteHeader";
+import FooterSocialLinks from "./components/FooterSocialLinks";
+import MobileCarousel from "./components/MobileCarousel";
+import { pageFaqs } from "./content/faqs";
+import { submitEnquiryForm, type EnquiryStatus, type EnquiryType } from "./lib/enquiry";
 
 const services = [
   {
+    slug: "revenue-cycle-management",
     icon: Layers3,
+    image: "/media/services/01-revenue-cycle-management-4k.jpg",
+    imageAlt: "Healthcare leadership team reviewing revenue-cycle documents in a modern clinical office",
+    imagePosition: "50% 42%",
+    titleLines: ["Revenue Cycle", "Management"],
     title: "Revenue Cycle Management",
-    text: "End-to-end RCM from patient registration through final payment. We handle every touchpoint so your team can focus entirely on patient care — not paperwork.",
+    text: "End-to-end revenue cycle support.",
   },
   {
-    icon: Code2,
-    title: "Medical Coding",
-    text: "ICD-10, CPT & HCPCS certified coders across all specialties, maximizing reimbursement and accuracy.",
-  },
-  {
-    icon: RefreshCcw,
-    title: "AR Management",
-    text: "Proactive follow-up that drastically reduces days in AR and recovers stalled reimbursements.",
-  },
-  {
-    icon: UserRoundCheck,
-    title: "Eligibility Verification",
-    text: "Real-time insurance verification before every encounter — stopping denials before they start.",
-  },
-  {
-    icon: BarChart3,
-    title: "Analytics & Reporting",
-    text: "Live KPI dashboards and financial reporting giving full visibility into every dollar flowing in.",
-  },
-  {
-    icon: FileSearch,
-    title: "Denial Management",
-    text: "Root-cause analysis and rapid re-submission turns every denied claim into recovered revenue.",
-  },
-  {
+    slug: "medical-billing",
     icon: CircleDollarSign,
-    title: "Patient Billing",
-    text: "Clear, patient-friendly statements with flexible payment options that improve collection rates.",
+    image: "/media/services/02-medical-billing-4k.jpg",
+    imageAlt: "Medical billing professional working with a tablet in a bright healthcare office",
+    imagePosition: "50% 40%",
+    titleLines: ["Medical", "Billing"],
+    title: "Medical Billing",
+    text: "Accurate billing from claim to payment.",
   },
+  {
+    slug: "medical-coding",
+    icon: Code2,
+    image: "/media/services/03-medical-coding.jpg",
+    imageAlt: "Physician reviewing clinical documentation for accurate medical coding",
+    imagePosition: "52% 38%",
+    titleLines: ["Medical", "Coding"],
+    title: "Medical Coding",
+    text: "Precise coding for cleaner claims.",
+  },
+  {
+    slug: "ar-management",
+    icon: RefreshCcw,
+    image: "/media/services/04-ar-management-4k.jpg",
+    imageAlt: "Healthcare administrator managing account follow-up from a clinical office workstation",
+    imagePosition: "32% 42%",
+    titleLines: ["AR", "Management"],
+    title: "AR Management",
+    text: "Focused follow-up for outstanding revenue.",
+  },
+  {
+    slug: "medical-billing-audits",
+    icon: ClipboardCheck,
+    image: "/media/services/05-medical-billing-audits-4k.jpg",
+    imageAlt: "Medical review team comparing healthcare records during a billing audit",
+    imagePosition: "50% 40%",
+    titleLines: ["Medical Billing", "Audits"],
+    title: "Medical Billing Audits",
+    text: "Evidence-led reviews that find revenue gaps.",
+  },
+  {
+    slug: "provider-credentialing-enrollment",
+    icon: BadgeCheck,
+    image: "/media/services/06-provider-credentialing-4k.jpg",
+    imageAlt: "Provider and enrollment specialist reviewing credentialing documents together",
+    imagePosition: "50% 40%",
+    titleLines: ["Provider Credentialing", "& Enrollment"],
+    title: "Provider Credentialing & Enrollment",
+    text: "Clear credentialing from application to approval.",
+  },
+  {
+    slug: "virtual-front-desk-services",
+    icon: Phone,
+    image: "/media/services/07-virtual-front-desk.jpg",
+    imageAlt: "Healthcare professional coordinating patient front-desk support",
+    imagePosition: "50% 37%",
+    titleLines: ["Virtual Front Desk", "Services"],
+    title: "Virtual Front Desk Services",
+    text: "Responsive support for patients and practices.",
+  },
+];
+
+const ehrPlatforms = [
+  { name: "AdvancedMD", logo: "/media/ehr-logos/advancedmd.png" },
+  { name: "CareCloud", logo: "/media/ehr-logos/carecloud.png" },
+  { name: "Cerner", logo: "/media/ehr-logos/cerner.png" },
+  { name: "Epic", logo: "/media/ehr-logos/epic.png" },
+  { name: "athenahealth", logo: "/media/ehr-logos/athenahealth.png" },
+  { name: "DrChrono", logo: "/media/ehr-logos/drchrono.png" },
+  { name: "eClinicalWorks", logo: "/media/ehr-logos/eclinicalworks.png" },
+  { name: "Kareo", logo: "/media/ehr-logos/kareo.png" },
+  { name: "NextGen", logo: "/media/ehr-logos/nextgen.png" },
+  { name: "WebPT", logo: "/media/ehr-logos/webpt.png" },
 ];
 
 const process = [
@@ -135,51 +191,44 @@ const process = [
   },
 ];
 
-const specialties = [
-  "Family Medicine",
-  "Internal Medicine",
-  "Cardiology",
-  "Orthopedics",
-  "Pediatrics",
-  "Behavioral Health",
-  "Dermatology",
-  "Urgent Care",
-  "Neurology",
-  "Gastroenterology",
-  "Telehealth",
-  "Physical Therapy",
-  "Oncology",
-  "Radiology",
-  "Obstetrics & Gynecology",
-  "Multi-Physician Groups",
-];
+const specialties = medicalSpecialties.map((specialty) => specialty.name);
 
 const specialtyRows = [
-  specialties.slice(0, 5),
-  specialties.slice(5, 11),
-  specialties.slice(11),
+  specialties.slice(0, 15),
+  specialties.slice(15, 29),
+  specialties.slice(29),
+];
+
+const footerSpecialties = [
+  "Family Medicine",
+  "Internal Medicine",
+  "Pediatrics",
+  "Emergency Medicine",
+  "Cardiology",
+  "Orthopedic Surgery",
+  "Obstetrics & Gynecology (OB/GYN)",
 ];
 
 const benefits = [
   {
+    icon: CircleDollarSign,
+    title: "Faster Payment",
+    text: "Insurance reimburses more quickly when precise claims get submitted properly. Payments come on time and without any interruptions when there are no errors. This increases cash flow and maintains the financial stability of your practice.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Cost Savings",
+    text: "Effective billing lowers the probabilities of mistakes that cost money. Fewer denied claims mean staff spend a reduced amount of time fixing problems. This reduces overhead and helps your practice save on administrative costs.",
+  },
+  {
+    icon: RefreshCcw,
+    title: "Consistent AR Follow-Up",
+    text: "Every unpaid claim is being tracked until it is resolved. Frequent follow-up keeps claims from being ignored or delayed. This offers a regular and dependable revenue flow for your healthcare practice.",
+  },
+  {
     icon: ShieldCheck,
-    title: "HIPAA Certified",
-    text: "Full HIPAA compliance with encrypted data handling, regular audits, and zero-tolerance breach policy.",
-  },
-  {
-    icon: Activity,
-    title: "Real-Time Visibility",
-    text: "Live dashboards give you 24/7 insight into claim status, collections, and your full revenue pipeline.",
-  },
-  {
-    icon: Sparkles,
-    title: "48-Hour Onboarding",
-    text: "Seamless EHR integration and full workflow setup within 48 hours — minimal disruption guaranteed.",
-  },
-  {
-    icon: UsersRound,
-    title: "Dedicated Account Team",
-    text: "A named account manager who knows your practice, your payers, and your revenue goals inside-out.",
+    title: "HIPAA Compliant Medical Billing",
+    text: "Our HIPAA compliant medical billing services protect all patient information and keep it safe. We follow strict HIPAA rules to ensure nothing is shared without permission. This keeps both your patients and your practice safe and secure.",
   },
 ];
 
@@ -189,89 +238,82 @@ const insights = [
     readTime: "7 min read",
     title: "The strongest denial strategy starts before a claim is submitted.",
     text: "A practical look at the eligibility, documentation, coding, and claim-scrubbing signals that help practices prevent avoidable revenue loss.",
-    image: "/media/insight-denials-cover.jpg",
+    image: "/media/blog-denials-magnific-4k.jpg",
     imageAlt: "Healthcare professionals reviewing revenue data together",
+    link: "/blogs/denial-strategy-before-submission",
   },
   {
     category: "Revenue visibility",
     readTime: "5 min read",
     title: "What your clean-claim rate is—and is not—telling you.",
     text: "Turn a familiar billing metric into a clearer view of workflow quality, payer friction, and the next operational action.",
-    image: "/media/insight-visibility-cover.jpg",
+    image: "/media/blog-eligibility-magnific-4k.jpg",
     imageAlt: "Abstract data lines representing revenue performance",
+    link: "/blogs/what-clean-claim-rate-tells-you",
   },
   {
     category: "Specialty billing",
     readTime: "6 min read",
     title: "Why specialty-aware billing workflows outperform generic playbooks.",
     text: "Documentation patterns, payer rules, and coding details change by specialty. Your revenue workflow should account for that reality.",
-    image: "/media/insight-specialty-cover.jpg",
+    image: "/media/medical-billing-workflow-4k.jpg",
     imageAlt: "Connected digital workflow representing specialty billing operations",
+    link: "/specialties#specialty-directory",
   },
   {
     category: "A/R performance",
     readTime: "8 min read",
     title: "A/R aging tells a story. Here is how to read it earlier.",
     text: "Use payer trends, claim status patterns, and ownership signals to identify stalled revenue before it becomes old revenue.",
-    image: "/media/insight-ar-cover.jpg",
+    image: "/media/blogs-hero-magnific-4k.jpg",
     imageAlt: "Revenue cycle specialists analyzing accounts receivable trends",
+    link: "/blogs/read-ar-aging-earlier",
   },
   {
     category: "Compliance",
     readTime: "4 min read",
     title: "Clear reporting is part of a secure billing operation.",
     text: "Operational visibility and thoughtful access controls help teams communicate clearly without compromising sensitive information.",
-    image: "/media/insight-compliance-cover.jpg",
+    image: "/media/about-hero-magnific-4k.jpg",
     imageAlt: "Secure healthcare data and compliance workflow",
+    link: "/compliance#hipaa-compliance",
   },
   {
     category: "Reporting",
     readTime: "6 min read",
     title: "The monthly billing report your practice can actually act on.",
     text: "Move beyond static totals with context, ownership, and clear next actions for every important revenue-cycle signal.",
-    image: "/media/insight-reporting-cover.jpg",
+    image: "/media/specialties-hero-magnific-4k.jpg",
     imageAlt: "Healthcare revenue reporting reviewed by an operations team",
-  },
-];
-
-const megaColumns = [
-  {
-    title: "Revenue operations",
-    links: ["Revenue Cycle Management", "Medical Coding", "AR Management", "Denial Management"],
-  },
-  {
-    title: "Front office",
-    links: ["Eligibility Verification", "Patient Billing", "Analytics & Reporting"],
-  },
-];
-
-const faqs = [
-  {
-    question: "How quickly can ClinoraMedBill onboard our practice?",
-    answer: "Our workflow, EHR integration, and account-team setup can be completed within 48 hours with minimal disruption to your practice.",
-  },
-  {
-    question: "How is patient and practice information protected?",
-    answer: "ClinoraMedBill uses HIPAA-conscious workflows, encrypted data handling, regular audits, and controlled access across the revenue cycle.",
-  },
-  {
-    question: "Do you support specialty-specific billing?",
-    answer: "Yes. Our coding and revenue-cycle workflows account for the payer rules, documentation patterns, and billing details that differ across medical specialties.",
-  },
-  {
-    question: "Do we need to sign a long-term contract for an audit?",
-    answer: "No. The complimentary billing audit has no contract and no obligation. It is designed to give your practice a clear view of potential revenue leakage.",
+    link: "/services/revenue-cycle-management#service-sections",
   },
 ];
 
 export default function Home() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const cms = useCmsBundle();
+  const [enquiryStatus, setEnquiryStatus] = useState<Record<EnquiryType, EnquiryStatus>>({
+    "hero-audit": "idle",
+    "billing-audit": "idle",
+    contact: "idle",
+  });
   const [videoPaused, setVideoPaused] = useState(false);
-  const [headerSolid, setHeaderSolid] = useState(false);
-  const [activeProcess, setActiveProcess] = useState(0);
   const blogRailRef = useRef<HTMLDivElement>(null);
   const blogAutoResumeAtRef = useRef(0);
+  const cmsHome = cms?.homepage;
+  const cmsSettings = cms?.settings;
+  const liveServices = services;
+  const liveInsights = cms?.insights?.length
+    ? cms.insights.map((insight, index) => ({
+        category: insight.category,
+        readTime: insight.readTime,
+        title: insight.title,
+        text: insight.description,
+        image: insight.imageUrl || insights[index % insights.length].image,
+        imageAlt: insight.imageAlt || insights[index % insights.length].imageAlt,
+        link: insight.link || insights[index % insights.length].link,
+      }))
+    : insights;
+  const liveFaqs = cms?.faqs?.length ? cms.faqs : pageFaqs.home;
 
   const scrollBlogs = (direction: -1 | 1) => {
     const rail = blogRailRef.current;
@@ -290,13 +332,9 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const onScroll = () => setHeaderSolid(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotion) {
-      setVideoPaused(true);
+      window.requestAnimationFrame(() => setVideoPaused(true));
       document.querySelector<HTMLVideoElement>(".hero-video")?.pause();
     }
     const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
@@ -360,6 +398,74 @@ export default function Home() {
       );
       revealItems.forEach((item) => observer?.observe(item));
 
+      const humanSection = document.querySelector<HTMLElement>("[data-human-scroll]");
+      const humanPanel = humanSection?.querySelector<HTMLElement>(".human-story") ?? null;
+      let humanScrollFrame = 0;
+      let humanCurrent = 0;
+      let humanTarget = 0;
+      let humanAnimating = false;
+
+      const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
+      const smoothstep = (edge0: number, edge1: number, value: number) => {
+        const amount = clamp01((value - edge0) / Math.max(0.0001, edge1 - edge0));
+        return amount * amount * (3 - 2 * amount);
+      };
+      const applyHumanProgress = (progress: number) => {
+        if (!humanSection || !humanPanel) return;
+        const eased = smoothstep(0, 1, progress);
+        const initialWidth = Math.min(1360, Math.max(0, window.innerWidth - 48));
+        const initialHeight = Math.min(720, Math.max(620, window.innerHeight - 112));
+        const insetX = Math.max(0, (window.innerWidth - initialWidth) / 2) * (1 - eased);
+        const insetY = Math.max(0, (window.innerHeight - initialHeight) / 2) * (1 - eased);
+        const radius = 30 * (1 - eased);
+        const titleOut = smoothstep(0.18, 0.58, progress);
+        const copyIn = smoothstep(0.48, 0.88, progress);
+
+        humanSection.style.setProperty("--human-progress", eased.toFixed(4));
+        humanSection.style.setProperty("--human-inset-x", `${insetX.toFixed(2)}px`);
+        humanSection.style.setProperty("--human-inset-y", `${insetY.toFixed(2)}px`);
+        humanSection.style.setProperty("--human-radius", `${radius.toFixed(2)}px`);
+        humanSection.style.setProperty("--human-title-opacity", (1 - titleOut).toFixed(4));
+        humanSection.style.setProperty("--human-copy-opacity", copyIn.toFixed(4));
+        const humanCopy = humanPanel.querySelector<HTMLElement>(".human-story-copy");
+        humanCopy?.classList.toggle("is-revealed", copyIn > 0.35);
+        humanCopy?.style.setProperty("pointer-events", copyIn > 0.5 ? "auto" : "none");
+      };
+      const readHumanProgress = () => {
+        if (!humanSection || window.innerWidth <= 760) return 1;
+        const rect = humanSection.getBoundingClientRect();
+        const scrollDistance = Math.max(window.innerHeight * 0.82, 560);
+        return clamp01(-rect.top / scrollDistance);
+      };
+      const tickHumanScroll = () => {
+        // A short dampening pass removes wheel/trackpad jitter without creating
+        // the delayed, autonomous feeling of a timed transition.
+        const smoothing = 0.055;
+        const response = 1 - Math.exp(-1 / (60 * smoothing));
+        humanCurrent += (humanTarget - humanCurrent) * response;
+        if (Math.abs(humanTarget - humanCurrent) < 0.0004) {
+          humanCurrent = humanTarget;
+          humanAnimating = false;
+        }
+        applyHumanProgress(humanCurrent);
+        humanScrollFrame = humanAnimating ? window.requestAnimationFrame(tickHumanScroll) : 0;
+      };
+      const requestHumanScrollUpdate = () => {
+        humanTarget = readHumanProgress();
+        if (!humanAnimating) {
+          humanAnimating = true;
+          humanScrollFrame = window.requestAnimationFrame(tickHumanScroll);
+        }
+      };
+      const resetHumanScroll = () => {
+        humanTarget = readHumanProgress();
+        humanCurrent = humanTarget;
+        applyHumanProgress(humanCurrent);
+      };
+      resetHumanScroll();
+      window.addEventListener("scroll", requestHumanScrollUpdate, { passive: true });
+      window.addEventListener("resize", resetHumanScroll, { passive: true });
+
       const updateParallax = () => {
         frame = 0;
         document.querySelectorAll<HTMLElement>("[data-parallax]").forEach((item) => {
@@ -367,38 +473,31 @@ export default function Home() {
           const offset = Math.max(-42, Math.min(42, (window.innerHeight / 2 - rect.top - rect.height / 2) * 0.06));
           item.style.setProperty("--parallax-y", `${offset}px`);
         });
-        document.querySelectorAll<HTMLElement>("[data-human-scroll]").forEach((section) => {
-          const rect = section.getBoundingClientRect();
-          const distance = Math.max(1, rect.height - window.innerHeight);
-          const progress = Math.max(0, Math.min(1, -rect.top / distance));
-          const open = Math.max(0, Math.min(1, progress / 0.28));
-          const copy = Math.max(0, Math.min(1, (progress - 0.22) / 0.24));
-          const details = Math.max(0, Math.min(1, (progress - 0.42) / 0.26));
-          section.style.setProperty("--human-progress", progress.toFixed(3));
-          section.style.setProperty("--human-open", open.toFixed(3));
-          section.style.setProperty("--human-copy", copy.toFixed(3));
-          section.style.setProperty("--human-details", details.toFixed(3));
-        });
       };
       const onMotionScroll = () => {
         if (!frame) frame = window.requestAnimationFrame(updateParallax);
       };
       updateParallax();
       window.addEventListener("scroll", onMotionScroll, { passive: true });
+      window.addEventListener("resize", onMotionScroll, { passive: true });
+      window.addEventListener("orientationchange", onMotionScroll, { passive: true });
 
       return () => {
-        window.removeEventListener("scroll", onScroll);
         window.removeEventListener("scroll", onMotionScroll);
+        window.removeEventListener("resize", onMotionScroll);
+        window.removeEventListener("orientationchange", onMotionScroll);
         if (frame) window.cancelAnimationFrame(frame);
         metricFrames.forEach((request) => window.cancelAnimationFrame(request));
         observer?.disconnect();
         metricObserver?.disconnect();
+        window.removeEventListener("scroll", requestHumanScrollUpdate);
+        window.removeEventListener("resize", resetHumanScroll);
+        if (humanScrollFrame) window.cancelAnimationFrame(humanScrollFrame);
       };
     }
 
     revealItems.forEach((item) => item.classList.add("is-visible"));
     return () => {
-      window.removeEventListener("scroll", onScroll);
       observer?.disconnect();
       metricObserver?.disconnect();
     };
@@ -411,11 +510,18 @@ export default function Home() {
 
     let frame = 0;
     let previousTime = 0;
+    let isInView = false;
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isInView = entry.isIntersecting;
+    }, { threshold: 0.15 });
+    visibilityObserver.observe(rail);
 
     const autoScroll = (time: number) => {
       const elapsed = previousTime ? Math.min(time - previousTime, 50) : 0;
       previousTime = time;
-      const paused = rail.matches(":focus-within")
+      const paused = !isInView
+        || rail.matches(":focus-within")
+        || rail.matches(":hover")
         || document.hidden
         || time < blogAutoResumeAtRef.current;
 
@@ -424,7 +530,7 @@ export default function Home() {
         if (maxScroll > 0) {
           rail.scrollLeft = rail.scrollLeft >= maxScroll - 1
             ? 0
-            : rail.scrollLeft + elapsed * 0.022;
+            : rail.scrollLeft + elapsed * 0.045;
         }
       }
 
@@ -432,111 +538,32 @@ export default function Home() {
     };
 
     frame = window.requestAnimationFrame(autoScroll);
-    return () => window.cancelAnimationFrame(frame);
+    return () => {
+      visibilityObserver.disconnect();
+      window.cancelAnimationFrame(frame);
+    };
   }, []);
 
-  const submitAudit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSubmitted(true);
+  const submitAudit = async (event: FormEvent<HTMLFormElement>, type: "hero-audit" | "billing-audit") => {
+    setEnquiryStatus((current) => ({ ...current, [type]: "sending" }));
+    try {
+      await submitEnquiryForm(event, type);
+      setEnquiryStatus((current) => ({ ...current, [type]: "success" }));
+    } catch {
+      setEnquiryStatus((current) => ({ ...current, [type]: "error" }));
+    }
   };
 
   return (
-    <main id="main-content">
+    <main id="main-content" className="home-refinement">
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
 
-      <header className={`site-header ${headerSolid ? "is-solid" : ""}`}>
-        <div className="header-inner">
-          <a className="logo-link" href="#top" aria-label="ClinoraMedBill home">
-            <img
-              className="header-logo-mark"
-              src="/brand/clinora-header-mark.svg"
-              alt=""
-              width="112"
-              height="98"
-            />
-            <img
-              className="header-logo-wordmark"
-              src="/brand/clinora-header-wordmark.svg"
-              alt="ClinoraMedBill"
-              width="292"
-              height="70"
-            />
-          </a>
+      <SiteHeader active="home" overlay />
 
-          <nav className="desktop-nav" aria-label="Primary navigation">
-            <details className="nav-details">
-              <summary>
-                Services <ChevronDown aria-hidden="true" size={15} />
-              </summary>
-              <div className="mega-menu">
-                <div className="mega-intro">
-                  <span className="eyebrow">Revenue that moves</span>
-                  <h2>One accountable team for your entire billing cycle.</h2>
-                  <a href="#services">
-                    Explore all services <ArrowRight aria-hidden="true" size={16} />
-                  </a>
-                </div>
-                {megaColumns.map((column) => (
-                  <div className="mega-column" key={column.title}>
-                    <p>{column.title}</p>
-                    {column.links.map((link) => (
-                      <a href="#services" key={link}>
-                        {link}
-                      </a>
-                    ))}
-                  </div>
-                ))}
-                <div className="mega-proof">
-                  <ShieldCheck aria-hidden="true" />
-                  <strong>Secure by design</strong>
-                  <span>HIPAA-conscious workflows and encrypted data handling.</span>
-                </div>
-              </div>
-            </details>
-            <a href="#process">How it works</a>
-            <a href="#specialties">Specialties</a>
-            <a href="#why-clinora">Why Clinora</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <a className="button button-small header-cta" href="#audit">
-            Free billing audit <ArrowRight aria-hidden="true" size={16} />
-          </a>
-
-          <button
-            className="mobile-menu-button"
-            type="button"
-            onClick={() => setMobileOpen((value) => !value)}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-nav"
-            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
-          >
-            {mobileOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-          </button>
-        </div>
-
-        <nav id="mobile-nav" className={`mobile-nav ${mobileOpen ? "is-open" : ""}`} aria-label="Mobile navigation">
-          <a href="#services" onClick={() => setMobileOpen(false)}>Services</a>
-          <a href="#process" onClick={() => setMobileOpen(false)}>How it works</a>
-          <a href="#specialties" onClick={() => setMobileOpen(false)}>Specialties</a>
-          <a href="#why-clinora" onClick={() => setMobileOpen(false)}>Why Clinora</a>
-          <a href="#contact" onClick={() => setMobileOpen(false)}>Contact</a>
-          <a className="button" href="#audit" onClick={() => setMobileOpen(false)}>Free billing audit</a>
-        </nav>
-      </header>
-
-      <section id="top" className="hero hero-approved" aria-labelledby="hero-title">
+      <section id="top" className="hero hero-approved hero-split" aria-labelledby="hero-title">
         <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-human-media" aria-hidden="true">
-          <img
-            src="/media/hero-human-centered-v2.jpg"
-            alt=""
-            width="1673"
-            height="940"
-          />
-        </div>
         <video
           className="hero-video"
           autoPlay
@@ -551,361 +578,228 @@ export default function Home() {
             if (videoPaused) node.pause();
           }}
         >
-          <source src="/media/clinora-hero-human-2k.mp4" type="video/mp4" />
+          <source src="/media/clinora-hero-human-4k.mp4" type="video/mp4" />
         </video>
         <div className="hero-video-wash" aria-hidden="true" />
-
         <div className="container hero-content" data-reveal>
-          <div className="hero-kicker">
-            <span className="status-dot" aria-hidden="true" />
-            Medical billing & revenue cycle management
-          </div>
-          <h1 id="hero-title">
-            Medical billing,<br />
-            clearly managed.
-          </h1>
-          <p className="hero-copy">
-            We streamline your revenue cycle so you can focus on what matters most—your patients.
-          </p>
-          <div className="hero-actions">
-            <a className="button button-large" href="#audit">
-              Request a free billing audit <ArrowRight aria-hidden="true" size={18} />
+          <div className="hero-copy-column">
+              <div className="hero-kicker">
+                <span className="status-dot" aria-hidden="true" />
+                Professional Medical Billing Services
+              </div>
+              <h1 id="hero-title">Medical Billing Company Trusted by Practices Around the USA</h1>
+              <div className="hero-copy">
+                <p>Clinora Medbill is a trusted provider of medical billing services in the USA, delivering accurate, compliant, and reliable revenue cycle management solutions for healthcare providers.</p>
+                <p>Our experienced billing and coding team works closely with physicians, clinics, and healthcare organizations to simplify their billing processes and help keep their revenue cycle running smoothly.</p>
+              </div>
+              <div className="hero-actions">
+                <a className="button button-large" href="mailto:info@clinoramedbill.com">Request a free billing audit <ArrowRight aria-hidden="true" size={18} /></a>
+                <a className="button button-large button-ghost" href="#process">See how it works</a>
+              </div>
+              <div className="hero-assurance" aria-label="Service assurances">
+            <a
+              className="hero-google-rating"
+              href={cmsSettings?.googleReviewsUrl ?? "https://www.google.com/maps/search/?api=1&query=Clinora+Medbill+LLC+Austin+TX"}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open ClinoraMedBill reviews on Google Maps"
+            >
+              <img className="hero-google-mark" src="/brand/google-g.png" alt="" width="48" height="48" />
+              <span className="hero-google-copy">
+                <strong>ClinoraMedBill</strong>
+                <span className="hero-google-stars" aria-hidden="true">
+                  {Array.from({ length: 5 }).map((_, index) => <Star key={index} size={14} />)}
+                </span>
+                <span><b>{cmsSettings?.googleRating ?? "5.0"}</b> Google Reviews</span>
+              </span>
             </a>
-            <a className="button button-large button-ghost" href="#process">
-              See how it works
-            </a>
-          </div>
-          <div className="hero-assurance" aria-label="Service assurances">
             <span><ShieldCheck aria-hidden="true" size={17} /> 100% HIPAA-secure</span>
             <span><Check aria-hidden="true" size={17} /> No contracts</span>
             <span><MessageSquareText aria-hidden="true" size={17} /> Clear communication</span>
+              </div>
           </div>
-          <form className="hero-audit-form" onSubmit={submitAudit} aria-label="Request a free billing audit">
+          <form className="hero-audit-form" onSubmit={(event) => submitAudit(event, "hero-audit")} aria-label="Request a free billing audit">
             <div className="hero-form-intro">
               <span>Start with clarity</span>
               <strong>Get a clear picture of your billing performance.</strong>
             </div>
             <label>
               <span>Full name</span>
-              <input name="hero-name" type="text" autoComplete="name" placeholder="Your full name" required />
-            </label>
-            <label>
-              <span>Practice name</span>
-              <input name="hero-practice" type="text" autoComplete="organization" placeholder="Your practice" required />
+              <input name="name" type="text" autoComplete="name" placeholder="Your full name" maxLength={120} required />
             </label>
             <label>
               <span>Work email</span>
-              <input name="hero-email" type="email" autoComplete="email" placeholder="you@practice.com" required />
+              <input name="email" type="email" autoComplete="email" placeholder="you@practice.com" maxLength={200} required />
             </label>
             <label>
               <span>Phone number</span>
-              <input name="hero-phone" type="tel" autoComplete="tel" placeholder="Your phone number" />
+              <input name="phone" type="tel" autoComplete="tel" placeholder="Your phone number" maxLength={40} />
             </label>
-            <button type="submit" aria-label="Submit free billing audit request">
-              Request audit <ArrowRight aria-hidden="true" size={17} />
+            <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1 }} />
+            <button type="submit" disabled={enquiryStatus["hero-audit"] === "sending"} aria-label="Submit free billing audit request">
+              {enquiryStatus["hero-audit"] === "sending" ? "Sending…" : "Request audit"} <ArrowRight aria-hidden="true" size={17} />
             </button>
             <div className="hero-form-status" role="status" aria-live="polite">
-              {submitted ? "Request received for this prototype." : ""}
+              {enquiryStatus["hero-audit"] === "success" ? "Thank you. Your request has been emailed to our team." : enquiryStatus["hero-audit"] === "error" ? "We could not send your request. Please email info@clinoramedbill.com." : ""}
             </div>
           </form>
         </div>
 
-        <button
-          className="video-control"
-          type="button"
-          aria-pressed={videoPaused}
-          onClick={(event) => {
-            const video = event.currentTarget.parentElement?.querySelector("video");
-            if (!video) return;
-            if (videoPaused) video.play();
-            else video.pause();
-            setVideoPaused(!videoPaused);
-          }}
-        >
-          {videoPaused ? "Play background motion" : "Pause background motion"}
-        </button>
       </section>
 
-      <section className="metric-ribbon" aria-label="Performance metrics">
-        <div className="container metric-ribbon-shell" data-reveal>
-          <div className="metric-ribbon-head">
-            <span><Activity aria-hidden="true" /> Revenue performance</span>
-            <small>Operating benchmarks, made visible.</small>
+      <section className="metric-ribbon home-credibility-strip" aria-label="ClinoraMedBill service commitments">
+        <div className="container metric-ribbon-shell" data-reveal role="list">
+          <div className="metric-commitment" role="listitem">
+            <span className="metric-ribbon-icon"><Map aria-hidden="true" /></span>
+            <strong>Nationwide Services</strong>
           </div>
-          <div className="metrics">
-            <div>
-              <span className="metric-ribbon-icon"><CheckCircle2 aria-hidden="true" /></span>
-              <strong
-                data-count-to="98.7"
-                data-count-decimals="1"
-                data-count-suffix="%"
-                aria-label="98.7 percent"
-              >98.7%</strong>
-              <span>Clean claim rate</span>
-            </div>
-            <div>
-              <span className="metric-ribbon-icon"><FileSearch aria-hidden="true" /></span>
-              <strong
-                data-count-to="1"
-                data-count-prefix="&lt;"
-                data-count-suffix="%"
-                data-count-delay="90"
-                aria-label="Less than 1 percent"
-              >&lt;1%</strong>
-              <span>Denial rate</span>
-            </div>
-            <div>
-              <span className="metric-ribbon-icon"><TrendingUp aria-hidden="true" /></span>
-              <strong
-                data-count-to="28"
-                data-count-prefix="&lt;"
-                data-count-suffix=" days"
-                data-count-delay="180"
-                aria-label="Less than 28 days"
-              >&lt;28 days</strong>
-              <span>Average A/R days</span>
-            </div>
-            <div>
-              <span className="metric-ribbon-icon"><ShieldCheck aria-hidden="true" /></span>
-              <strong
-                data-count-to="99.9"
-                data-count-decimals="1"
-                data-count-suffix="%"
-                data-count-delay="270"
-                aria-label="99.9 percent"
-              >99.9%</strong>
-              <span>HIPAA compliance</span>
-            </div>
+          <div className="metric-commitment" role="listitem">
+            <span className="metric-ribbon-icon"><Stethoscope aria-hidden="true" /></span>
+            <strong>40+ Medical Specialties</strong>
+          </div>
+          <div className="metric-commitment" role="listitem">
+            <span className="metric-ribbon-icon"><ShieldCheck aria-hidden="true" /></span>
+            <strong>100% HIPAA Compliant</strong>
+          </div>
+          <div className="metric-commitment" role="listitem">
+            <span className="metric-ribbon-icon"><Star aria-hidden="true" /></span>
+            <strong>100% Client Satisfaction</strong>
           </div>
         </div>
       </section>
 
-      <section className="section clarity-section">
-        <div className="container split-heading" data-reveal>
-          <div>
-            <span className="eyebrow">The revenue problem</span>
-            <h2>Billing complexity should not obscure your financial health.</h2>
-          </div>
-          <div className="clarity-copy">
+      <section id="revenue-problem" className="section partner-intro-section" aria-labelledby="partner-intro-title">
+        <div className="container partner-intro-layout">
+          <div className="partner-intro-copy" data-reveal>
+            <h2 id="partner-intro-title">A Trusted Medical Billing Partner for Healthcare Providers</h2>
             <p>
-              ClinoraMedBill replaces fragmented billing tasks with one organized, accountable revenue operation—so your practice can see what is happening, what needs attention, and what comes next.
+              Clinora Medbill is a trusted medical billing and revenue cycle management company based in Austin, Texas, offering nationwide services to healthcare providers across the USA. We work with physicians, clinics, and healthcare organizations to handle the complexities of medical billing and help them maintain a more efficient and reliable revenue cycle.
             </p>
-            <a className="text-link" href="#services">See the complete service model <ArrowRight aria-hidden="true" size={16} /></a>
+            <p>
+              Our experienced billing and coding team takes care of the essential details, from accurate claim submission and payment posting to denial management and accounts receivable follow-up. We focus on getting the details right, staying on top of outstanding claims, and keeping you informed, so you can spend less time dealing with billing issues and more time focused on your patients.
+            </p>
           </div>
-        </div>
-        <div className="container clarity-track">
-          <article data-reveal>
-            <span>01</span>
-            <FileSearch aria-hidden="true" />
-            <h3>Find revenue leakage</h3>
-            <p>Surface coding gaps, preventable denials, and stalled reimbursements.</p>
-          </article>
-          <div className="track-arrow" aria-hidden="true"><ArrowRight /></div>
-          <article data-reveal>
-            <span>02</span>
-            <ClipboardCheck aria-hidden="true" />
-            <h3>Run the full cycle</h3>
-            <p>Coordinate eligibility, coding, claims, posting, appeals, and collections.</p>
-          </article>
-          <div className="track-arrow" aria-hidden="true"><ArrowRight /></div>
-          <article data-reveal>
-            <span>03</span>
-            <TrendingUp aria-hidden="true" />
-            <h3>Improve with evidence</h3>
-            <p>Use clear reporting and monthly reviews to keep performance moving.</p>
-          </article>
+          <figure className="partner-intro-visual" data-reveal>
+            <span className="partner-intro-frame" aria-hidden="true" />
+            <div className="partner-intro-media">
+              <Image
+                src="/media/services/01-revenue-cycle-management-4k.jpg"
+                alt="Healthcare providers collaborating with ClinoraMedBill on revenue-cycle operations"
+                fill
+                quality={90}
+                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1199px) 86vw, 560px"
+              />
+            </div>
+            <figcaption className="partner-intro-location">
+              <MapPin aria-hidden="true" size={17} />
+              <span><small>Based in Austin, Texas</small><strong>Nationwide billing support</strong></span>
+            </figcaption>
+            <div className="partner-intro-status" aria-label="ClinoraMedBill workflow focus">
+              <span aria-hidden="true"><i /><i /><i /></span>
+              <small>Revenue operations</small>
+              <strong>Clearly managed.</strong>
+            </div>
+          </figure>
         </div>
       </section>
 
       <section id="services" className="section services-section">
-        <div className="container section-heading centered" data-reveal>
-          <span className="eyebrow">What we do</span>
-          <h2>Revenue solutions that actually work.</h2>
+        <div className="container section-heading services-editorial-heading" data-reveal>
+          <div>
+            <span className="eyebrow">What we do</span>
+            <h2>Revenue solutions that actually work.</h2>
+          </div>
           <p>Connected services, specialty-aware teams, and a clear line of sight from patient registration to final payment.</p>
         </div>
-        <div className="container service-grid">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <article className={index === 0 ? "service-card featured tilt-card" : "service-card tilt-card"} key={service.title} data-reveal>
-                <div className="service-icon"><Icon aria-hidden="true" /></div>
-                <span className="service-index">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-                <a href="#audit" aria-label={`Request an audit for ${service.title}`}>
-                  Learn more <ArrowRight aria-hidden="true" size={16} />
-                </a>
-              </article>
-            );
-          })}
-          <article className="service-card service-cta-card tilt-card" data-reveal>
-            <div>
-              <span className="eyebrow">Not sure where revenue is leaking?</span>
-              <h3>Start with an evidence-based billing audit.</h3>
-            </div>
-            <a className="button button-light" href="#audit">Request a free audit <ArrowRight aria-hidden="true" size={17} /></a>
-          </article>
-        </div>
-      </section>
-
-      <section className="flow-bridge" aria-label="Connected revenue operation">
-        <div className="container flow-bridge-shell" data-reveal>
-          <div className="flow-endpoint">
-            <span><Stethoscope aria-hidden="true" /></span>
-            <div>
-              <small>Starts with</small>
-              <strong>Patient encounter</strong>
-            </div>
-          </div>
-          <div className="flow-bridge-core">
-            <span className="flow-bridge-kicker"><Activity aria-hidden="true" /> One accountable system</span>
-            <strong>From visit to payment, nothing gets lost.</strong>
-            <div className="flow-signal-track" aria-hidden="true">
-              <span />
-              <i />
-              <i />
-              <i />
-            </div>
-            <small>Clinora manages every handoff with clear ownership and visibility.</small>
-          </div>
-          <div className="flow-endpoint flow-endpoint-revenue">
-            <span><CircleDollarSign aria-hidden="true" /></span>
-            <div>
-              <small>Ends with</small>
-              <strong>Collected revenue</strong>
-            </div>
-          </div>
-        </div>
+        <MobileCarousel id="home-services-carousel" label="Medical billing services" className="container service-grid">
+          {liveServices.map((service) => (
+            <article className={`service-card service-photo-card service-card-${service.slug}`} key={service.title} data-reveal>
+              <a className="service-card-link" href={`/services/${service.slug}`} aria-label={`Explore ${service.title}`}>
+                <div className="service-card-media">
+                  <Image
+                    src={service.image}
+                    alt={service.imageAlt}
+                    fill
+                    quality={90}
+                    sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1199px) calc(50vw - 38px), 340px"
+                    style={{ objectPosition: service.imagePosition }}
+                  />
+                </div>
+                <div className="service-photo-copy">
+                  <h3>{service.titleLines.map((line) => <span key={line}>{line}</span>)}</h3>
+                  <p>{service.text}</p>
+                  <span className="service-photo-cta">Explore service <ArrowRight aria-hidden="true" size={15} /></span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </MobileCarousel>
       </section>
 
       <section id="process" className="section process-section">
         <div className="container split-heading" data-reveal>
           <div>
-            <span className="eyebrow eyebrow-light">The RCM process</span>
-            <h2>Every claim. Every step. Clearly managed.</h2>
+            <span className="eyebrow eyebrow-light">{cmsHome?.processEyebrow ?? "The RCM process"}</span>
+            <h2>{cmsHome?.processTitle ?? "Every claim. Every step. Clearly managed."}</h2>
           </div>
-          <p>A transparent, step-by-step process built for healthcare providers who demand accuracy, speed, and complete accountability at every stage.</p>
+          <p>{cmsHome?.processDescription ?? "A transparent, step-by-step process built for healthcare providers who demand accuracy, speed, and complete accountability at every stage."}</p>
         </div>
-        <div className="container process-layout">
-          <ol className="process-list" aria-label="Revenue cycle stages" data-reveal>
+        <div className="container process-journey-track" data-reveal aria-hidden="true">
+          <span className="process-journey-line" />
+          {process.map((step, index) => (
+            <span
+              className="process-journey-node"
+              key={`track-${step.title}`}
+              style={{ "--process-delay": `${index * 50}ms` } as CSSProperties}
+            >
+              <i>{String(index + 1).padStart(2, "0")}</i>
+              <em>{step.label}</em>
+            </span>
+          ))}
+        </div>
+        <MobileCarousel as="ol" id="home-process-carousel" label="Revenue cycle stages" className="container process-simple-timeline">
             {process.map((step, index) => {
               const StepIcon = step.icon;
-              const isActive = activeProcess === index;
               return (
-              <li key={step.title} className={isActive ? "is-active" : ""}>
-                <button
-                  type="button"
-                  className="process-step"
-                  aria-pressed={isActive}
-                  onClick={() => setActiveProcess(index)}
-                  onFocus={() => setActiveProcess(index)}
-                  onMouseEnter={() => setActiveProcess(index)}
-                >
-                  <span className="process-marker">
-                    <StepIcon aria-hidden="true" />
-                    <small>{String(index + 1).padStart(2, "0")}</small>
-                  </span>
-                  <span className="process-content">
-                    <span>{step.label}</span>
-                    <strong>{step.title}</strong>
-                    <small>{step.text}</small>
-                  </span>
-                  <ArrowRight className="process-arrow" aria-hidden="true" />
-                </button>
+              <li key={step.title} data-reveal style={{ "--process-delay": `${index * 50}ms` } as CSSProperties}>
+                <span className="process-simple-index">{String(index + 1).padStart(2, "0")}</span>
+                <span className="process-simple-icon"><StepIcon aria-hidden="true" /></span>
+                <div>
+                  <span>{step.label}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
               </li>
               );
             })}
-          </ol>
-          <div
-            className="process-proof"
-            data-reveal
-            data-stage={String(activeProcess + 1).padStart(2, "0")}
-            role="region"
-            aria-label={`Stage ${activeProcess + 1}: ${process[activeProcess].title}`}
-          >
-            <div className="dashboard-head">
-              <div>
-                <span className="dashboard-dot" />
-                <span className="dashboard-dot" />
-                <span className="dashboard-dot" />
-              </div>
-              <span>Live revenue operations</span>
-              <strong>{String(activeProcess + 1).padStart(2, "0")} / 06</strong>
-            </div>
-            <div className="dashboard-body">
-              <div className="dashboard-stage-title">
-                <span>{process[activeProcess].label}</span>
-                <strong>{process[activeProcess].title}</strong>
-              </div>
-              <div className="dashboard-kpi">
-                <span>{process[activeProcess].metricLabel}</span>
-                <strong key={process[activeProcess].metric}>{process[activeProcess].metric}</strong>
-                <small><TrendingUp size={13} /> {process[activeProcess].signal}</small>
-              </div>
-              <div className="dashboard-graph">
-                {process[activeProcess].bars.map((height, index) => (
-                  <i key={`${activeProcess}-${index}`} style={{ height: `${height}%`, animationDelay: `${index * 45}ms` }} />
-                ))}
-              </div>
-              <div className="dashboard-list">
-                <div><span><BadgeCheck size={16} /> Stage validation</span><strong>Complete</strong></div>
-                <div><span><RefreshCcw size={16} /> {process[activeProcess].label}</span><strong>Active</strong></div>
-                <div><span><BarChart3 size={16} /> Team visibility</span><strong>Live</strong></div>
-              </div>
-              <div className="dashboard-route" aria-hidden="true">
-                {process.map((step, index) => (
-                  <i key={step.title} className={index <= activeProcess ? "is-complete" : ""}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                  </i>
-                ))}
-              </div>
-            </div>
-            <div className="proof-caption"><LockKeyhole size={15} /> Secure access · Clear audit trail · Actionable reporting</div>
-          </div>
-        </div>
+        </MobileCarousel>
       </section>
 
-      <section className="section proof-section">
-        <div className="container proof-shell" data-reveal>
-          <div className="proof-intro">
-            <div>
-              <span className="eyebrow eyebrow-light">Operational outcomes</span>
-              <h2>Performance you can see.</h2>
-            </div>
-            <div className="proof-live" aria-label="Performance snapshot">
-              <i aria-hidden="true" />
-              Performance snapshot
+      <section id="who-we-serve-preview" className="section home-audience-section" aria-labelledby="home-audience-title">
+        <div className="container home-audience-layout">
+          <div className="home-audience-gallery" data-reveal>
+            <figure className="home-audience-photo home-audience-photo-primary">
+              <img src="/media/medical-billing-workflow-4k.jpg" alt="Physician reviewing care information with a colleague in a modern clinic" />
+            </figure>
+            <figure className="home-audience-photo home-audience-photo-secondary">
+              <img src="/media/specialties-hero-magnific-4k.jpg" alt={audiences[2].alt} />
+            </figure>
+            <figure className="home-audience-photo home-audience-photo-tertiary">
+              <img src="/media/services/06-provider-credentialing-4k.jpg" alt="Physician reviewing practice information with a healthcare colleague" />
+            </figure>
+            <div className="home-audience-note">
+              <strong>7</strong>
+              <span>provider environments supported</span>
             </div>
           </div>
-          <div className="proof-metrics" role="list" aria-label="ClinoraMedBill performance metrics">
-            <article className="proof-metric" role="listitem">
-              <span className="metric-index">01</span>
-              <div className="metric-icon"><CircleDollarSign aria-hidden="true" /></div>
-              <strong data-count-to="2.1" data-count-decimals="1" data-count-prefix="$" data-count-suffix="B+" data-count-delay="0" aria-label="2.1 billion dollars plus">$2.1B+</strong>
-              <span>Revenue processed</span>
-              <div className="metric-progress" aria-hidden="true"><i /></div>
-            </article>
-            <article className="proof-metric" role="listitem">
-              <span className="metric-index">02</span>
-              <div className="metric-icon"><Sparkles aria-hidden="true" /></div>
-              <strong data-count-to="48" data-count-suffix="hr" data-count-delay="100" aria-label="48 hours">48hr</strong>
-              <span>Onboarding time</span>
-              <div className="metric-progress" aria-hidden="true"><i /></div>
-            </article>
-            <article className="proof-metric" role="listitem">
-              <span className="metric-index">03</span>
-              <div className="metric-icon"><Activity aria-hidden="true" /></div>
-              <strong data-count-to="8.4" data-count-decimals="1" data-count-suffix="d" data-count-delay="200" aria-label="8.4 days">8.4d</strong>
-              <span>Average days in A/R</span>
-              <div className="metric-progress" aria-hidden="true"><i /></div>
-            </article>
-            <article className="proof-metric" role="listitem">
-              <span className="metric-index">04</span>
-              <div className="metric-icon"><ShieldCheck aria-hidden="true" /></div>
-              <strong data-count-to="99.9" data-count-decimals="1" data-count-suffix="%" data-count-delay="300" aria-label="99.9 percent">99.9%</strong>
-              <span>HIPAA compliance</span>
-              <div className="metric-progress" aria-hidden="true"><i /></div>
-            </article>
+          <div className="home-audience-copy" data-reveal>
+            <span className="eyebrow">Who we serve</span>
+            <h2 id="home-audience-title">Built around the way healthcare teams actually work.</h2>
+            <p>From independent practices to hospital systems, ClinoraMedBill adapts revenue operations to the people, workflows, and patient communities behind every claim.</p>
+            <div className="home-audience-tags" aria-label="Healthcare organizations served">
+              <span>Medical practices</span><span>Hospitals</span><span>Urgent care</span><span>Behavioral health</span><span>ASCs</span><span>Home health</span>
+            </div>
+            <a className="button button-dark" href="/who-we-serve">Explore who we serve <ArrowRight aria-hidden="true" size={17} /></a>
           </div>
         </div>
       </section>
@@ -916,7 +810,7 @@ export default function Home() {
             <span className="eyebrow">Specialties we serve</span>
             <h2>Every specialty has its own revenue rhythm.</h2>
             <p>Specialty-aware coding and revenue workflows help reduce preventable errors while keeping communication grounded in the reality of your practice.</p>
-            <a className="button button-dark" href="#audit">Discuss your specialty <ArrowRight aria-hidden="true" size={17} /></a>
+            <a className="button button-dark" href="mailto:info@clinoramedbill.com">Discuss your specialty <ArrowRight aria-hidden="true" size={17} /></a>
           </div>
           <div className="specialty-cloud" aria-label="Medical specialties served">
             <div className="specialty-orbit-glow" aria-hidden="true" />
@@ -945,8 +839,31 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section human-story-section" data-human-scroll>
-        <div className="container human-story" data-reveal>
+      <section id="nationwide-coverage" className="section nationwide-home-section" aria-labelledby="nationwide-home-title">
+        <div className="container nationwide-home-shell" data-reveal>
+          <div className="nationwide-home-copy">
+            <span className="eyebrow eyebrow-light nationwide-home-eyebrow"><Map aria-hidden="true" size={16} /> Serving all 50 U.S. states</span>
+            <h2 id="nationwide-home-title">Medical billing support, wherever your practice operates.</h2>
+            <p>ClinoraMedBill serves healthcare providers across all 50 states with disciplined revenue-cycle workflows, clear reporting, and accountable communication.</p>
+            <div className="nationwide-home-states" aria-label="Featured states">
+              <span>Texas</span><span>California</span><span>Florida</span><span>New York</span><span>Illinois</span><span>New Jersey</span>
+            </div>
+            <a className="button button-light" href="/nationwide-solutions">Explore all 50 states <ArrowRight aria-hidden="true" size={17} /></a>
+          </div>
+          <div className="nationwide-home-map" aria-label="ClinoraMedBill serves healthcare providers throughout the United States">
+            <img src="/media/usa-states-map.svg" alt="Map of the United States showing nationwide coverage" width="959" height="593" />
+            <a className="map-location map-location-texas" href="/nationwide-solutions#texas"><MapPin aria-hidden="true" /> Texas</a>
+            <a className="map-location map-location-california" href="/nationwide-solutions#california"><MapPin aria-hidden="true" /> California</a>
+            <a className="map-location map-location-new-york" href="/nationwide-solutions#new-york"><MapPin aria-hidden="true" /> New York</a>
+            <a className="map-location map-location-florida" href="/nationwide-solutions#florida"><MapPin aria-hidden="true" /> Florida</a>
+            <a className="map-location map-location-illinois" href="/nationwide-solutions#illinois"><MapPin aria-hidden="true" /> Illinois</a>
+            <a className="map-location map-location-new-jersey" href="/nationwide-solutions#new-jersey"><MapPin aria-hidden="true" /> New Jersey</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="human-accountability" className="section human-story-section" data-human-scroll>
+        <div className="container human-story human-benefits-stage">
           <div className="human-image-shell">
             <img
               src="/media/human-team.jpg"
@@ -964,23 +881,29 @@ export default function Home() {
               <em>Scroll to meet your revenue team</em>
             </div>
           </div>
-          <div className="human-story-copy">
-            <span className="eyebrow eyebrow-light">Your team, not a ticket number</span>
-            <h2>People who know your practice—and keep revenue moving.</h2>
-            <p>Your named account team stays close to your workflow, payers, and goals—turning every report into a clear next action.</p>
-            <div className="human-proof-row">
-              <div>
-                <UsersRound aria-hidden="true" />
-                <span>Account lead</span>
-                <strong>One responsible point of contact</strong>
-              </div>
-              <div>
-                <MessageSquareText aria-hidden="true" />
-                <span>Reporting</span>
-                <strong>Clear updates and next actions</strong>
-              </div>
+          <div className="human-story-copy human-benefits-story">
+            <span className="eyebrow eyebrow-light">Why outsource billing</span>
+            <h2>Benefits of Outsourcing Medical Billing</h2>
+            <p>We thoroughly review a claim before submitting it to insurance like medicare or medicaid. Appropriate claims get approved more often, while others get denied more rarely. This keeps your practice working smoothly, saves time, and reduces stress.</p>
+            <div className="human-benefits-list">
+              {benefits.map((benefit, index) => {
+                const Icon = benefit.icon;
+                return (
+                  <details key={benefit.title}
+                    name="human-benefits"
+                    open={index === 0}
+                    style={{ "--benefit-delay": `${180 + index * 40}ms` } as CSSProperties}
+                  >
+                    <summary>
+                      <span><Icon aria-hidden="true" /></span>
+                      <strong>{benefit.title}</strong>
+                      <ChevronDown aria-hidden="true" />
+                    </summary>
+                    <p>{benefit.text}</p>
+                  </details>
+                );
+              })}
             </div>
-            <a className="button button-light" href="#audit">Talk to a revenue specialist <ArrowRight aria-hidden="true" size={17} /></a>
           </div>
           <div className="human-scroll-cue" aria-hidden="true">
             <span>Scroll to explore</span>
@@ -989,31 +912,48 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="why-clinora" className="section why-section">
-        <div className="container section-heading centered" data-reveal>
-          <span className="eyebrow">Why ClinoraMedBill</span>
-          <h2>Built for healthcare. Obsessed with clear execution.</h2>
-          <p>Secure workflows, responsive people, and transparent performance—without making your practice adapt to a black box.</p>
-        </div>
-        <div className="container benefit-grid">
-          {benefits.map((benefit) => {
-            const Icon = benefit.icon;
-            return (
-              <article key={benefit.title} className="tilt-card" data-reveal>
-                <div className="benefit-icon"><Icon aria-hidden="true" /></div>
-                <h3>{benefit.title}</h3>
-                <p>{benefit.text}</p>
-              </article>
-            );
-          })}
+      <section className="section home-ehr-section" aria-labelledby="home-ehr-title">
+        <div className="container home-ehr-shell" data-reveal>
+          <div className="home-ehr-heading">
+            <span className="eyebrow">Connected workflows</span>
+            <h2 id="home-ehr-title">Experience across the EHR systems your practice uses.</h2>
+            <p>ClinoraMedBill works around established clinical and billing workflows, with experience across leading EHR and practice-management platforms.</p>
+          </div>
+          <div className="home-ehr-showcase" aria-label="Representative EHR software platform logos">
+            <article className="home-ehr-feature-card">
+              <span className="home-ehr-feature-mark"><img src="/brand/clinora-mark.svg" alt="" /></span>
+              <span className="eyebrow">Workflow compatibility</span>
+              <h3>One billing partner. Your existing systems.</h3>
+              <p>Our team adapts revenue operations to established clinical workflows instead of forcing practices into a disconnected process.</p>
+              <div className="home-ehr-feature-tags" aria-label="Supported workflow areas">
+                <span>Clinical workflow</span>
+                <span>Claims operations</span>
+                <span>Performance reporting</span>
+              </div>
+            </article>
+            <MobileCarousel id="home-ehr-carousel" label="EHR and practice-management platforms" className="home-ehr-platform-grid" role="list" continuous hideControls>
+              {ehrPlatforms.map((platform, index) => (
+                <span
+                  className="home-ehr-platform-card"
+                  role="listitem"
+                  key={platform.name}
+                  style={{ "--ehr-delay": `${100 + index * 40}ms` } as CSSProperties}
+                >
+                  <span><img src={platform.logo} alt="" loading="lazy" /></span>
+                  <strong>{platform.name}</strong>
+                </span>
+              ))}
+            </MobileCarousel>
+          </div>
+          <a className="button home-ehr-cta" href="/ehr-software">Explore EHR software <ArrowRight aria-hidden="true" size={18} /></a>
         </div>
       </section>
 
       <section id="insights" className="section insights-section">
-        <div className="container blog-heading centered" data-reveal>
-          <span className="eyebrow">Clinora insights</span>
-          <h2>Practical reads for healthier revenue.</h2>
-          <p>Focused guidance for the people managing claims, billing performance, and specialty workflows.</p>
+        <div className="container blog-heading centered">
+          <span className="eyebrow">{cmsHome?.insightsEyebrow ?? "Clinora insights"}</span>
+          <h2>{cmsHome?.insightsTitle ?? "Practical reads for healthier revenue."}</h2>
+          <p>{cmsHome?.insightsDescription ?? "Focused guidance for the people managing claims, billing performance, and specialty workflows."}</p>
           <div className="blog-controls" aria-label="Browse insights">
             <button type="button" onClick={() => scrollBlogs(-1)} aria-label="View previous insights">
               <ArrowLeft aria-hidden="true" />
@@ -1026,9 +966,9 @@ export default function Home() {
 
         <div className="blog-carousel">
           <div className="container blog-card-grid" ref={blogRailRef}>
-            {insights.map((insight, index) => (
-              <article key={insight.title} className="blog-card" data-reveal>
-                <a className="blog-card-image" href="#audit" aria-label={`Read insight: ${insight.title}`}>
+            {liveInsights.map((insight, index) => (
+              <article key={insight.title} className="blog-card">
+                <a className="blog-card-image" href={insight.link} aria-label={`Read insight: ${insight.title}`}>
                   <img src={insight.image} alt={insight.imageAlt} />
                   <span className="blog-card-count">{String(index + 1).padStart(2, "0")}</span>
                   <span className="blog-card-category">{insight.category}</span>
@@ -1037,7 +977,7 @@ export default function Home() {
                   <span className="blog-card-time"><Clock3 aria-hidden="true" /> {insight.readTime}</span>
                   <h3>{insight.title}</h3>
                   <p>{insight.text}</p>
-                  <a className="blog-card-link" href="#audit">
+                  <a className="blog-card-link" href={insight.link}>
                     Read insight <span><ArrowRight aria-hidden="true" /></span>
                   </a>
                 </div>
@@ -1050,16 +990,16 @@ export default function Home() {
       <section id="audit" className="section audit-section">
         <div className="container audit-shell" data-reveal>
           <div className="audit-copy">
-            <span className="eyebrow eyebrow-light">Complimentary billing audit</span>
-            <h2>Stop leaving revenue on the table.</h2>
-            <p>See exactly where your practice could be recovering more. No contracts. No obligations. Just clarity.</p>
+            <span className="eyebrow eyebrow-light">{cmsHome?.auditEyebrow ?? "Complimentary billing audit"}</span>
+            <h2>{cmsHome?.auditTitle ?? "Stop leaving revenue on the table."}</h2>
+            <p>{cmsHome?.auditDescription ?? "See exactly where your practice could be recovering more. No contracts. No obligations. Just clarity."}</p>
             <ul>
               <li><CheckCircle2 aria-hidden="true" /> Review of billing performance indicators</li>
               <li><CheckCircle2 aria-hidden="true" /> Identification of preventable revenue leakage</li>
               <li><CheckCircle2 aria-hidden="true" /> Clear, practical next-step recommendations</li>
             </ul>
           </div>
-          <form className="audit-form" onSubmit={submitAudit}>
+          <form className="audit-form" onSubmit={(event) => submitAudit(event, "billing-audit")}>
             <div className="form-heading">
               <span>Free audit request</span>
               <p>Fields marked with an asterisk (*) are required.</p>
@@ -1067,21 +1007,21 @@ export default function Home() {
             <div className="form-row">
               <label>
                 Full name *
-                <input name="name" type="text" autoComplete="name" required />
+                <input name="name" type="text" autoComplete="name" placeholder="Your full name" maxLength={120} required />
               </label>
               <label>
                 Practice name *
-                <input name="practice" type="text" autoComplete="organization" required />
+                <input name="practice" type="text" autoComplete="organization" placeholder="Practice name" maxLength={160} required />
               </label>
             </div>
             <div className="form-row">
               <label>
                 Work email *
-                <input name="email" type="email" autoComplete="email" required />
+                <input name="email" type="email" autoComplete="email" placeholder="you@practice.com" maxLength={200} required />
               </label>
               <label>
                 Phone number
-                <input name="phone" type="tel" autoComplete="tel" />
+                <input name="phone" type="tel" autoComplete="tel" placeholder="Your phone number" maxLength={40} />
               </label>
             </div>
             <label>
@@ -1092,12 +1032,13 @@ export default function Home() {
                 <option value="Other">Other</option>
               </select>
             </label>
-            <button className="button button-large button-form" type="submit">
-              Request my free audit <ArrowRight aria-hidden="true" size={18} />
+            <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1 }} />
+            <button className="button button-large button-form" type="submit" disabled={enquiryStatus["billing-audit"] === "sending"}>
+              {enquiryStatus["billing-audit"] === "sending" ? "Sending…" : "Request my free audit"} <ArrowRight aria-hidden="true" size={18} />
             </button>
-            <p className="form-privacy"><LockKeyhole aria-hidden="true" size={14} /> Your information is used only to respond to this request.</p>
+            <p className="form-privacy"><LockKeyhole aria-hidden="true" size={14} /> Your information is used only to respond to this request. <a href="/privacy-policy">Privacy Policy</a></p>
             <div className="form-status" role="status" aria-live="polite">
-              {submitted ? "Thank you. Your prototype request has been received." : ""}
+              {enquiryStatus["billing-audit"] === "success" ? "Thank you. Your request has been emailed to our team." : enquiryStatus["billing-audit"] === "error" ? "We could not send your request. Please email info@clinoramedbill.com." : ""}
             </div>
           </form>
         </div>
@@ -1111,8 +1052,8 @@ export default function Home() {
             <p>Clear answers about onboarding, security, specialties, and the complimentary audit.</p>
           </div>
           <div className="footer-faq-list">
-            {faqs.map((faq, index) => (
-              <details key={faq.question} open={index === 0}>
+            {liveFaqs.map((faq, index) => (
+              <details className={index >= 4 ? "faq-mobile-extra" : undefined} key={faq.question}>
                 <summary>
                   {faq.question}
                   <span aria-hidden="true" />
@@ -1120,36 +1061,39 @@ export default function Home() {
                 <p>{faq.answer}</p>
               </details>
             ))}
+            <a className="mobile-faq-more" href="/faqs">View all frequently asked questions <ArrowRight aria-hidden="true" size={16} /></a>
           </div>
         </div>
         <div className="container footer-top">
           <div className="footer-brand">
             <img src="/brand/clinora-primary.svg" alt="ClinoraMedBill" width="348" height="180" />
-            <p>Professional medical billing agency delivering accurate, efficient, and reliable revenue cycle management for healthcare providers nationwide.</p>
-            <a href="#audit" className="button button-light">Request a free billing audit <ArrowRight aria-hidden="true" size={16} /></a>
+            <p>Clinora Medbill is a leading healthcare revenue cycle, medical billing and coding company based in Texas, offering nationwide services.</p>
+            <a href="mailto:info@clinoramedbill.com" className="button button-light">Request a free billing audit <ArrowRight aria-hidden="true" size={16} /></a>
+            <FooterSocialLinks />
           </div>
           <div className="footer-column">
             <h2>Services</h2>
-            <a href="#services">Revenue Cycle Management</a>
-            <a href="#services">Medical Coding</a>
-            <a href="#services">AR Management</a>
-            <a href="#services">Eligibility Verification</a>
-            <a href="#services">Denial Management</a>
+            <a href="/services/revenue-cycle-management">Revenue Cycle Management</a>
+            <a href="/services/medical-billing">Medical Billing</a>
+            <a href="/services/medical-coding">Medical Coding</a>
+            <a href="/services/ar-management">AR Management</a>
+            <a href="/services/medical-billing-audits">Medical Billing Audits</a>
+            <a href="/services/provider-credentialing-enrollment">Provider Credentialing &amp; Enrollment</a>
+            <a href="/services/virtual-front-desk-services">Virtual Front Desk Services</a>
           </div>
           <div className="footer-column">
             <h2>Specialties</h2>
-            <a href="#specialties">Family Medicine</a>
-            <a href="#specialties">Cardiology</a>
-            <a href="#specialties">Behavioral Health</a>
-            <a href="#specialties">Urgent Care</a>
-            <a href="#specialties">All specialties</a>
+            {footerSpecialties.map((specialty) => <a href="/specialties" key={specialty}>{specialty}</a>)}
+            <a href="/specialties">All specialties</a>
           </div>
           <div className="footer-column">
             <h2>Company</h2>
-            <a href="#why-clinora">About Clinora</a>
+            <a href="/about-us">About Clinora</a>
             <a href="#process">Our process</a>
-            <a href="#why-clinora">Security & Compliance</a>
-            <a href="#audit">Free Billing Audit</a>
+            <a href="/who-we-serve">Who We Serve</a>
+            <a href="/nationwide-solutions">Nationwide Solutions</a>
+            <a href="/compliance">Security & Compliance</a>
+            <a href="mailto:info@clinoramedbill.com">Free Billing Audit</a>
           </div>
         </div>
         <div className="container footer-contact">
@@ -1160,10 +1104,9 @@ export default function Home() {
         <div className="container footer-bottom">
           <p>© 2026 ClinoraMedBill. All rights reserved.</p>
           <div>
-            <a href="#contact">Privacy Policy</a>
+            <a href="/privacy-policy">Privacy Policy</a>
             <a href="#contact">Terms</a>
-            <a href="#contact">Accessibility Statement</a>
-            <a href="#why-clinora">Security & Compliance</a>
+            <a href="/compliance">Security & Compliance</a>
           </div>
         </div>
         <div className="footer-wordmark" aria-hidden="true">ClinoraMedBill</div>

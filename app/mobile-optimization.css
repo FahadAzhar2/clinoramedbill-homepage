@@ -1,0 +1,708 @@
+/* Mobile-only layout system. Desktop compositions and the homepage hero stay unchanged. */
+.mobile-carousel-controls {
+  display: none;
+}
+
+.mobile-faq-more {
+  display: none;
+}
+
+.home-refinement .blog-card-grid {
+  scroll-snap-type: none;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --mobile-gutter: 18px;
+    --mobile-section-space: 64px;
+    --mobile-card-width: min(84vw, 340px);
+  }
+
+  main:not(.home-refinement) .section {
+    padding-block: var(--mobile-section-space);
+  }
+
+  main:not(.home-refinement) .section-heading h2,
+  main:not(.home-refinement) h2 {
+    text-wrap: pretty;
+  }
+
+  .mobile-carousel-track {
+    display: flex !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: 100%;
+    max-width: 100%;
+    align-items: stretch;
+    grid-template-columns: none !important;
+    gap: 14px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding-block: 18px 14px;
+    scroll-padding-inline: var(--mobile-gutter);
+    scroll-snap-type: inline mandatory;
+    overscroll-behavior-inline: contain;
+    scrollbar-color: rgba(39, 154, 154, .52) transparent;
+    scrollbar-width: thin;
+    touch-action: pan-x pan-y;
+  }
+
+  .mobile-carousel-track:focus-visible {
+    border-radius: 16px;
+    outline: 3px solid rgba(39, 154, 154, .68);
+    outline-offset: 4px;
+  }
+
+  .mobile-carousel-track.is-continuous {
+    scroll-snap-type: none;
+  }
+
+  .mobile-carousel-track > * {
+    min-width: 0;
+    flex: 0 0 var(--mobile-card-width) !important;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    transform: none !important;
+  }
+
+  .mobile-carousel-controls {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .mobile-carousel-controls.is-static {
+    display: none;
+  }
+
+  .mobile-carousel-instructions {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+  }
+
+  .mobile-carousel-controls > div {
+    display: flex;
+    flex: none;
+    gap: 8px;
+  }
+
+  /* Homepage hero: compact mobile hierarchy while preserving the approved desktop hero. */
+  .home-refinement .hero-approved.hero-split {
+    height: 640px !important;
+    min-height: 640px !important;
+    padding: 92px 0 18px !important;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-content {
+    width: calc(100% - 28px) !important;
+    padding-bottom: 12px !important;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-copy-column {
+    width: 100% !important;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-kicker {
+    width: auto;
+    max-width: 250px;
+    min-height: 0;
+    align-self: flex-start;
+    justify-content: flex-start;
+    margin: 0 0 11px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    font-size: .5625rem;
+    letter-spacing: .1em;
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-kicker .status-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .home-refinement .hero-approved.hero-split h1 {
+    max-width: 360px;
+    margin: 0 0 11px;
+    font-size: 30px !important;
+    letter-spacing: -.035em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-copy {
+    max-width: 370px;
+    margin-bottom: 13px;
+    font-size: .8125rem;
+    line-height: 1.48;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-actions {
+    gap: 8px;
+    margin: 0 0 12px;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-actions .button {
+    min-height: 44px;
+    padding: 10px 13px;
+    font-size: .75rem;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-assurance {
+    display: grid;
+    align-items: center;
+    justify-content: start;
+    gap: 7px 12px;
+    margin-top: 0;
+    grid-template-columns: repeat(3, auto);
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-google-rating {
+    min-width: 0;
+    justify-self: start;
+    grid-column: 1 / -1;
+  }
+
+  .home-refinement .hero-approved.hero-split .hero-assurance > span {
+    font-size: .5625rem;
+    white-space: nowrap;
+  }
+
+  /* Reframe outsourcing as an image header plus readable content card. */
+  .home-refinement .human-story-section {
+    min-height: 0;
+    padding: 54px 10px !important;
+  }
+
+  .home-refinement .human-story {
+    display: flex;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #092b40;
+  }
+
+  .home-refinement .human-image-shell {
+    position: relative !important;
+    inset: auto !important;
+    width: 100%;
+    height: 250px;
+    flex: none;
+  }
+
+  .home-refinement .human-image {
+    object-position: 64% 30%;
+    transform: none !important;
+  }
+
+  .home-refinement .human-image-shade {
+    background: linear-gradient(180deg, rgba(8, 31, 45, .02), rgba(8, 31, 45, .44));
+  }
+
+  .home-refinement .human-benefits-story {
+    position: relative !important;
+    z-index: 2;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: calc(100% - 24px) !important;
+    margin: -30px auto 12px;
+    padding: 24px 18px 20px !important;
+    gap: 13px;
+    border-radius: 20px;
+    background: rgba(8, 42, 61, .96);
+    opacity: 1 !important;
+    text-align: center;
+    transform: none !important;
+  }
+
+  .home-refinement .human-benefits-story > .eyebrow {
+    align-self: center;
+    text-align: center;
+  }
+
+  .home-refinement .human-benefits-story h2 {
+    margin-inline: auto;
+    font-size: clamp(1.9rem, 8.5vw, 2.25rem) !important;
+    line-height: 1.04;
+  }
+
+  .home-refinement .human-benefits-story > p {
+    max-width: 34rem;
+    margin-inline: auto;
+    font-size: .8125rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .home-refinement .human-benefits-list {
+    margin-top: 3px;
+    text-align: left;
+  }
+
+  /* Helpful sample text stays subordinate to persistent form labels. */
+  form :where(input, textarea) {
+    font-size: 1rem;
+  }
+
+  form :where(input, textarea)::placeholder {
+    color: #8797a3;
+    font-size: .8125rem;
+    font-weight: 400;
+    opacity: 1;
+  }
+
+  form select:invalid {
+    color: #8797a3;
+    font-size: .875rem;
+    font-weight: 400;
+  }
+
+  .mobile-carousel-controls button {
+    display: inline-grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 1px solid rgba(16, 78, 96, .2);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--navy, #0b3048);
+    box-shadow: 0 8px 22px rgba(8, 42, 58, .08);
+    touch-action: manipulation;
+    transition: background-color 160ms ease, color 160ms ease, opacity 160ms ease;
+  }
+
+  .mobile-carousel-controls button:active:not(:disabled) {
+    background: var(--teal, #279a9a);
+    color: #fff;
+  }
+
+  .mobile-carousel-controls button:focus-visible {
+    outline: 3px solid rgba(39, 154, 154, .55);
+    outline-offset: 2px;
+  }
+
+  .mobile-carousel-controls button:disabled {
+    opacity: .38;
+    cursor: not-allowed;
+  }
+
+  .mobile-carousel-controls svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Compact every interior hero; the homepage cinematic hero is intentionally excluded. */
+  .interior-hero {
+    padding: 88px 10px 14px;
+  }
+
+  .interior-hero-frame {
+    height: clamp(540px, 146vw, 620px) !important;
+    min-height: clamp(540px, 146vw, 620px) !important;
+    border-radius: 22px;
+  }
+
+  .interior-hero-copy {
+    right: 20px;
+    bottom: 34px;
+    left: 20px;
+  }
+
+  .interior-hero-copy h1 {
+    margin: 12px 0 10px;
+    font-size: clamp(2.15rem, 10.8vw, 2.8rem);
+    line-height: 1;
+  }
+
+  .interior-hero-copy > strong {
+    margin-bottom: 8px;
+    font-size: .9375rem;
+  }
+
+  .interior-hero-copy > p {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-bottom: 16px;
+    font-size: .875rem;
+    line-height: 1.55;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  .interior-hero-copy > .button {
+    width: auto;
+    min-width: 0;
+    min-height: 48px;
+    padding-inline: 18px;
+  }
+
+  /* Shared FAQs: less vertical weight while retaining full answers on demand. */
+  .footer-faq,
+  .page-faq-shell {
+    gap: 16px !important;
+    padding: 20px 16px !important;
+    border-radius: 20px !important;
+  }
+
+  .footer-faq-heading h2,
+  .page-faq-heading h2 {
+    margin-block: 8px 6px;
+    font-size: clamp(1.55rem, 7vw, 1.85rem) !important;
+    line-height: 1.06;
+  }
+
+  .footer-faq-heading p,
+  .page-faq-heading p {
+    margin-top: 0 !important;
+    font-size: .75rem !important;
+    line-height: 1.45;
+  }
+
+  :where(.footer-faq-list, .page-faq-list) {
+    gap: 8px !important;
+  }
+
+  :where(.footer-faq-list, .page-faq-list) details {
+    border-radius: 14px;
+  }
+
+  :where(.footer-faq-list, .page-faq-list) summary {
+    min-height: 46px;
+    padding: 9px 10px !important;
+    gap: 10px;
+    font-size: .75rem !important;
+    line-height: 1.35;
+    touch-action: manipulation;
+  }
+
+  :where(.footer-faq-list, .page-faq-list) details > p {
+    padding: 0 10px 11px !important;
+    font-size: .75rem !important;
+    line-height: 1.5;
+  }
+
+  :where(.footer-faq-list, .page-faq-list) summary span {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+  }
+
+  .footer-faq-list .faq-mobile-extra {
+    display: none;
+  }
+
+  .mobile-faq-more {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 4px;
+    padding: 10px 12px;
+    border: 1px solid rgba(143, 224, 220, .28);
+    border-radius: 14px;
+    color: #b7efec;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: 1.35;
+    touch-action: manipulation;
+  }
+
+  .mobile-faq-more:focus-visible {
+    outline: 3px solid rgba(143, 224, 220, .72);
+    outline-offset: 2px;
+  }
+
+  /* Card-specific sizing keeps each slide useful without hiding its content. */
+  .process-simple-timeline > li,
+  .service-capabilities-grid > article,
+  .about-values-grid > article,
+  .who-serve-trust-grid > article,
+  .standard-content-cards > article,
+  .contact-info-grid > *,
+  .featured-state-grid > article,
+  .ehr-grid > a {
+    min-height: 0 !important;
+  }
+
+  .process-simple-timeline > li {
+    flex-basis: min(86vw, 350px) !important;
+  }
+
+  .home-ehr-platform-grid > * {
+    flex-basis: min(76vw, 300px) !important;
+  }
+
+  .home-ehr-platform-card {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .home-ehr-platform-card > span {
+    margin-inline: 0;
+  }
+
+  /* Keep the partner narrative centered and balanced on narrow screens. */
+  .home-refinement .partner-intro-copy,
+  .home-refinement .partner-intro-copy h2,
+  .home-refinement .partner-intro-copy p {
+    text-align: center !important;
+  }
+
+  .home-refinement .partner-intro-copy h2 {
+    margin-inline: auto;
+  }
+
+  .home-refinement .partner-intro-copy h2::after {
+    margin-inline: auto;
+  }
+
+  /* The photograph remains visible behind the complete outsourcing story. */
+  .home-refinement .human-story-section {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .home-refinement .human-story {
+    position: relative;
+    display: block;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .home-refinement .human-image-shell {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100%;
+    height: 100%;
+  }
+
+  .home-refinement .human-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 64% center;
+  }
+
+  .home-refinement .human-image-shade {
+    background: linear-gradient(180deg, rgba(5, 30, 43, .08) 8%, rgba(5, 30, 43, .52) 38%, rgba(5, 30, 43, .9) 100%);
+  }
+
+  .home-refinement .human-benefits-story {
+    width: calc(100% - 24px) !important;
+    margin: 120px auto 12px;
+    border: 1px solid rgba(151, 225, 221, .22);
+    background: linear-gradient(180deg, rgba(5, 40, 57, .56), rgba(5, 40, 57, .78));
+    backdrop-filter: blur(5px);
+  }
+
+  .service-process-copy .mobile-carousel-track,
+  .service-why-panel .mobile-carousel-track {
+    margin-top: 22px;
+  }
+
+  .service-story-page .service-capabilities-shell > .mobile-carousel-controls {
+    margin-top: 20px;
+  }
+
+  .service-story-page .service-supporting-card,
+  .service-story-page .service-supporting-meta,
+  .service-story-page .service-supporting-copy {
+    text-align: center;
+  }
+
+  .service-story-page .service-supporting-meta {
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .service-story-page .service-supporting-copy h3,
+  .service-story-page .service-supporting-copy p {
+    margin-inline: auto;
+  }
+
+  .service-story-page .service-process-copy,
+  .service-story-page .service-why-panel > * {
+    min-width: 0;
+  }
+
+  .service-story-page .service-process-layout,
+  .service-story-page .service-why-panel {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .service-process-copy .mobile-carousel-track > li,
+  .service-why-panel .mobile-carousel-track > li {
+    flex-basis: min(82vw, 320px) !important;
+  }
+
+  .ehr-directory-section .mobile-carousel-controls,
+  .featured-markets .mobile-carousel-controls,
+  .about-values-section .mobile-carousel-controls,
+  .who-serve-trust-section .mobile-carousel-controls,
+  .contact-info-section .mobile-carousel-controls,
+  .standard-content-intro .mobile-carousel-controls {
+    padding-inline: 2px;
+  }
+
+  .who-serve-trust-section .mobile-carousel-controls {
+    margin-top: 20px;
+  }
+
+  /* On mobile, the selected audience result follows its trigger immediately. */
+  .audience-explorer {
+    display: block !important;
+    overflow: visible;
+  }
+
+  .audience-explorer-list {
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    border: 0;
+  }
+
+  .audience-explorer-item {
+    flex: none;
+    min-height: 72px;
+  }
+
+  .audience-explorer-feature-desktop {
+    display: none;
+  }
+
+  .audience-explorer-feature-mobile {
+    display: block;
+    min-height: 430px;
+    margin: 0 0 6px;
+    border-radius: 18px;
+  }
+
+  .audience-explorer-feature-mobile .audience-explorer-feature-copy {
+    right: 22px;
+    bottom: 24px;
+    left: 22px;
+  }
+
+  .audience-explorer-feature-mobile .audience-explorer-feature-copy h3 {
+    font-size: clamp(1.9rem, 9vw, 2.35rem);
+  }
+
+  .audit-section,
+  .contact-info-section,
+  .about-values-section,
+  .who-serve-trust-section,
+  .ehr-directory-section {
+    overflow: clip;
+  }
+}
+
+@media (max-width: 390px) {
+  :root {
+    --mobile-gutter: 16px;
+    --mobile-card-width: min(86vw, 326px);
+  }
+
+  .interior-hero-frame {
+    height: 540px !important;
+    min-height: 540px !important;
+  }
+
+  .interior-hero-copy h1 {
+    font-size: clamp(2rem, 10.2vw, 2.45rem);
+  }
+}
+
+@media (max-width: 760px) and (max-height: 500px) and (orientation: landscape) {
+  :root {
+    --mobile-section-space: 48px;
+    --mobile-card-width: min(58vw, 340px);
+  }
+
+  .interior-hero {
+    padding-top: 78px;
+  }
+
+  .interior-hero-frame {
+    height: 360px !important;
+    min-height: 360px !important;
+  }
+
+  .interior-hero-shade {
+    background: linear-gradient(90deg, rgba(5, 25, 38, .97) 0%, rgba(5, 25, 38, .88) 44%, rgba(5, 25, 38, .24) 82%);
+  }
+
+  .interior-hero-copy {
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 26px;
+    width: min(420px, 64%);
+    transform: translateY(-50%);
+  }
+
+  .interior-hero-copy h1 {
+    margin-block: 9px 7px;
+    font-size: clamp(1.85rem, 5.8vw, 2.4rem);
+  }
+
+  .interior-hero-copy > strong {
+    font-size: .8125rem;
+    line-height: 1.3;
+  }
+
+  .interior-hero-copy > p {
+    margin-bottom: 10px;
+    font-size: .75rem;
+    line-height: 1.4;
+    -webkit-line-clamp: 2;
+  }
+
+  .interior-hero-copy > .button {
+    min-height: 44px;
+    padding: 10px 15px;
+    font-size: .75rem;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  .interior-hero-frame {
+    height: clamp(500px, 62vw, 580px);
+  }
+
+  .interior-hero-copy h1 {
+    font-size: clamp(2.75rem, 5.8vw, 3.7rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-carousel-track {
+    scroll-behavior: auto;
+  }
+
+  .mobile-carousel-controls button {
+    transition: none;
+  }
+}

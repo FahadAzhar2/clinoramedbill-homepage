@@ -1,0 +1,405 @@
+{
+  "generatedAt": "2026-08-08",
+  "generator": {
+    "requested": "Magnific",
+    "availableInThisEnvironment": false,
+    "status": "prompt_manifest_prepared",
+    "note": "Magnific was not callable in this workspace. These prompts and output paths are the exact production handoff; existing assets remain in place until the generated files are approved."
+  },
+  "requirements": {
+    "hero": "3200x1800 minimum",
+    "wideEditorial": "2600px minimum long edge",
+    "portraitAndServiceCard": "2000x2500 minimum",
+    "blog": "2000px minimum wide",
+    "supporting": "1600px minimum appropriate dimension",
+    "delivery": "Next Image responsive WebP or AVIF, quality 85-92",
+    "duplicationRule": "One photographic source per visual slot; no crop, mirror, blur, or page-to-page reuse."
+  },
+  "auditSnapshot": {
+    "rasterFiles": 89,
+    "directMediaSourcePathsInApp": 31,
+    "directMediaReferencesInApp": 46,
+    "duplicatedDirectSourcePaths": 16,
+    "rasterAssetsBelow1600x900": 59,
+    "exactDuplicatePairs": [
+      [
+        "/media/about-hero-magnific-4k.jpg",
+        "/media/services/05-medical-billing-audits-4k.jpg"
+      ]
+    ]
+  },
+  "implementedWithoutGeneration": [
+    {
+      "route": "/ehr-software/",
+      "section": "Closing workflow CTA",
+      "role": "single uninterrupted wide image",
+      "currentSource": "/media/hero-poster.jpg",
+      "currentDimensions": "1920x1080",
+      "usageStatus": "implemented_temporarily_pending_magnific",
+      "note": "The requested collage removal is implemented; the 4K replacement below is still required."
+    }
+  ],
+  "generationSets": [
+    {
+      "route": "/",
+      "section": "Who We Serve preview",
+      "role": "three unique editorial supporting photographs",
+      "currentSources": [
+        "/media/medical-billing-workflow-4k.jpg",
+        "/media/specialties-hero-magnific-4k.jpg",
+        "/media/services/06-provider-credentialing-4k.jpg"
+      ],
+      "filenamePattern": "/media/generated/home-audience-{01..03}.avif",
+      "count": 3,
+      "dimensions": "2600x1800",
+      "aspectRatio": "13:9",
+      "focalPoints": ["44% 42%", "58% 40%", "48% 44%"],
+      "altTexts": [
+        "Independent medical practice team coordinating patient and billing workflow",
+        "Hospital revenue operations colleagues reviewing a care workflow",
+        "Healthcare administrator supporting a multi-site provider group"
+      ],
+      "generationPrompt": "Create three distinct premium editorial healthcare photographs as one coherent photoshoot: (1) an independent medical practice team coordinating patient and billing workflow, (2) hospital revenue operations colleagues reviewing a care workflow, and (3) a healthcare administrator supporting a multi-site provider group. Modern real clinical offices, natural daylight, realistic people and hands, muted navy teal and neutral palette, documentary confidence, generous negative space for responsive cropping, no dashboards, holograms, money, calculators, call-centre headsets, text, logos, or repeated models.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/",
+      "section": "Human Accountability",
+      "role": "wide cinematic team photograph",
+      "currentSources": ["/media/human-team.jpg"],
+      "filenamePattern": "/media/generated/home-human-accountability.avif",
+      "count": 1,
+      "dimensions": "3840x2160",
+      "aspectRatio": "16:9",
+      "focalPoints": ["68% 45%"],
+      "altTexts": ["Two healthcare revenue specialists working together beside a clinical laptop"],
+      "generationPrompt": "Ultra-realistic 4K editorial photograph of two experienced healthcare revenue specialists collaborating beside a clinical laptop in a bright contemporary medical office. Subjects placed on the right with clear darkened architectural negative space on the left for white headline text, natural daylight, credible documentation, realistic devices, muted Clinora navy and teal accents, authentic skin and hands, no text, logos, holograms, floating charts, or staged stock-photo smiles.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/",
+      "section": "Latest insights",
+      "role": "three unique blog-card photographs",
+      "currentSources": [
+        "/media/blog-denials-magnific-4k.jpg",
+        "/media/blog-eligibility-magnific-4k.jpg",
+        "/media/medical-billing-workflow-4k.jpg"
+      ],
+      "filenamePattern": "/media/generated/home-insight-{01..03}.avif",
+      "count": 3,
+      "dimensions": "2400x1600",
+      "aspectRatio": "3:2",
+      "focalPoints": ["50% 42%", "46% 44%", "58% 45%"],
+      "altTexts": [
+        "Clinician and billing specialist preventing claim denials before submission",
+        "Practice manager reviewing clean-claim workflow quality",
+        "Healthcare administrator examining specialty billing documentation"
+      ],
+      "generationPrompt": "Create three distinct healthcare editorial photographs for revenue-cycle articles: denial prevention before submission, clean-claim workflow visibility, and specialty billing documentation. Each scene must use different people, environments, wardrobe, and composition while sharing soft natural daylight, realistic clinical paperwork, premium documentary styling, muted neutral navy and teal tones, and clean lower space for card content. No screens as the hero subject, fake graphs, holograms, text, logos, or duplicated models.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/services/revenue-cycle-management/",
+      "section": "Hero, capabilities, process, and audience",
+      "role": "six unique route-specific photographs",
+      "currentSources": ["/media/human-team.jpg", "/media/insight-reporting-cover.jpg", "/media/insight-visibility.jpg", "/media/insight-reporting.jpg", "/media/insight-specialty.jpg"],
+      "filenamePattern": "/media/generated/rcm-{hero|capability-01|capability-02|capability-03|process|audience}.avif",
+      "count": 6,
+      "dimensions": "hero 3840x2160; cards 2000x2500; supporting 2600x1800",
+      "aspectRatio": "16:9 hero, 4:5 cards, 13:9 supporting",
+      "focalPoints": ["64% 44%", "52% 36%", "46% 38%", "58% 40%", "50% 44%", "44% 42%"],
+      "altTexts": [
+        "Healthcare revenue cycle team coordinating work from patient access to payment",
+        "Patient-access specialist reviewing eligibility information",
+        "Claims specialist coordinating clean claim submission",
+        "Revenue analyst preparing an accountable performance update",
+        "Medical practice team reviewing an end-to-end revenue workflow",
+        "Independent providers receiving scale-aware revenue cycle support"
+      ],
+      "generationPrompt": "Produce six unique premium healthcare photographs for a Revenue Cycle Management page: hero end-to-end operations team, patient access and eligibility, clean claims coordination, performance reporting, step-by-step revenue workflow, and support for independent provider groups. Different subjects in every image, modern medical offices, believable documentation and devices, natural daylight, quiet confidence, Clinora-compatible navy teal neutral palette, responsive negative space, no repeated model, text, logos, money, calculators, call-centre styling, or futuristic overlays.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/services/medical-billing/",
+      "section": "Hero, capabilities, process, and audience",
+      "role": "six unique route-specific photographs",
+      "currentSources": ["/media/medical-billing-workflow-4k.jpg", "/media/about-hero-magnific-4k.jpg", "/media/insight-visibility.jpg", "/media/insight-reporting.jpg", "/media/insight-specialty.jpg"],
+      "filenamePattern": "/media/generated/medical-billing-{hero|capability-01|capability-02|capability-03|process|audience}.avif",
+      "count": 6,
+      "dimensions": "hero 3840x2160; cards 2000x2500; supporting 2600x1800",
+      "aspectRatio": "16:9 hero, 4:5 cards, 13:9 supporting",
+      "focalPoints": ["62% 42%", "48% 36%", "54% 38%", "45% 40%", "52% 44%", "58% 42%"],
+      "altTexts": [
+        "Medical billing specialists coordinating accurate claims and payments",
+        "Billing professional verifying patient and payer information",
+        "Claims specialist checking documentation before submission",
+        "Payment posting specialist reconciling a practice account",
+        "Healthcare billing team moving a claim from visit to payment",
+        "Clinic administrator receiving specialty-aware medical billing support"
+      ],
+      "generationPrompt": "Produce six distinct realistic editorial healthcare photographs for medical billing: collaborative hero, eligibility verification, claim review, payment posting, visit-to-payment workflow, and billing support for clinics. Keep people as the focus, believable documents and workstations secondary, modern medical settings, natural daylight, restrained navy teal neutrals, realistic skin and hands, different people and compositions for every slot, no calculator close-ups, money, headsets, holograms, fake dashboards, text, or logos.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/services/medical-coding/",
+      "section": "Hero, capabilities, process, and audience",
+      "role": "six unique route-specific photographs",
+      "currentSources": ["/media/doctor-single-v1.png", "/media/insight-specialty-cover.jpg", "/media/insight-visibility.jpg", "/media/insight-reporting.jpg", "/media/insight-specialty.jpg"],
+      "filenamePattern": "/media/generated/medical-coding-{hero|capability-01|capability-02|capability-03|process|audience}.avif",
+      "count": 6,
+      "dimensions": "hero 3840x2160; cards 2000x2500; supporting 2600x1800",
+      "aspectRatio": "16:9 hero, 4:5 cards, 13:9 supporting",
+      "focalPoints": ["60% 42%", "50% 35%", "44% 38%", "56% 38%", "48% 44%", "55% 42%"],
+      "altTexts": [
+        "Clinical documentation specialists reviewing accurate medical coding",
+        "Coder verifying diagnostic documentation",
+        "Physician and coder resolving a documentation detail",
+        "Coding quality specialist completing a final review",
+        "Medical coding workflow moving from documentation to validation",
+        "Specialty providers receiving coding support tailored to clinical complexity"
+      ],
+      "generationPrompt": "Produce six distinct premium medical coding photographs: documentation review hero, diagnostic coding verification, physician-coder clarification, coding quality control, documentation-to-validation process, and specialty coding support. Authentic clinical records and modern healthcare offices, natural skin and hands, soft daylight, controlled navy teal neutral palette, no visible protected data, code overlays, floating interfaces, text, logos, repeated people, or generic laptop-only shots.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/services/ar-management/",
+      "section": "Hero, capabilities, process, and audience",
+      "role": "six unique route-specific photographs",
+      "currentSources": ["/media/doctor-lifestyle-v1.png", "/media/insight-compliance-cover.jpg", "/media/insight-visibility.jpg", "/media/insight-reporting.jpg", "/media/insight-specialty.jpg"],
+      "filenamePattern": "/media/generated/ar-management-{hero|capability-01|capability-02|capability-03|process|audience}.avif",
+      "count": 6,
+      "dimensions": "hero 3840x2160; cards 2000x2500; supporting 2600x1800",
+      "aspectRatio": "16:9 hero, 4:5 cards, 13:9 supporting",
+      "focalPoints": ["58% 43%", "46% 37%", "54% 37%", "48% 40%", "52% 44%", "42% 42%"],
+      "altTexts": [
+        "Healthcare revenue specialist recovering aging accounts receivable",
+        "Payer follow-up specialist reviewing an unresolved claim",
+        "Appeals specialist preparing supporting documentation",
+        "Revenue recovery lead prioritizing an aging account queue",
+        "Accounts receivable team coordinating follow-up and resolution",
+        "Medical practice receiving focused revenue recovery support"
+      ],
+      "generationPrompt": "Produce six distinct, realistic healthcare administration photographs for A/R management: revenue recovery hero, payer follow-up, appeals documentation, aging prioritization, coordinated follow-up workflow, and practice support. Show professional human decision-making rather than finance imagery, modern healthcare offices, natural daylight, restrained brand-compatible navy teal neutrals, unique models in every slot, no dollar bills, calculators, giant charts, text, logos, holograms, or call-centre clichés.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/services/medical-billing-audits/",
+      "section": "Hero, capabilities, process, and audience",
+      "role": "six unique route-specific photographs",
+      "currentSources": ["/media/insight-reporting-cover.jpg", "/media/metrics-data-field.png", "/media/insight-visibility.jpg", "/media/insight-reporting.jpg", "/media/insight-specialty.jpg"],
+      "filenamePattern": "/media/generated/billing-audit-{hero|capability-01|capability-02|capability-03|process|audience}.avif",
+      "count": 6,
+      "dimensions": "hero 3840x2160; cards 2000x2500; supporting 2600x1800",
+      "aspectRatio": "16:9 hero, 4:5 cards, 13:9 supporting",
+      "focalPoints": ["60% 42%", "46% 36%", "55% 38%", "48% 40%", "52% 43%", "44% 43%"],
+      "altTexts": [
+        "Billing audit specialists reviewing a practice revenue workflow",
+        "Healthcare auditor examining claim documentation",
+        "Quality specialist tracing a preventable billing error",
+        "Clinical finance team identifying a revenue leak",
+        "Billing audit team presenting practical next steps",
+        "Practice leader reviewing audit findings with a Clinora specialist"
+      ],
+      "generationPrompt": "Produce six unique healthcare editorial photographs for a medical billing audit page: collaborative audit hero, claim documentation review, error tracing, revenue-leak investigation, practical recommendations, and findings review with a practice leader. Analytical but human and clinical, natural daylight, authentic records without readable patient data, premium navy teal neutral art direction, unique people and settings, no holograms, finance-company clichés, money, text, logos, or collages.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/services/provider-credentialing-enrollment/",
+      "section": "Hero, capabilities, process, and audience",
+      "role": "six unique route-specific photographs",
+      "currentSources": ["/media/insight-ar-cover.jpg", "/media/insight-denials-cover.jpg", "/media/insight-visibility.jpg", "/media/insight-reporting.jpg", "/media/insight-specialty.jpg"],
+      "filenamePattern": "/media/generated/credentialing-{hero|capability-01|capability-02|capability-03|process|audience}.avif",
+      "count": 6,
+      "dimensions": "hero 3840x2160; cards 2000x2500; supporting 2600x1800",
+      "aspectRatio": "16:9 hero, 4:5 cards, 13:9 supporting",
+      "focalPoints": ["62% 42%", "48% 36%", "54% 38%", "45% 40%", "52% 44%", "58% 42%"],
+      "altTexts": [
+        "Provider and credentialing specialist completing an enrollment workflow",
+        "Credentialing coordinator verifying provider documentation",
+        "Healthcare administrator tracking a payer application",
+        "Provider enrollment team resolving an application requirement",
+        "Credentialing workflow moving from application to approval",
+        "Medical group onboarding a newly credentialed provider"
+      ],
+      "generationPrompt": "Produce six distinct premium healthcare photographs for provider credentialing and enrollment: provider-specialist hero, documentation verification, payer application tracking, requirement resolution, application-to-approval process, and group provider onboarding. People remain central, paperwork authentic but no readable private data, contemporary healthcare offices, soft natural light, navy teal neutral art direction, different subjects and compositions, no paperwork-only closeups, text, logos, holograms, or generic business stock styling.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/services/virtual-front-desk-services/",
+      "section": "Hero, capabilities, process, and audience",
+      "role": "six unique route-specific photographs",
+      "currentSources": ["/media/human-team.jpg", "/media/doctor-lifestyle-v1.png", "/media/insight-visibility.jpg", "/media/insight-reporting.jpg", "/media/insight-specialty.jpg"],
+      "filenamePattern": "/media/generated/virtual-front-desk-{hero|capability-01|capability-02|capability-03|process|audience}.avif",
+      "count": 6,
+      "dimensions": "hero 3840x2160; cards 2000x2500; supporting 2600x1800",
+      "aspectRatio": "16:9 hero, 4:5 cards, 13:9 supporting",
+      "focalPoints": ["60% 42%", "46% 36%", "54% 38%", "48% 40%", "52% 44%", "44% 42%"],
+      "altTexts": [
+        "Healthcare administrative professional coordinating patient calls and scheduling",
+        "Virtual receptionist supporting a patient appointment request",
+        "Front desk specialist confirming eligibility information",
+        "Patient coordinator preparing a clear follow-up message",
+        "Remote front desk workflow supporting a busy medical practice",
+        "Clinic team receiving dependable virtual administrative support"
+      ],
+      "generationPrompt": "Produce six unique realistic healthcare front-office photographs: patient coordination hero, appointment scheduling, eligibility support, patient follow-up, remote workflow, and support for a busy clinic. Warm approachable professionals in credible modern medical settings, tablets or workstations used naturally, daylight, premium neutral navy teal palette, different people in every slot, no generic call centre, staged headsets, text, logos, futuristic UI, or exaggerated smiles.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/specialties/",
+      "section": "Interior hero",
+      "role": "unique specialty-aware hero",
+      "currentSources": ["/media/specialties-hero-magnific-4k.jpg"],
+      "filenamePattern": "/media/generated/specialties-hero.avif",
+      "count": 1,
+      "dimensions": "3840x2160",
+      "aspectRatio": "16:9",
+      "focalPoints": ["68% 42%"],
+      "altTexts": ["Specialty physicians reviewing clinically detailed billing documentation"],
+      "generationPrompt": "4K premium editorial healthcare hero showing two specialty physicians and a clinical documentation professional reviewing specialty-specific records in a modern clinic. Subjects placed right of frame, generous dark architectural negative space left for headline, accurate attire, natural daylight, realistic devices and hands, muted Clinora navy teal neutrals, no text, logos, holograms, or repeated homepage models.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/who-we-serve/",
+      "section": "Hero and audience directory",
+      "role": "eight unique organization photographs",
+      "currentSources": ["/media/insight-denials-cover.jpg", "/media/hero-human-centered-v2.jpg", "/media/insight-specialty-cover.jpg", "/media/insight-reporting-cover.jpg", "/media/human-team.jpg"],
+      "filenamePattern": "/media/generated/who-we-serve-{hero|independent|group|hospital|urgent-care|behavioral|asc|home-health}.avif",
+      "count": 8,
+      "dimensions": "hero 3840x2160; directory 2400x1800",
+      "aspectRatio": "16:9 hero, 4:3 directory",
+      "focalPoints": ["64% 44%", "48% 42%", "54% 42%", "45% 42%", "58% 40%", "46% 40%", "52% 42%", "55% 44%"],
+      "altTexts": [
+        "Healthcare leaders coordinating revenue operations across provider environments",
+        "Independent medical practice team",
+        "Multi-provider medical group operations team",
+        "Hospital revenue operations colleagues",
+        "Urgent care administrative and clinical team",
+        "Behavioral health practice coordination team",
+        "Ambulatory surgery center operations staff",
+        "Home health coordinator supporting field clinicians"
+      ],
+      "generationPrompt": "Create eight distinct premium healthcare photographs for Who We Serve: one cross-environment hero plus independent practice, multi-provider group, hospital, urgent care, behavioral health, ambulatory surgery center, and home health. Each image uses unique people and a clearly authentic environment, natural daylight, human collaboration, restrained navy teal neutral palette, documentary realism, responsive composition, no duplicated models, text, logos, holograms, dashboards, or generic corporate scenes.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/blogs/",
+      "section": "Hero and featured perspectives",
+      "role": "four unique editorial photographs",
+      "currentSources": ["/media/blogs-hero-magnific-4k.jpg", "/media/blog-denials-magnific-4k.jpg", "/media/blog-eligibility-magnific-4k.jpg", "/media/medical-billing-workflow-4k.jpg"],
+      "filenamePattern": "/media/generated/blogs-{hero|denials|claim-rate|ar-aging}.avif",
+      "count": 4,
+      "dimensions": "hero 3840x2160; articles 2400x1600",
+      "aspectRatio": "16:9 hero, 3:2 cards",
+      "focalPoints": ["67% 42%", "48% 43%", "55% 42%", "46% 44%"],
+      "altTexts": [
+        "Healthcare editor preparing practical revenue-cycle guidance",
+        "Clinical and billing team preventing a denial before submission",
+        "Practice manager interpreting clean-claim workflow quality",
+        "Revenue specialist reviewing aging accounts early"
+      ],
+      "generationPrompt": "Create four distinct premium editorial healthcare photographs for a resource hub: thoughtful healthcare editor hero, pre-submission denial prevention, clean-claim interpretation, and early A/R aging review. Unique people and locations for every image, natural daylight, credible clinical workflow, controlled navy teal neutral color family, space for editorial overlays, no reused homepage models, text, logos, finance clichés, or fake digital charts.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/about-us/",
+      "section": "Hero, foundation, mission, vision, and commitment",
+      "role": "five unique brand-story photographs",
+      "currentSources": ["/media/about-hero-magnific-4k.jpg", "/media/doctor-lifestyle-v1.png", "/media/insight-visibility.jpg", "/media/human-team.jpg", "/media/medical-billing-workflow-4k.jpg"],
+      "filenamePattern": "/media/generated/about-{hero|foundation|mission|vision|commitment}.avif",
+      "count": 5,
+      "dimensions": "hero 3840x2160; editorial 2600x1800; commitment 3200x1400",
+      "aspectRatio": "16:9 hero, 13:9 editorial, 16:7 commitment",
+      "focalPoints": ["67% 42%", "46% 42%", "58% 42%", "45% 42%", "68% 44%"],
+      "altTexts": [
+        "ClinoraMedBill team collaborating with healthcare practice leaders",
+        "Physician and revenue specialist building an accountable billing partnership",
+        "Healthcare administrator simplifying a complex practice workflow",
+        "Practice leaders reviewing a transparent revenue plan",
+        "Clinician supported by a dependable billing partnership"
+      ],
+      "generationPrompt": "Create five different premium editorial healthcare photographs for the ClinoraMedBill About page: partnership hero, accountable foundation, simpler billing mission, transparent partnership vision, and patient-first commitment. Human, calm, credible, modern healthcare environments, unique models per slot, authentic expressions and hands, natural light, muted navy teal neutral art direction, responsive negative space, no text, logos, holograms, money, or generic corporate handshakes.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/contact-us/",
+      "section": "Image-led contact hero",
+      "role": "unique wide portrait-oriented hero",
+      "currentSources": ["/media/doctor-single-v1.png"],
+      "filenamePattern": "/media/generated/contact-hero.avif",
+      "count": 1,
+      "dimensions": "3200x2400",
+      "aspectRatio": "4:3",
+      "focalPoints": ["55% 36%"],
+      "altTexts": ["Approachable physician preparing to discuss a practice revenue workflow"],
+      "generationPrompt": "High-resolution premium editorial photograph of an approachable physician at a laptop in a bright modern practice, thoughtful and ready to discuss operational needs. Compose subject in upper-right with generous darker lower and left space for white contact copy, authentic posture and hands, natural daylight, subtle Clinora navy teal neutrals, no text, logos, holograms, staged headset, or repeated website models.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/nationwide-solutions/",
+      "section": "Interior hero and 50-state directory",
+      "role": "one unique hero plus fifty unique place photographs",
+      "currentSources": ["/media/services/01-revenue-cycle-management-4k.jpg", "/media/states/{state}.jpg"],
+      "filenamePattern": "/media/generated/nationwide-hero.avif and /media/generated/states/{state}.avif",
+      "count": 51,
+      "dimensions": "hero 3840x2160; states 2200x1400",
+      "aspectRatio": "16:9 hero, 11:7 states",
+      "focalPoints": ["65% 42%", "50% 45%"],
+      "altTexts": [
+        "Healthcare revenue operations team supporting medical practices nationwide",
+        "Representative city and healthcare environment for each U.S. state"
+      ],
+      "generationPrompt": "Create one distinct national healthcare operations hero and fifty authentic state-specific editorial place photographs. Hero: healthcare revenue team supporting geographically distributed practices, people on right, clean left negative space. State images: recognizable city or regional healthcare context without tourist clichés, logos, flags, text, or repeated compositions. Realistic daylight, premium documentary color, natural navy teal compatible tonality, no generated signage or impossible architecture.",
+      "usageStatus": "pending_magnific_batch"
+    },
+    {
+      "route": "/compliance/",
+      "section": "Interior hero",
+      "role": "unique security and compliance hero",
+      "currentSources": ["/media/insight-compliance-cover.jpg"],
+      "filenamePattern": "/media/generated/compliance-hero.avif",
+      "count": 1,
+      "dimensions": "3840x2160",
+      "aspectRatio": "16:9",
+      "focalPoints": ["66% 42%"],
+      "altTexts": ["Healthcare compliance specialist protecting clinical and billing information"],
+      "generationPrompt": "4K editorial healthcare compliance hero showing a compliance specialist and practice leader reviewing secure workflow controls in a real medical administration setting. Human accountability, controlled access, physical privacy cues, subjects on right with left text space, soft daylight, muted navy teal neutrals, no padlock holograms, floating cyber graphics, readable private data, text, logos, or duplicated models.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/ehr-software/",
+      "section": "Interior hero and closing workflow CTA",
+      "role": "two unique connected-workflow photographs",
+      "currentSources": ["/media/about-hero-4k.jpg", "/media/hero-poster.jpg"],
+      "filenamePattern": "/media/generated/ehr-{hero|workflow-cta}.avif",
+      "count": 2,
+      "dimensions": "3840x2160 each",
+      "aspectRatio": "16:9",
+      "focalPoints": ["67% 42%", "52% 44%"],
+      "altTexts": [
+        "Healthcare professionals coordinating work across an EHR system",
+        "Practice technology specialist reviewing a connected clinical workflow"
+      ],
+      "generationPrompt": "Create two distinct 4K editorial healthcare technology photographs: an interior hero with clinicians coordinating an EHR-supported workflow, and a closing CTA with a practice technology specialist reviewing connected clinical and billing operations. Realistic screens kept secondary and unreadable, natural light, believable devices, muted Clinora navy teal neutrals, clean composition, no collage, fake interface overlays, holograms, text, logos, or duplicated subjects.",
+      "usageStatus": "pending_magnific"
+    },
+    {
+      "route": "/faqs/ and standard content routes",
+      "section": "Interior hero",
+      "role": "one unique photograph per standard content page",
+      "currentSources": ["/media/insight-visibility-cover.jpg", "/media/insight-reporting-cover.jpg", "/media/human-team.jpg"],
+      "filenamePattern": "/media/generated/{route}-hero.avif",
+      "count": 3,
+      "dimensions": "3200x1800",
+      "aspectRatio": "16:9",
+      "focalPoints": ["65% 42%", "62% 42%", "68% 42%"],
+      "altTexts": [
+        "Healthcare practice leader discussing common billing questions",
+        "Clinical operations team reviewing useful revenue resources",
+        "Healthcare professional receiving clear billing guidance"
+      ],
+      "generationPrompt": "Create three distinct 4K editorial healthcare hero images for FAQ, standard resources, and general guidance pages. Different people, environments, and activities per route; conversational clarity, professional healthcare administration, soft natural daylight, text-safe negative space, restrained Clinora navy teal neutrals, no repeated models, text, logos, holograms, or generic stock-photo gestures.",
+      "usageStatus": "pending_magnific"
+    }
+  ]
+}

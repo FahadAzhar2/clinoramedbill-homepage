@@ -1,0 +1,141 @@
+import { BadgeCheck, CircleDollarSign, ClipboardCheck, Code2, FileSearch, Phone, RefreshCcw } from "lucide-react";
+
+export type ServiceSection = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  points: readonly string[];
+};
+
+export const servicePages = {
+  "revenue-cycle-management": {
+    title: "Revenue Cycle Management",
+    shortTitle: "RCM",
+    eyebrow: "Revenue cycle management",
+    heroTitle: "Take Control of Your Revenue Cycle. Keep Your Practice Moving Forward.",
+    description: "Bring every financial touchpoint together under one accountable workflow—from patient access and coding to claims, payments, denials, and A/R.",
+    icon: RefreshCcw,
+    heroImage: "/media/hero-mapped/01-rcm-hero-desktop.png",
+    heroMobileImage: "/media/hero-mapped/01-rcm-hero-mobile.png",
+    supportImage: "/media/insight-reporting-cover.jpg",
+    sections: [
+      { eyebrow: "What is RCM?", title: "What Is Revenue Cycle Management and Why Does It Matter to Your Practice?", description: "Revenue cycle management connects the financial steps surrounding every patient visit. When those steps work together, your practice gains stronger cash flow, clearer visibility, and fewer preventable delays.", points: ["One connected patient-to-payment workflow", "Better control over denials and aging A/R", "Clear reporting across the full revenue cycle"] },
+      { eyebrow: "Our RCM services", title: "Complete Revenue Cycle Management Support, From Patient to Payment", description: "We coordinate the day-to-day revenue work that keeps claims accurate, payments moving, and outstanding balances visible.", points: ["Eligibility, charge capture, and coding coordination", "Claims, payments, denials, and A/R follow-up", "Performance reporting with practical next actions"] },
+      { eyebrow: "How our RCM process works", title: "A Smarter Revenue Cycle Starts With the Right Process", description: "Our process creates clear ownership at every handoff, so no claim or follow-up task disappears between teams.", points: ["Assess your systems, payer mix, and workflow", "Build a structured operating rhythm", "Measure results and continuously improve"] },
+      { eyebrow: "Why choose Clinora", title: "Why Healthcare Providers Trust Clinora With Their Revenue Cycle", description: "Clinora combines specialty-aware expertise, responsive communication, and visible performance into one accountable partnership.", points: ["A dedicated team that knows your practice", "Secure, HIPAA-conscious workflows", "Straightforward reporting and communication"] },
+      { eyebrow: "Who we serve", title: "Revenue Cycle Support for Healthcare Practices of All Sizes", description: "We support independent providers, growing groups, clinics, and healthcare organizations with services shaped around their operating model.", points: ["Independent and group practices", "Clinics, urgent care, and specialty centers", "Healthcare organizations with complex workflows"] },
+      { eyebrow: "Specialty expertise", title: "RCM Expertise Tailored to Your Specialty and Workflow", description: "Payer rules, documentation patterns, and revenue risks vary by specialty. Our workflow adapts to those details instead of forcing a generic playbook.", points: ["Specialty-aware coding and claim review", "Workflow alignment with your EHR or PM system", "Focused attention to specialty-specific payer issues"] },
+    ],
+  },
+  "medical-billing": {
+    title: "Medical Billing",
+    shortTitle: "Medical billing",
+    eyebrow: "Professional medical billing services",
+    heroTitle: "Let Our Medical Billing Experts Take the Work Out of Getting Paid",
+    description: "Keep claims moving with accurate submission, payment posting, payer follow-up, and patient billing managed as one accountable operation.",
+    icon: CircleDollarSign,
+    heroImage: "/media/hero-mapped/02-medical-billing-hero-desktop.png",
+    heroMobileImage: "/media/hero-mapped/02-medical-billing-hero-mobile.png",
+    supportImage: "/media/about-hero-magnific-4k.jpg",
+    sections: [
+      { eyebrow: "What is medical billing?", title: "What Is Medical Billing and Why Does It Matter to Your Practice?", description: "Medical billing turns documented patient care into accurate claims, posted payments, and resolved balances. A disciplined billing workflow helps your practice reduce avoidable delays, understand what is outstanding, and keep revenue moving with clear ownership.", points: ["Accurate charge and claim preparation", "Timely payer and patient follow-up", "Clear visibility from submission to payment"] },
+      { eyebrow: "Medical billing services", title: "Medical Billing Services Designed to Keep Your Revenue Moving", description: "We manage the daily billing work that turns documented care into clean claims, posted payments, and resolved balances.", points: ["Charge entry and clean-claim submission", "Payment posting and reconciliation", "Denial handling and unpaid-claim follow-up"] },
+      { eyebrow: "How our billing process works", title: "From Patient Visit to Payment: How We Keep Your Claims Moving", description: "Every claim follows a defined path with clear checks, ownership, and follow-up from initial charge through final resolution.", points: ["Review documentation and billing details", "Submit and track claims with payers", "Post payments and work exceptions quickly"] },
+      { eyebrow: "Why choose Clinora", title: "Why More Practices Choose Clinora for Medical Billing", description: "Clinora gives your team more time for patients while bringing consistent expertise, visible ownership, and dependable capacity to the revenue work behind the scenes.", points: ["Reduce administrative pressure on staff", "Gain a dedicated, accountable billing team", "Improve consistency without expanding overhead"] },
+      { eyebrow: "Who we help", title: "Medical Billing Support for Practices, Clinics, and Healthcare Organizations", description: "Our services scale from a single-provider office to larger, multi-location healthcare operations.", points: ["Independent providers and medical groups", "Specialty clinics and urgent care centers", "Hospitals and healthcare organizations"] },
+      { eyebrow: "Specialty expertise", title: "Medical Billing Expertise for Your Specialty and the Care You Provide", description: "We shape billing workflows around the codes, documentation, payer rules, and service patterns that matter to your specialty.", points: ["Specialty-aware billing workflows", "Focused denial and reimbursement support", "Reporting tailored to your priorities"] },
+      { eyebrow: "EMR/EHR integration", title: "Your Existing EMR. Your Workflow. Our Billing Expertise.", description: "We work within your existing technology and operating rhythm wherever possible, helping your team transition without unnecessary disruption.", points: ["Workflow review during onboarding", "Secure access and role coordination", "Clear handoffs between clinical and billing teams"] },
+    ],
+  },
+  "medical-coding": {
+    title: "Medical Coding",
+    shortTitle: "Medical coding",
+    eyebrow: "Accurate, specialty-aware coding",
+    heroTitle: "Get Your Medical Coding Right. Reduce Errors, Denials, and Revenue Delays.",
+    description: "Support accurate reimbursement with coding workflows aligned to documentation, payer requirements, and the details of your specialty.",
+    icon: Code2,
+    heroImage: "/media/hero-mapped/03-medical-coding-hero-desktop.png",
+    heroMobileImage: "/media/hero-mapped/03-medical-coding-hero-mobile.png",
+    supportImage: "/media/insight-specialty-cover.jpg",
+    sections: [
+      { eyebrow: "Medical coding services", title: "Medical Coding Services Built Around Accuracy and Proper Reimbursement", description: "Our coding support helps translate documented care into accurate, defensible codes that give every claim a stronger starting point.", points: ["ICD-10-CM, CPT, and HCPCS coding support", "Documentation-aligned code selection", "Specialty-aware coding review"] },
+      { eyebrow: "Our coding process", title: "Our Proven Medical Coding Process, From Documentation to Final Review", description: "We review the encounter, assign appropriate codes, check documentation alignment, and resolve questions before the claim moves forward.", points: ["Clinical documentation review", "Code assignment and validation", "Final quality and compliance checks"] },
+      { eyebrow: "How accurate coding supports your revenue", title: "How Accurate Coding Helps Protect Your Revenue", description: "Accurate coding reduces preventable rework and supports appropriate reimbursement while helping your practice maintain cleaner, more defensible claims.", points: ["Fewer avoidable coding-related denials", "Reduced payment delays and corrections", "Stronger documentation and revenue integrity"] },
+      { eyebrow: "Why choose Clinora", title: "Why Choose Clinora for Your Medical Coding Needs?", description: "We combine detail-oriented coding work with clear communication and a practical understanding of the wider revenue cycle.", points: ["Experienced, accountable coding support", "Consistent quality review", "Clear feedback when documentation needs attention"] },
+      { eyebrow: "Who we serve", title: "Coding Support for Healthcare Providers Across Specialties", description: "Clinora supports coding needs for providers and organizations with different volumes, systems, and clinical service lines.", points: ["Physicians and group practices", "Specialty clinics and outpatient centers", "Healthcare organizations needing added coding capacity"] },
+      { eyebrow: "Specialty expertise", title: "Specialty-Specific Coding for Complex Healthcare Services", description: "Our approach accounts for specialty-specific terminology, documentation, procedures, and payer expectations.", points: ["Workflows adapted to clinical complexity", "Attention to specialty-specific code families", "Coding support aligned with the care provided"] },
+    ],
+  },
+  "provider-credentialing-enrollment": {
+    title: "Provider Credentialing & Enrollment",
+    shortTitle: "Credentialing",
+    eyebrow: "Provider credentialing and enrollment",
+    heroTitle: "Simplify Provider Credentialing and Get Your Practice Ready to Grow",
+    description: "Organize payer applications, provider information, follow-up, and renewals through one structured credentialing workflow.",
+    icon: BadgeCheck,
+    heroImage: "/media/hero-mapped/04-credentialing-hero-desktop.png",
+    supportImage: "/media/insight-compliance-cover.jpg",
+    sections: [
+      { eyebrow: "Credentialing & enrollment services", title: "Complete Credentialing and Payer Enrollment Support Without the Paperwork Headache", description: "We coordinate provider information, applications, payer communication, and status tracking so your team can focus on care and growth.", points: ["Initial credentialing and payer enrollment", "CAQH profile support and updates", "Revalidation and renewal coordination"] },
+      { eyebrow: "Our credentialing process", title: "From Application to Approval: We Keep Your Credentialing on Track", description: "A structured workflow keeps documents organized, submissions visible, and payer follow-up moving until a clear outcome is reached.", points: ["Collect and validate required information", "Prepare and submit payer applications", "Track status and respond to payer requests"] },
+      { eyebrow: "Why provider credentialing matters", title: "Why Proper Credentialing Matters for Your Practice and Revenue", description: "Credentialing and enrollment directly affect whether a provider can participate with payers and receive reimbursement without avoidable disruption.", points: ["Support uninterrupted payer participation", "Reduce preventable enrollment delays", "Keep provider information accurate and current"] },
+      { eyebrow: "Why choose Clinora", title: "Why Choose Clinora for Provider Credentialing and Enrollment?", description: "We bring organization, consistent follow-up, and clear status communication to a process that can otherwise consume valuable staff time.", points: ["One accountable credentialing workflow", "Proactive expiration and status visibility", "Clear communication with your practice"] },
+      { eyebrow: "Who we help", title: "Credentialing Support for Providers, Groups, and Healthcare Practices", description: "Our support works for individual providers, expanding groups, new practices, and established organizations adding locations or payer relationships.", points: ["New and established providers", "Growing group practices", "Multi-location healthcare organizations"] },
+    ],
+  },
+  "medical-billing-audits": {
+    title: "Medical Billing Audits",
+    shortTitle: "Billing audits",
+    eyebrow: "Comprehensive medical billing audits",
+    heroTitle: "Find the Gaps in Your Billing Before They Cost You More Revenue",
+    description: "Review claims, coding, denials, payments, and workflows to uncover preventable leakage and practical opportunities for improvement.",
+    icon: ClipboardCheck,
+    heroImage: "/media/hero-mapped/05-billing-audits-hero-desktop.png",
+    supportImage: "/media/metrics-data-field.png",
+    sections: [
+      { eyebrow: "What we audit", title: "What We Review During a Comprehensive Medical Billing Audit", description: "We examine the connected areas that influence claim quality, reimbursement, compliance, and outstanding revenue.", points: ["Claims, coding, and documentation patterns", "Denials, underpayments, and aging A/R", "Charge capture and payment-posting workflows"] },
+      { eyebrow: "Our audit process", title: "A Thorough Billing Audit Process Designed to Find What Others Miss", description: "Our review moves from data and sample selection to root-cause analysis, prioritized findings, and a practical action plan.", points: ["Define scope and gather billing data", "Analyze trends and representative claims", "Present findings and recommended next steps"] },
+      { eyebrow: "Common billing issues we identify", title: "Are Billing Errors and Revenue Leaks Hiding in Your Practice?", description: "Repeated small errors can quietly become a major financial problem. We look for the patterns behind denials, delays, and missed reimbursement.", points: ["Coding and documentation mismatches", "Unworked or incorrectly resolved denials", "Missed charges, underpayments, and stalled A/R"] },
+      { eyebrow: "Why conduct a billing audit?", title: "Know Where Your Billing Stands and Where Revenue May Be Slipping Away", description: "An audit replaces assumptions with evidence, giving your team a clearer picture of performance, risk, and improvement opportunities.", points: ["Establish an objective performance baseline", "Prioritize the highest-impact issues", "Build a more reliable billing operation"] },
+      { eyebrow: "Why choose Clinora", title: "Get More Than an Audit. Get Clear Answers and Practical Next Steps.", description: "Our findings are organized to help your team act—not simply add another report to the shelf.", points: ["Clear explanations without unnecessary jargon", "Prioritized, practical recommendations", "Optional support to improve the identified areas"] },
+    ],
+  },
+  "ar-management": {
+    title: "AR Management",
+    shortTitle: "A/R recovery",
+    eyebrow: "Accounts receivable recovery",
+    heroTitle: "Recover the Revenue Your Practice Has Already Earned",
+    description: "Prioritize, investigate, and follow up on outstanding balances so earned revenue does not remain stalled with payers.",
+    icon: FileSearch,
+    heroImage: "/media/hero-mapped/06-ar-management-hero-desktop.png",
+    heroMobileImage: "/media/hero-mapped/06-ar-management-hero-mobile.png",
+    supportImage: "/media/insight-denials-cover.jpg",
+    sections: [
+      { eyebrow: "AR recovery services", title: "Turn Aging Accounts Into Recovered Revenue With Expert AR Support", description: "We organize outstanding claims by value, age, payer, and reason so the right accounts receive focused action first.", points: ["Aging analysis and account prioritization", "Payer follow-up and claim-status investigation", "Corrections, reconsiderations, and appeals"] },
+      { eyebrow: "Our AR recovery process", title: "A Focused AR Recovery Process Built to Move Unpaid Claims Forward", description: "Every account is reviewed, assigned a clear next action, documented, and followed through to resolution whenever recovery remains possible.", points: ["Identify why payment is outstanding", "Take the appropriate payer or claim action", "Track outcomes and recurring root causes"] },
+      { eyebrow: "How we recover outstanding revenue", title: "From Payer Follow-Up to Appeals, We Pursue Every Recoverable Dollar", description: "Our team moves beyond generic status checks to investigate the real obstacle and complete the next step needed to advance the claim.", points: ["Claim-status and payment research", "Corrected claims and documentation follow-up", "Appeals and underpayment review"] },
+      { eyebrow: "Why outsource AR management?", title: "Why Let Aging A/R Keep Your Team From Focusing on Your Practice?", description: "Dedicated AR support gives outstanding accounts consistent attention without pulling your in-house team away from patients and daily operations.", points: ["Add focused recovery capacity", "Reduce the growth of older aging buckets", "Gain visibility into payer and denial trends"] },
+      { eyebrow: "Who we help", title: "AR Recovery Support for Practices of All Sizes and Specialties", description: "We help organizations address both ongoing follow-up and older recovery projects with a workflow scaled to their volume and priorities.", points: ["Independent and group practices", "Specialty clinics and healthcare centers", "Organizations with aged or backlogged A/R"] },
+    ],
+  },
+  "virtual-front-desk-services": {
+    title: "Virtual Front Desk Services",
+    shortTitle: "Virtual front desk",
+    eyebrow: "Virtual patient support",
+    heroTitle: "Give Your Patients a Better Front Desk Experience Without the Added Overhead",
+    description: "Extend your front-office capacity with remote call handling, scheduling, patient communication, and routine administrative coordination.",
+    icon: Phone,
+    heroImage: "/media/hero-mapped/07-virtual-front-desk-hero-desktop.png",
+    heroMobileImage: "/media/hero-mapped/07-virtual-front-desk-hero-mobile.png",
+    supportImage: "/media/doctor-lifestyle-v1.png",
+    sections: [
+      { eyebrow: "Our virtual front desk services", title: "Reliable Virtual Front Desk Support for Your Everyday Practice Needs", description: "We help your practice manage routine patient communication and scheduling work with a responsive, organized support model.", points: ["Inbound call and message handling", "Appointment scheduling and coordination", "Routine patient communication support"] },
+      { eyebrow: "How it works", title: "Simple, Seamless Support From the First Patient Call", description: "We learn your systems, scheduling rules, communication standards, and escalation paths before supporting your patients.", points: ["Define workflows and responsibilities", "Connect securely with your practice systems", "Launch with quality checks and ongoing review"] },
+      { eyebrow: "How we support your practice & patients", title: "Keep Your Patients Supported While Your Team Focuses on Care", description: "Our virtual support reduces interruptions for the in-office team while helping patients receive timely, professional assistance.", points: ["Improve call coverage and responsiveness", "Reduce routine administrative pressure", "Maintain clear escalation to your clinical team"] },
+      { eyebrow: "Why choose Clinora", title: "Why Healthcare Practices Choose Clinora for Virtual Front Desk Support", description: "Clinora brings healthcare workflow awareness, dependable communication, and accountable service management to the virtual front desk.", points: ["Healthcare-focused support workflows", "Professional, patient-friendly communication", "Clear performance and issue visibility"] },
+      { eyebrow: "Who we help", title: "Virtual Front Desk Support for Busy Healthcare Practices", description: "Our flexible model supports practices that need everyday coverage, overflow assistance, or added capacity during growth.", points: ["Independent practices and medical groups", "Busy specialty and primary-care clinics", "Growing organizations needing scalable support"] },
+    ],
+  },
+} as const;
+
+export type ServiceSlug = keyof typeof servicePages;

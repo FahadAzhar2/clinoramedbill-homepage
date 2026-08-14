@@ -1,0 +1,380 @@
+/* Master multi-page redesign pass — scoped corrections applied after prior passes. */
+
+/* Homepage: precise typography and visually continuous section backgrounds. */
+.home-refinement .clarity-section .split-heading h2 {
+  max-width: 720px;
+  font-size: clamp(2.75rem, 3.3vw, 3.125rem);
+  line-height: 1.04;
+}
+
+.home-refinement .clarity-section .clarity-copy p {
+  font-size: 1rem;
+}
+
+.home-refinement .services-section,
+.home-refinement .flow-bridge {
+  background: var(--mist);
+}
+
+.home-refinement #nationwide-home-title {
+  font-size: clamp(2.75rem, 3.3vw, 3.125rem);
+  line-height: 1.04;
+}
+
+/* Restore the approved sticky, mid-viewport Human Accountability reveal. */
+.home-refinement .human-story-section {
+  --human-open: 0;
+  --human-copy: 0;
+  --human-details: 0;
+  min-height: 145vh;
+  padding: 0;
+  background: var(--mist);
+}
+
+.home-refinement .human-story {
+  position: sticky;
+  top: 20px;
+  width: calc(100% - 64px);
+  max-width: none;
+  height: clamp(620px, calc(100vh - 40px), 720px);
+  min-height: 620px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 30px;
+  clip-path: inset(
+    calc((1 - var(--human-open)) * 7vh)
+    calc((1 - var(--human-open)) * 6vw)
+    round calc((1 - var(--human-open)) * 34px)
+  );
+  transform: none;
+  transition: clip-path 160ms linear;
+}
+
+.home-refinement .human-story-copy {
+  top: 50%;
+  bottom: auto;
+  left: clamp(52px, 7vw, 120px);
+  width: min(620px, 44vw);
+  min-height: 0;
+  padding: 20px 0;
+  opacity: var(--human-copy);
+  transform: translate3d(calc((1 - var(--human-copy)) * 110px), -50%, 0);
+}
+
+.home-refinement .human-story-copy h2 {
+  max-width: 600px;
+  font-size: clamp(2.35rem, 3.3vw, 3.125rem);
+  line-height: 1.02;
+}
+
+.home-refinement .insights-section,
+.home-refinement .insights-section::before,
+.home-refinement .blog-carousel {
+  background: transparent;
+}
+
+.home-refinement .insights-section::before {
+  display: none;
+}
+
+/* EHR: one uninterrupted image rather than the previous collage. */
+.ehr-page .ehr-cta-shell figure {
+  min-height: 420px;
+  background: #071f31;
+}
+
+.ehr-page .ehr-cta-shell figure img {
+  object-fit: cover;
+  object-position: 50% 54%;
+}
+
+/* Contact: image-first hero with its copy anchored to the lower edge. */
+.contact-page .contact-redesign-intro {
+  display: flex;
+  min-height: 680px;
+  flex-direction: column;
+  justify-content: flex-end;
+  isolation: isolate;
+  padding: 54px;
+  background: #082b3f;
+  color: #fff;
+}
+
+.contact-page .contact-redesign-intro::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  display: block;
+  background: linear-gradient(180deg, rgba(5, 29, 43, .04) 22%, rgba(5, 29, 43, .38) 57%, rgba(5, 29, 43, .94) 100%);
+  content: "";
+}
+
+.contact-page .contact-redesign-intro .eyebrow,
+.contact-page .contact-redesign-intro h1,
+.contact-page .contact-redesign-intro > p {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-page .contact-redesign-intro .eyebrow {
+  color: #8ee0dc;
+}
+
+.contact-page .contact-redesign-intro h1 {
+  max-width: 580px;
+  margin: 16px 0;
+  color: #fff;
+}
+
+.contact-page .contact-redesign-intro > p {
+  max-width: 520px;
+  color: #d6e4e7;
+}
+
+.contact-page .contact-redesign-intro figure {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  mask-image: none;
+}
+
+.contact-page .contact-redesign-intro figure img {
+  object-fit: cover;
+  object-position: 52% center;
+}
+
+.contact-page .contact-redesign-form :where(input, textarea)::placeholder {
+  color: #8397a2;
+  opacity: 1;
+}
+
+/* Contact map: editorial location card paired with a clean, full-height map. */
+.contact-page .contact-map-section {
+  padding: 0 24px 92px;
+}
+
+.contact-page .contact-map-section .contact-map-shell {
+  display: grid;
+  width: min(1360px, 100%);
+  min-height: 510px;
+  grid-template-columns: minmax(300px, .38fr) minmax(0, .62fr);
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid rgba(126, 219, 214, .24);
+  border-radius: 30px;
+  background: #0b2b3e;
+  box-shadow: 0 30px 70px rgba(9, 39, 56, .16);
+}
+
+.contact-page .contact-map-details {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(36px, 4vw, 64px);
+  background:
+    radial-gradient(circle at 0 0, rgba(61, 177, 177, .22), transparent 42%),
+    linear-gradient(145deg, #103a50, #09283b);
+}
+
+.contact-page .contact-map-heading {
+  display: block;
+  max-width: 430px;
+  margin: 0;
+}
+
+.contact-page .contact-map-heading .eyebrow {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.contact-page .contact-map-heading h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.4rem, 3vw, 3.5rem);
+  line-height: 1.02;
+}
+
+.contact-page .contact-map-details address {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 48px;
+  color: #fff;
+  font-style: normal;
+}
+
+.contact-page .contact-map-details address > svg {
+  box-sizing: content-box;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  padding: 12px;
+  border: 1px solid rgba(142, 224, 220, .34);
+  border-radius: 14px;
+  color: #8ee0dc;
+}
+
+.contact-page .contact-map-details address span {
+  display: grid;
+  gap: 6px;
+}
+
+.contact-page .contact-map-details address small {
+  color: #8ee0dc;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.contact-page .contact-map-details address strong {
+  font-size: .95rem;
+  line-height: 1.55;
+}
+
+.contact-page .contact-map-frame {
+  position: relative;
+  min-height: 510px;
+  overflow: hidden;
+  background: #dfe9e9;
+}
+
+.contact-page .contact-map-section .contact-map-frame iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 510px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  filter: saturate(.72) contrast(.98);
+}
+
+@media (max-width: 900px) {
+  .contact-page .contact-map-section .contact-map-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-page .contact-map-frame,
+  .contact-page .contact-map-section .contact-map-frame iframe {
+    min-height: 390px;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-refinement .clarity-section .split-heading h2,
+  .home-refinement #nationwide-home-title {
+    font-size: clamp(2.25rem, 9.5vw, 2.5rem);
+  }
+
+  .home-refinement .human-story-section {
+    min-height: 0;
+    padding: 64px 12px;
+  }
+
+  .home-refinement .human-story {
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: 720px;
+    min-height: 0;
+    clip-path: none;
+    border-radius: 24px;
+  }
+
+  .home-refinement .human-story-copy {
+    top: auto;
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+    width: auto;
+    padding: 0;
+    opacity: 1;
+    transform: none;
+  }
+
+  .home-refinement .human-story-copy h2 {
+    font-size: clamp(2.25rem, 10vw, 3rem);
+  }
+
+  .contact-page .contact-redesign-intro {
+    min-height: 620px;
+    padding: 30px;
+  }
+
+  .contact-page .contact-redesign-intro figure {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+    mask-image: none;
+  }
+
+  .contact-page .contact-redesign-intro h1 {
+    font-size: clamp(2.5rem, 11vw, 3.25rem);
+  }
+
+  .contact-page .contact-map-section {
+    padding: 0 10px 66px;
+  }
+
+  .contact-page .contact-map-section .contact-map-shell {
+    min-height: 0;
+    border-radius: 22px;
+  }
+
+  .contact-page .contact-map-details {
+    padding: 32px 26px;
+  }
+
+  .contact-page .contact-map-heading h2 {
+    font-size: 2.5rem;
+  }
+
+  .contact-page .contact-map-frame,
+  .contact-page .contact-map-section .contact-map-frame iframe {
+    min-height: 330px;
+  }
+
+  .ehr-page .ehr-cta-shell figure {
+    min-height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-refinement .human-story-section {
+    --human-progress: 1 !important;
+    --human-open: 1 !important;
+    --human-copy: 1 !important;
+    --human-details: 1 !important;
+    min-height: 0;
+    padding: 64px 24px;
+  }
+
+  .home-refinement .human-story {
+    position: relative;
+    top: auto;
+    clip-path: none;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .home-refinement .human-story-copy {
+    opacity: 1;
+    transition: none !important;
+    transform: translate3d(0, -50%, 0) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 760px) {
+  .home-refinement .human-story-copy {
+    transform: none !important;
+  }
+}

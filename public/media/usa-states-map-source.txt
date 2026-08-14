@@ -1,0 +1,4 @@
+Asset: Blank US Map (states only).svg
+Source: https://commons.wikimedia.org/wiki/File:Blank_US_Map_(states_only).svg
+License: CC0 1.0 Universal Public Domain Dedication
+Modification: Colors adjusted to the ClinoraMedBill brand palette.

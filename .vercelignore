@@ -1,0 +1,17 @@
+node_modules
+.next
+.vinext
+out
+dist
+tmp
+qa
+qa-*.png
+design-qa
+design-qa.md
+image-audit.md
+ui-consistency-audit.md
+.wrangler
+wrangler.jsonc
+sanity
+.git
+.DS_Store

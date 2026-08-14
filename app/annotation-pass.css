@@ -1,0 +1,337 @@
+/* Final annotation-specific refinements. Loaded after the global design system. */
+
+/* Homepage performance: same composition, less height. */
+.home-refinement .metric-ribbon { padding-top: 48px; }
+.home-refinement .metric-ribbon-shell {
+  min-height: 190px;
+  padding: 18px 24px;
+  border-radius: 24px;
+  grid-template-columns: 18% 82%;
+}
+.home-refinement .metric-ribbon-head,
+.home-refinement .metric-ribbon .metrics > div { min-height: 150px; }
+.home-refinement .metric-ribbon-head { padding: 20px 24px 20px 0; }
+.home-refinement .metric-ribbon-head > small { font-size: .8125rem; }
+.home-refinement .metric-ribbon .metrics > div { padding: 18px; }
+.home-refinement .metric-ribbon-icon { width: 40px; height: 40px; margin-bottom: 15px; border-radius: 12px; }
+.home-refinement .metric-ribbon-icon svg { width: 18px; height: 18px; }
+.home-refinement .metric-ribbon .metrics strong { margin-bottom: 8px; font-size: clamp(2.5rem,3vw,3.15rem); }
+.home-refinement .metric-ribbon .metrics > div > span:not(.metric-ribbon-icon) { font-size: .8125rem; }
+
+/* Homepage services: image-led cards with a guaranteed readable information panel. */
+.services-section .service-photo-card,
+.services-section .service-photo-card.featured {
+  overflow: hidden;
+  border: 1px solid rgba(16,58,68,.13);
+  background: #fff;
+  box-shadow: 0 20px 48px rgba(10,43,59,.11);
+}
+.services-section .service-card-link > img { height: 64% !important; object-fit: cover; }
+.services-section .service-photo-shade {
+  top: auto;
+  height: 48%;
+  background: linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.96) 22%,#fff 40%);
+}
+.services-section .service-photo-copy {
+  min-height: 39%;
+  padding: 26px 26px 24px;
+  justify-content: flex-start;
+  background: #fff;
+}
+.services-section .service-photo-card h3 { margin-bottom: 10px; color: var(--navy); text-shadow: none; }
+.home-refinement .services-section .service-photo-card p {
+  display: -webkit-box;
+  margin-bottom: 18px;
+  color: #5b727d;
+  font-size: .875rem;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.services-section .service-photo-cta { margin-top: auto; color: var(--teal); }
+.services-section .service-photo-card:hover { transform: translateY(-6px); box-shadow: 0 30px 65px rgba(10,43,59,.16); }
+.services-section .service-photo-card:hover .service-card-link > img { transform: scale(1.035); }
+
+/* Homepage human story: reveal starts as the section reaches the viewport middle. */
+.home-refinement .human-story-section { padding-block: 80px; }
+.home-refinement .human-story {
+  height: clamp(700px,74vh,780px);
+  min-height: 700px;
+  clip-path: inset(calc((1 - var(--human-open))*8%) calc((1 - var(--human-open))*5%) round calc(24px + (1 - var(--human-open))*18px));
+  transform: scale(calc(.96 + var(--human-open)*.04));
+  transition: clip-path .2s linear, transform .2s linear;
+}
+.home-refinement .human-opening-title { opacity: calc(1 - var(--human-progress)*1.9); transform: translateY(calc(var(--human-progress)*-28px)); }
+.home-refinement .human-story-copy { opacity: var(--human-copy); transform: translateY(calc((1 - var(--human-copy))*34px)); }
+.home-refinement .human-proof-row,
+.home-refinement .human-story-copy .button { opacity: var(--human-details); transform: translateY(calc((1 - var(--human-details))*20px)); }
+
+/* Why Clinora: convert the four flat columns into distinct cards. */
+.home-refinement .why-section .benefit-grid { gap: 18px; }
+.home-refinement .why-section .benefit-grid article {
+  min-height: 250px;
+  padding: 30px;
+  border: 1px solid #d8e7e8;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 14px 38px rgba(14,55,72,.07);
+}
+.home-refinement .why-section .benefit-grid article:hover { transform: translateY(-5px); border-color: rgba(39,154,154,.38); box-shadow: 0 24px 52px rgba(14,55,72,.12); }
+.home-refinement .why-section .benefit-grid .benefit-icon { width: 52px; height: 52px; border-radius: 16px; background: #e8f6f5; }
+
+/* Service details: aligned capability story and a contained dark audience composition. */
+.service-capabilities-section { background: linear-gradient(180deg,#edf7f6 0%,#f7fbfa 100%); }
+.service-story-heading {
+  width: min(1120px,calc(100% - 80px));
+  align-items: start;
+  gap: 40px;
+  margin-bottom: 46px;
+  grid-template-columns: 72px minmax(0,760px);
+}
+.service-story-heading .service-story-number {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin-top: 0;
+  border: 1px solid #c8dfdf;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--teal);
+  place-items: center;
+}
+.service-story-heading h2 { margin-top: 13px; font-size: clamp(2.75rem,4vw,4.25rem); }
+.service-story-heading > div > p { max-width: 670px; margin-top: 16px; }
+.service-capabilities-grid { gap: 22px; }
+.service-capability-card { min-height: 410px; border: 1px solid rgba(16,58,68,.14); box-shadow: 0 18px 42px rgba(10,43,59,.1); }
+.service-capability-card > img { transition: transform .45s ease; }
+.service-capability-card:hover > img { transform: scale(1.035); }
+.service-capability-card h3 { max-width: 90%; }
+
+.service-audience-section { padding-block: 96px; background: #f5faf9; }
+.service-audience-layout {
+  width: min(1320px,calc(100% - 64px));
+  padding: 28px;
+  align-items: stretch;
+  gap: 52px;
+  border-radius: 30px;
+  background: linear-gradient(135deg,#08293b,#124c58);
+  box-shadow: 0 30px 75px rgba(6,35,49,.18);
+  grid-template-columns: minmax(360px,.8fr) minmax(0,1.2fr);
+}
+.service-audience-image { position: relative; top: auto; min-height: 650px; border-radius: 22px; }
+.service-audience-image::after { position: absolute; inset: 0; background: linear-gradient(180deg,transparent 55%,rgba(5,30,42,.58)); content: ""; }
+.service-audience-copy { padding: 30px 34px 20px 0; }
+.service-audience-copy .service-story-number,
+.service-audience-copy .eyebrow,
+.service-specialty-block > small { color: #8eddda; }
+.service-audience-copy h2,
+.service-specialty-block h3 { color: #fff; }
+.service-audience-copy > p,
+.service-specialty-block p { color: #c9dadd; }
+.service-audience-list { gap: 10px; margin-bottom: 30px; }
+.service-audience-list li {
+  min-height: 58px;
+  padding: 0 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  color: #fff;
+}
+.service-specialty-block { padding: 26px; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: rgba(255,255,255,.07); }
+.service-specialty-block > div { gap: 8px; }
+.service-specialty-block a { border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.06); color: #e8f5f5; }
+
+/* Blogs: align hero copy and editorial heading to a shared baseline. */
+.blogs-editorial-copy { width: min(1240px,calc(100% - 80px)); padding-inline: 0; }
+.blogs-editorial-copy h1 { max-width: 650px; }
+.blogs-editorial-copy p { max-width: 530px; }
+.blogs-featured-heading {
+  align-items: start;
+  gap: 18px 70px;
+  margin-bottom: 54px;
+  grid-template-columns: minmax(240px,.65fr) minmax(480px,1.35fr);
+  grid-template-rows: auto auto;
+}
+.blogs-featured-heading .eyebrow { padding-top: 8px; grid-column: 1; grid-row: 1; }
+.blogs-featured-heading h2 { max-width: 720px; grid-column: 2; grid-row: 1 / 3; }
+.blogs-featured-heading > p { max-width: 360px; margin-top: 0; grid-column: 1; grid-row: 2; }
+
+/* About: staggered mission/vision stories and a larger conversion composition. */
+.about-purpose-section { padding-block: 112px 150px; background: linear-gradient(180deg,#edf7f6,#f8fbfb); }
+.about-purpose-grid { display: block; }
+.about-purpose-grid .about-purpose-card {
+  width: 84%;
+  min-height: 420px !important;
+  border: 8px solid #fff;
+  border-radius: 28px;
+  box-shadow: 0 26px 68px rgba(9,44,59,.15);
+}
+.about-purpose-grid .about-purpose-card:first-child { min-height: 420px !important; }
+.about-purpose-grid .about-purpose-card:last-child { min-height: 420px !important; margin: -74px 0 0 auto; }
+.about-purpose-grid .about-purpose-card:first-child > img { object-position: center; }
+.about-purpose-grid .about-purpose-card:last-child > img { object-position: center; }
+.about-purpose-grid .about-purpose-card:first-child .about-purpose-shade { background: linear-gradient(90deg,rgba(5,29,42,.98) 0%,rgba(5,29,42,.92) 50%,rgba(5,29,42,.76) 62%,rgba(5,29,42,.08) 82%); }
+.about-purpose-grid .about-purpose-card:last-child .about-purpose-shade { background: linear-gradient(270deg,rgba(5,29,42,.94),rgba(5,29,42,.64) 52%,rgba(5,29,42,.08)); }
+.about-purpose-grid .about-purpose-card > div:last-child { width: min(540px,58%); right: auto; top: 50%; bottom: auto; left: 42px; transform: translateY(-50%); }
+.about-purpose-grid .about-purpose-card:last-child > div:last-child { right: 42px; left: auto; text-align: right; }
+.about-purpose-grid .about-purpose-card:last-child > div:last-child > span { margin-left: auto; }
+
+.about-commitment {
+  min-height: 330px;
+  margin-top: 56px;
+  padding: 56px;
+  align-content: center;
+  gap: 18px;
+  border-radius: 28px;
+  grid-template-columns: minmax(0,560px);
+}
+.about-commitment > img { object-position: center; }
+.about-commitment-shade { background: linear-gradient(90deg,rgba(4,27,40,.98) 0%,rgba(4,27,40,.88) 44%,rgba(4,27,40,.28) 72%,rgba(4,27,40,.08)); }
+.about-commitment strong { font-size: clamp(1.8rem,2.5vw,2.5rem); line-height: 1.08; }
+.about-commitment p { font-size: 1rem; line-height: 1.6; }
+.about-commitment a { width: fit-content; margin-top: 8px; padding: 14px 20px; border-radius: 999px; background: #fff; color: var(--navy); }
+
+/* Contact: dark photographic intro, balanced form, and stacked map heading. */
+.contact-redesign-shell { grid-template-columns: minmax(0,.96fr) minmax(0,1.04fr); }
+.contact-redesign-intro { isolation: isolate; min-height: 680px; padding: 54px; background: #082b3f; color: #fff; }
+.contact-redesign-intro::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,rgba(5,29,43,.2),rgba(5,29,43,.92) 72%); content: ""; }
+.contact-redesign-intro::after { display: none; }
+.contact-redesign-intro .eyebrow { position: relative; z-index: 2; color: #8ee0dc; }
+.contact-redesign-intro h1 { position: relative; z-index: 2; max-width: 520px; color: #fff; }
+.contact-redesign-intro > p { position: relative; z-index: 2; max-width: 470px; color: #d1e0e3; }
+.contact-redesign-intro figure { z-index: -2; inset: 0; width: 100%; height: 100%; border-radius: 0; mask-image: none; }
+.contact-redesign-intro figure img { object-position: 54% center; }
+.contact-map-heading { display: block; max-width: 720px; margin-bottom: 32px; }
+.contact-map-heading .eyebrow { display: block; margin-bottom: 14px; }
+.contact-map-heading h2 { font-size: clamp(2.8rem,4vw,4rem); }
+
+/* Nationwide: use the same contained, image-led hero language as the site. */
+.nationwide-hero {
+  isolation: isolate;
+  width: calc(100% - 32px);
+  max-width: 1560px;
+  min-height: 560px;
+  margin: 8px auto 0;
+  padding: 120px 0 64px;
+  overflow: hidden;
+  border-radius: 30px;
+}
+.nationwide-hero-image { z-index: -3; object-fit: cover; object-position: 68% 42%; }
+.nationwide-hero-shade { position: absolute; z-index: -2; inset: 0; background: linear-gradient(90deg,rgba(4,27,41,.98),rgba(4,27,41,.78) 50%,rgba(4,27,41,.2)); }
+.nationwide-map-grid { z-index: -1; opacity: .3; }
+.nationwide-hero-content { align-items: flex-start; text-align: left; }
+.nationwide-hero-content > p { max-width: 610px; margin-inline: 0; }
+.nationwide-hero-actions { justify-content: flex-start; }
+
+/* EHR: relevant hero image, varied icons, animated cards, and an image-based CTA. */
+.ehr-hero.compact-image-hero > img { object-position: 70% 44%; }
+.ehr-grid article {
+  overflow: hidden;
+  min-height: 230px;
+  border-color: #d8e7e8;
+  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.ehr-grid article::after { position: absolute; right: -52px; bottom: -52px; width: 120px; height: 120px; border-radius: 50%; background: rgba(66,183,180,.1); content: ""; transition: transform .4s ease; }
+.ehr-grid article:hover { transform: translateY(-7px); border-color: rgba(39,154,154,.4); box-shadow: 0 28px 55px rgba(10,43,59,.13); }
+.ehr-grid article:hover::after { transform: scale(1.55); }
+.ehr-grid article > span { transition: transform .35s ease, background .35s ease, color .35s ease; }
+.ehr-grid article:hover > span { transform: rotate(-5deg) scale(1.08); background: var(--teal); color: #fff; }
+.ehr-cta-section { padding-block: 88px; background: #f2f8f8; }
+.ehr-cta-section .ehr-cta-shell {
+  display: grid;
+  min-height: 430px;
+  padding: 24px;
+  gap: 24px;
+  border-radius: 28px;
+  background: #092d40;
+  box-shadow: 0 28px 70px rgba(7,37,51,.18);
+  grid-template-columns: 1.05fr .95fr;
+}
+.ehr-cta-shell > div { align-self: center; padding: 36px; }
+.ehr-cta-shell h2 { max-width: 600px; }
+.ehr-cta-shell p { max-width: 620px; margin-bottom: 26px; }
+.ehr-cta-shell figure { position: relative; min-height: 380px; overflow: hidden; margin: 0; border-radius: 22px; }
+.ehr-cta-shell figure img { object-fit: cover; }
+
+@media (max-width: 1199px) {
+  .home-refinement .metric-ribbon-shell { grid-template-columns: 1fr; }
+  .home-refinement .metric-ribbon-head { min-height: 96px; padding: 16px; }
+  .home-refinement .metric-ribbon .metrics > div { min-height: 150px; }
+  .service-audience-layout { gap: 28px; grid-template-columns: .9fr 1.1fr; }
+  .service-audience-copy { padding-right: 6px; }
+  .about-purpose-grid .about-purpose-card { width: 92%; }
+}
+
+@media (max-width: 820px) {
+  .service-story-heading { width: calc(100% - 40px); gap: 18px; grid-template-columns: 52px minmax(0,1fr); }
+  .service-capabilities-grid { grid-template-columns: 1fr; }
+  .service-capability-card { min-height: 390px; }
+  .service-audience-layout { width: calc(100% - 24px); padding: 18px; grid-template-columns: 1fr; }
+  .service-audience-image { min-height: 430px; }
+  .service-audience-copy { padding: 18px 4px 4px; }
+  .blogs-featured-heading { gap: 16px; grid-template-columns: 1fr; }
+  .blogs-featured-heading .eyebrow,
+  .blogs-featured-heading h2,
+  .blogs-featured-heading > p { grid-column: 1; grid-row: auto; }
+  .about-purpose-section { padding-block: 72px; }
+  .about-purpose-grid .about-purpose-card,
+  .about-purpose-grid .about-purpose-card:first-child,
+  .about-purpose-grid .about-purpose-card:last-child { width: 100%; min-height: 470px !important; margin: 0 0 22px; }
+  .about-purpose-grid .about-purpose-card > div:last-child,
+  .about-purpose-grid .about-purpose-card:last-child > div:last-child { width: auto; right: 26px; top: auto; bottom: 26px; left: 26px; text-align: left; transform: none; }
+  .about-purpose-grid .about-purpose-card:last-child > div:last-child > span { margin-left: 0; }
+  .about-purpose-grid .about-purpose-card:first-child .about-purpose-shade,
+  .about-purpose-grid .about-purpose-card:last-child .about-purpose-shade { background: linear-gradient(180deg,rgba(5,29,42,.08),rgba(5,29,42,.94) 70%); }
+  .contact-redesign-shell { grid-template-columns: 1fr; }
+  .contact-redesign-intro { min-height: 580px; }
+  .nationwide-hero { width: calc(100% - 16px); min-height: 520px; margin-top: 8px; border-radius: 24px; }
+  .ehr-cta-section .ehr-cta-shell { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 767px) {
+  .home-refinement .metric-ribbon { padding-top: 32px; }
+  .home-refinement .metric-ribbon-shell { padding: 12px; }
+  .home-refinement .metric-ribbon .metrics > div { min-height: 138px; padding: 15px 8px; }
+  .home-refinement .metric-ribbon-icon { width: 34px; height: 34px; margin-bottom: 10px; }
+  .home-refinement .metric-ribbon .metrics strong { font-size: 2rem; }
+  .services-section .service-card-link > img { height: 62% !important; }
+  .services-section .service-photo-copy { min-height: 41%; padding: 22px; }
+  .home-refinement .human-story { height: 680px; min-height: 680px; transform: none; }
+  .benefit-grid article { min-height: 0; padding: 24px; }
+  .service-story-heading { grid-template-columns: 1fr; }
+  .service-story-heading h2 { font-size: 2.25rem; }
+  .service-audience-image { min-height: 360px; }
+  .service-audience-copy h2 { font-size: 2.25rem; }
+  .service-specialty-block { padding: 20px; }
+  .blogs-editorial-copy { width: calc(100% - 44px); }
+  .about-purpose-grid .about-purpose-card,
+  .about-purpose-grid .about-purpose-card:first-child,
+  .about-purpose-grid .about-purpose-card:last-child { min-height: 430px !important; }
+  .about-purpose-grid .about-purpose-card h2 { font-size: 1.7rem; }
+  .about-commitment { min-height: 420px; padding: 28px; align-content: end; }
+  .about-commitment > img { object-position: 68% center; }
+  .about-commitment-shade { background: linear-gradient(180deg,rgba(4,27,40,.1),rgba(4,27,40,.95) 68%); }
+  .contact-redesign-intro { min-height: 560px; padding: 30px; }
+  .contact-redesign-intro h1 { font-size: 2.75rem; }
+  .contact-redesign-intro figure img { object-position: 60% center; }
+  .contact-map-heading h2 { font-size: 2.5rem; }
+  .nationwide-hero { padding: 116px 24px 50px; }
+  .nationwide-hero-content { width: 100%; }
+  .nationwide-hero h1 { font-size: 2.75rem; }
+  .ehr-grid { grid-template-columns: 1fr; }
+  .ehr-grid article { min-height: 200px; }
+  .ehr-cta-section { padding-block: 64px; }
+  .ehr-cta-section .ehr-cta-shell { width: calc(100% - 24px); padding: 14px; }
+  .ehr-cta-shell > div { padding: 24px 14px; }
+  .ehr-cta-shell figure { min-height: 300px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-section .service-photo-card,
+  .services-section .service-card-link > img,
+  .benefit-grid article,
+  .service-capability-card > img,
+  .ehr-grid article,
+  .ehr-grid article > span,
+  .ehr-grid article::after { transition: none; transform: none; }
+}
