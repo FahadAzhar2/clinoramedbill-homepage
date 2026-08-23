@@ -13,6 +13,7 @@ type MobileCarouselProps = {
   autoAdvanceMs?: number;
   continuous?: boolean;
   hideControls?: boolean;
+  hideInstructions?: boolean;
 };
 
 export default function MobileCarousel({
@@ -25,6 +26,7 @@ export default function MobileCarousel({
   autoAdvanceMs = 3000,
   continuous = false,
   hideControls = false,
+  hideInstructions = false,
 }: MobileCarouselProps) {
   const trackRef = useRef<HTMLDivElement | HTMLOListElement | HTMLUListElement>(null);
   const [canGoBack, setCanGoBack] = useState(false);
@@ -126,14 +128,14 @@ export default function MobileCarousel({
         className={`${className} mobile-carousel-track${continuous ? " is-continuous" : ""}`}
         role={role}
         aria-label={label}
-        aria-describedby={instructionsId}
+        aria-describedby={hideInstructions ? undefined : instructionsId}
         tabIndex={0}
         onScroll={updateControls}
         onKeyDown={handleKeyDown}
       >
         {children}
       </Track>
-      {hideControls ? (
+      {hideInstructions ? null : hideControls ? (
         <span className="mobile-carousel-instructions" id={instructionsId}>Swipe horizontally to explore</span>
       ) : (
         <div className={`mobile-carousel-controls${!canGoBack && !canGoForward ? " is-static" : ""}`} aria-label={`${label} controls`}>

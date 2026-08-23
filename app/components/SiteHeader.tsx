@@ -20,7 +20,7 @@ import {
   UsersRound,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type NavigationSection = "home" | "services" | "specialties" | "who-we-serve" | "resources" | "about" | "compliance" | "nationwide";
 
@@ -61,12 +61,45 @@ const megaMenus = {
 
 type MegaMenuName = keyof typeof megaMenus;
 
-function GroupedMegaMenu({ name, active }: { name: MegaMenuName; active?: boolean }) {
+function GroupedMegaMenu({
+  name,
+  active,
+  open,
+  onToggle,
+  onNavigate,
+}: {
+  name: MegaMenuName;
+  active?: boolean;
+  open: boolean;
+  onToggle: (name: MegaMenuName, open: boolean) => void;
+  onNavigate: () => void;
+}) {
   const menu = megaMenus[name];
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    if (detailsRef.current && detailsRef.current.open !== open) {
+      detailsRef.current.open = open;
+    }
+  }, [open]);
 
   return (
-    <details className={`nav-details nav-details-${name}`}>
-      <summary className={active ? "is-active" : undefined}>
+    <details
+      ref={detailsRef}
+      className={`nav-details nav-details-${name}`}
+      open={open}
+      suppressHydrationWarning
+      onToggle={(event) => onToggle(name, event.currentTarget.open)}
+    >
+      <summary
+        className={active ? "is-active" : undefined}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            onToggle(name, false);
+          }
+        }}
+      >
         {menu.label} <ChevronDown aria-hidden="true" size={15} />
       </summary>
       <div className={`grouped-mega-menu grouped-mega-menu-${name}`}>
@@ -75,7 +108,7 @@ function GroupedMegaMenu({ name, active }: { name: MegaMenuName; active?: boolea
             <p>{group.title}</p>
             <div>
               {group.links.map(({ href, label, icon: Icon }) => (
-                <a href={href} key={href}>
+                <a href={href} key={href} onClick={onNavigate}>
                   <span className="grouped-mega-icon"><Icon aria-hidden="true" size={22} /></span>
                   <span className="grouped-mega-label">{label}</span>
                   <ArrowRight className="grouped-mega-arrow" aria-hidden="true" size={16} />
@@ -91,7 +124,9 @@ function GroupedMegaMenu({ name, active }: { name: MegaMenuName; active?: boolea
 
 export default function SiteHeader({ active = "home", overlay = false }: { active?: NavigationSection; overlay?: boolean }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMegaMenu, setOpenMegaMenu] = useState<MegaMenuName | null>(null);
   const [solid, setSolid] = useState(!overlay);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!overlay) return;
@@ -101,8 +136,33 @@ export default function SiteHeader({ active = "home", overlay = false }: { activ
     return () => window.removeEventListener("scroll", update);
   }, [overlay]);
 
+  useEffect(() => {
+    const closeOnOutsidePress = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setOpenMegaMenu(null);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpenMegaMenu(null);
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsidePress);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsidePress);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
+
+  const handleMegaMenuToggle = (name: MegaMenuName, open: boolean) => {
+    setOpenMegaMenu((current) => open ? name : current === name ? null : current);
+  };
+
+  const closeNavigation = () => {
+    setOpenMegaMenu(null);
+    setMobileOpen(false);
+  };
+
   return (
-    <header className={`site-header ${solid ? "is-solid" : ""}`}>
+    <header ref={headerRef} className={`site-header ${solid ? "is-solid" : ""}`}>
       <div className="header-inner">
         <a className="logo-link" href="/" aria-label="ClinoraMedBill homepage">
           <img className="header-logo-mark" src="/brand/clinora-mark.svg" alt="" width="112" height="98" />
@@ -110,15 +170,15 @@ export default function SiteHeader({ active = "home", overlay = false }: { activ
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <GroupedMegaMenu name="services" active={active === "services"} />
-          <a className={active === "specialties" ? "is-active" : undefined} href="/specialties"><Stethoscope aria-hidden="true" size={15} /> Specialties</a>
-          <a className={active === "who-we-serve" ? "is-active" : undefined} href="/who-we-serve"><UsersRound aria-hidden="true" size={15} /> Who We Serve</a>
-          <a className={active === "resources" ? "is-active" : undefined} href="/blogs"><BookOpenText aria-hidden="true" size={15} /> Blogs</a>
-          <GroupedMegaMenu name="about" active={["about", "compliance", "nationwide"].includes(active)} />
+          <GroupedMegaMenu name="services" active={active === "services"} open={openMegaMenu === "services"} onToggle={handleMegaMenuToggle} onNavigate={closeNavigation} />
+          <a className={active === "specialties" ? "is-active" : undefined} href="/specialties" onClick={closeNavigation}><Stethoscope aria-hidden="true" size={15} /> Specialties</a>
+          <a className={active === "who-we-serve" ? "is-active" : undefined} href="/who-we-serve" onClick={closeNavigation}><UsersRound aria-hidden="true" size={15} /> Who We Serve</a>
+          <a className={active === "resources" ? "is-active" : undefined} href="/blogs" onClick={closeNavigation}><BookOpenText aria-hidden="true" size={15} /> Blogs</a>
+          <GroupedMegaMenu name="about" active={["about", "compliance", "nationwide"].includes(active)} open={openMegaMenu === "about"} onToggle={handleMegaMenuToggle} onNavigate={closeNavigation} />
         </nav>
 
-        <a className="button button-small header-cta" href="mailto:info@clinoramedbill.com">
-          Free billing audit <ArrowRight aria-hidden="true" size={16} />
+        <a className="button button-small header-cta" href="/contact-us" onClick={closeNavigation}>
+          <span>Talk to an expert</span> <ArrowRight aria-hidden="true" size={16} />
         </a>
 
         <button className="mobile-menu-button" type="button" onClick={() => setMobileOpen((value) => !value)} aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}>
@@ -138,7 +198,7 @@ export default function SiteHeader({ active = "home", overlay = false }: { activ
           <summary>About Us <ChevronDown aria-hidden="true" size={16} /></summary>
           <div>{companyLinks.map(({ href, label }) => <a href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</a>)}</div>
         </details>
-        <a className="button" href="mailto:info@clinoramedbill.com" onClick={() => setMobileOpen(false)}>Free billing audit</a>
+        <a className="button" href="/contact-us" onClick={closeNavigation}>Talk to an expert</a>
       </nav>
     </header>
   );

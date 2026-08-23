@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 96" role="img" aria-label="Five-star client satisfaction illustration">
+  <defs>
+    <linearGradient id="satisfaction-main" x1="62" y1="10" x2="99" y2="63" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6bcac4"/><stop offset="1" stop-color="#247f82"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="19" r="12" fill="url(#satisfaction-main)" stroke="#fff" stroke-width="2"/>
+  <path d="M57 57c2-20 10-29 23-29s21 9 23 29z" fill="url(#satisfaction-main)" stroke="#fff" stroke-width="2"/>
+  <circle cx="43" cy="29" r="9" fill="#153c53" stroke="#fff" stroke-width="2"/>
+  <path d="M26 59c2-16 8-23 17-23s15 7 17 23z" fill="#153c53" stroke="#fff" stroke-width="2"/>
+  <circle cx="117" cy="29" r="9" fill="#153c53" stroke="#fff" stroke-width="2"/>
+  <path d="M100 59c2-16 8-23 17-23s15 7 17 23z" fill="#153c53" stroke="#fff" stroke-width="2"/>
+  <path d="M58 18l-8-6m52 6l8-6M80 6V1" stroke="#6bcac4" stroke-width="3" stroke-linecap="round"/>
+  <rect x="20" y="57" width="120" height="34" rx="17" fill="#fff" stroke="#247f82" stroke-width="4"/>
+  <g fill="#247f82">
+    <path d="M40 64.5l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/>
+    <path d="M60 64.5l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/>
+    <path d="M80 64.5l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/>
+    <path d="M100 64.5l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/>
+    <path d="M120 64.5l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/>
+  </g>
+</svg>

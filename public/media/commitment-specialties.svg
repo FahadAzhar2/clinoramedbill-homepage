@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 96" role="img" aria-label="Medical specialties team illustration">
+  <defs>
+    <linearGradient id="specialty-bg" x1="22" y1="12" x2="136" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e9f8f7"/><stop offset="1" stop-color="#d4efee"/>
+    </linearGradient>
+    <linearGradient id="specialty-main" x1="64" y1="18" x2="99" y2="79" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3eb0ad"/><stop offset="1" stop-color="#247f82"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="8" width="124" height="80" rx="30" fill="url(#specialty-bg)"/>
+  <g stroke="#fff" stroke-width="2.5">
+    <circle cx="48" cy="34" r="12" fill="#153c53"/><path d="M27 74c2-19 10-29 21-29s19 10 21 29z" fill="#153c53"/>
+    <circle cx="112" cy="34" r="12" fill="#153c53"/><path d="M91 74c2-19 10-29 21-29s19 10 21 29z" fill="#153c53"/>
+    <circle cx="80" cy="27" r="15" fill="url(#specialty-main)"/><path d="M54 80c2-25 12-40 26-40s24 15 26 40z" fill="url(#specialty-main)"/>
+  </g>
+  <path d="M80 50v21M70 60.5h20" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <path d="M40 52c2 9 14 9 16 0m48 0c2 9 14 9 16 0" fill="none" stroke="#6bcac4" stroke-width="3" stroke-linecap="round"/>
+</svg>

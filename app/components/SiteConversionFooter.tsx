@@ -1,18 +1,16 @@
 "use client";
 
 /* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element -- Plain anchors avoid the current Vinext Link shim issue. */
-import { ArrowRight, CheckCircle2, LockKeyhole, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, CheckCircle2, LockKeyhole } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { medicalSpecialties } from "../specialties/specialties";
 import { useCmsBundle } from "../lib/useCmsBundle";
 import type { FaqItem } from "../content/faqs";
 import MotionReveal from "./MotionReveal";
-import FooterSocialLinks from "./FooterSocialLinks";
+import SiteFooter from "./SiteFooter";
 import { submitEnquiryForm, type EnquiryStatus } from "../lib/enquiry";
 
 const specialties = medicalSpecialties.map((specialty) => specialty.name);
-const footerSpecialties = ["Family Medicine", "Internal Medicine", "Pediatrics", "Emergency Medicine", "Cardiology", "Orthopedic Surgery", "Obstetrics & Gynecology (OB/GYN)"];
-
 type SiteConversionFooterProps = {
   faqs?: readonly FaqItem[];
   faqEyebrow?: string;
@@ -24,16 +22,15 @@ type SiteConversionFooterProps = {
 
 export default function SiteConversionFooter({
   faqs,
-  faqEyebrow = "Answers before action",
-  faqTitle = "Frequently asked questions",
-  faqDescription = "Clear answers to the questions healthcare teams ask most often.",
+  faqEyebrow,
+  faqTitle,
+  faqDescription,
   faqId,
   showAudit = true,
 }: SiteConversionFooterProps) {
   const cms = useCmsBundle();
   const [enquiryStatus, setEnquiryStatus] = useState<EnquiryStatus>("idle");
   const cmsHome = cms?.homepage;
-  const cmsSettings = cms?.settings;
 
   const submitAudit = async (event: FormEvent<HTMLFormElement>) => {
     setEnquiryStatus("sending");
@@ -90,44 +87,13 @@ export default function SiteConversionFooter({
       <MotionReveal />
       {showAudit ? auditSection : null}
 
-      <footer id="contact" className="site-footer">
-        {faqs?.length ? (
-          <div id={faqId} className="container footer-faq" data-reveal>
-            <div className="footer-faq-heading">
-              <span className="eyebrow eyebrow-light">{faqEyebrow}</span>
-              <h2>{faqTitle}</h2>
-              <p>{faqDescription}</p>
-            </div>
-            <div className="footer-faq-list">
-              {faqs.map((faq, index) => (
-                <details className={index >= 4 ? "faq-mobile-extra" : undefined} key={faq.question}>
-                  <summary>{faq.question}<span aria-hidden="true" /></summary>
-                  <p>{faq.answer}</p>
-                </details>
-              ))}
-              <a className="mobile-faq-more" href="/faqs">View all frequently asked questions <ArrowRight aria-hidden="true" size={16} /></a>
-            </div>
-          </div>
-        ) : null}
-        <div className="container footer-top">
-          <div className="footer-brand">
-            <img src="/brand/clinora-primary.svg" alt="ClinoraMedBill" width="348" height="180" />
-            <p>{cmsSettings?.footerDescription ?? "Clinora Medbill is a leading healthcare revenue cycle, medical billing and coding company based in Texas, offering nationwide services."}</p>
-            <a href="mailto:info@clinoramedbill.com" className="button button-light">Request a free billing audit <ArrowRight aria-hidden="true" size={16} /></a>
-            <FooterSocialLinks />
-          </div>
-          <div className="footer-column"><h2>Services</h2><a href="/services/revenue-cycle-management">Revenue Cycle Management</a><a href="/services/medical-billing">Medical Billing</a><a href="/services/medical-coding">Medical Coding</a><a href="/services/ar-management">AR Management</a><a href="/services/medical-billing-audits">Medical Billing Audits</a><a href="/services/provider-credentialing-enrollment">Provider Credentialing &amp; Enrollment</a><a href="/services/virtual-front-desk-services">Virtual Front Desk Services</a></div>
-          <div className="footer-column"><h2>Specialties</h2>{footerSpecialties.map((specialty) => <a href="/specialties" key={specialty}>{specialty}</a>)}<a href="/specialties">All specialties</a></div>
-          <div className="footer-column"><h2>Company</h2><a href="/about-us">About Clinora</a><a href="/who-we-serve">Who We Serve</a><a href="/#process">Our process</a><a href="/nationwide-solutions">Nationwide Solutions</a><a href="/compliance">Security &amp; Compliance</a><a href="mailto:info@clinoramedbill.com">Free Billing Audit</a></div>
-        </div>
-        <div className="container footer-contact">
-          <a href={`tel:${(cmsSettings?.phone ?? "+1 (945) 335-0950").replace(/[^+\d]/g, "")}`}><Phone aria-hidden="true" /><span>{cmsSettings?.phone ?? "+1 (945) 335-0950"}</span></a>
-          <a href={`mailto:${cmsSettings?.email ?? "info@clinoramedbill.com"}`}><Mail aria-hidden="true" /><span>{cmsSettings?.email ?? "info@clinoramedbill.com"}</span></a>
-          <div><MapPin aria-hidden="true" /><span>{cmsSettings?.address ?? "5900 Balcones Dr, STE 20866, Austin, TX 78731"}</span></div>
-        </div>
-        <div className="container footer-bottom"><p>© 2026 ClinoraMedBill. All rights reserved.</p><div><a href="/privacy-policy">Privacy Policy</a><a href="#contact">Terms</a><a href="/compliance">Security &amp; Compliance</a></div></div>
-        <div className="footer-wordmark" aria-hidden="true">ClinoraMedBill</div>
-      </footer>
+      <SiteFooter
+        faqs={faqs}
+        faqEyebrow={faqEyebrow}
+        faqTitle={faqTitle}
+        faqDescription={faqDescription}
+        faqId={faqId}
+      />
     </>
   );
 }

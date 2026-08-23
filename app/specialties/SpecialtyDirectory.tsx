@@ -1,14 +1,9 @@
 "use client";
 
-import {
-  Activity, BarChart3, Brain, CheckCircle2, CircleDollarSign, ClipboardCheck,
-  Code2, Eye, FileSearch, HeartPulse, Layers3, MessageSquareText, Search,
-  ShieldCheck, Sparkles, Stethoscope, UserRoundCheck, UsersRound,
-} from "lucide-react";
+import { Search, Stethoscope } from "lucide-react";
 import { FormEvent, useMemo, useState } from "react";
 import { medicalSpecialties, specialtyCategories, type Specialty } from "./specialties";
-
-const icons = [Stethoscope, HeartPulse, Activity, UserRoundCheck, ShieldCheck, Brain, Eye, UsersRound, MessageSquareText, ClipboardCheck, Code2, FileSearch, CircleDollarSign, Layers3, Sparkles, BarChart3, CheckCircle2];
+import { specialtyIcons } from "./specialty-icons";
 
 export default function SpecialtyDirectory() {
   const [query, setQuery] = useState("");
@@ -47,8 +42,7 @@ export default function SpecialtyDirectory() {
 
       <div className="specialty-interactive-grid">
         {visible.map((specialty) => {
-          const absoluteIndex = medicalSpecialties.indexOf(specialty);
-          const Icon = icons[absoluteIndex % icons.length];
+          const Icon = specialtyIcons[specialty.name] ?? Stethoscope;
           const isFlipped = flipped === specialty.name;
           return (
             <article className="specialty-interactive-card" key={specialty.name}>

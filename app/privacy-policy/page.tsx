@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Vinext's next/link shim currently triggers duplicate-React hook errors. */
 import type { Metadata } from "next";
-import Image from "next/image";
 import { LockKeyhole, Mail, MapPin } from "lucide-react";
 import SiteHeader from "../components/SiteHeader";
 import InteriorHero from "../components/InteriorHero";
+import SiteFooter from "../components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | ClinoraMedBill",
@@ -265,23 +265,7 @@ export default function PrivacyPolicyPage() {
         </div>
       </main>
 
-      <footer className="legal-footer">
-        <div className="container legal-footer-inner">
-          <div>
-            <Image src="/brand/clinora-primary.svg" alt="ClinoraMedBill" width="210" height="109" />
-            <p>Medical billing and revenue cycle management for healthcare providers nationwide.</p>
-          </div>
-          <nav aria-label="Legal footer navigation">
-            <a href="/">Home</a>
-            <a href="/#audit">Free Billing Audit</a>
-            <a href="/privacy-policy" aria-current="page">Privacy Policy</a>
-            <a href="/compliance">Security &amp; Compliance</a>
-          </nav>
-        </div>
-        <div className="container legal-footer-bottom">
-          <p>© 2026 ClinoraMedBill. All rights reserved.</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

@@ -1,0 +1,461 @@
+/* Aug 19 client revision: screenshot-led homepage hero and shared specialty icons. */
+.home-refinement .hero-reference-revision {
+  width: calc(100% - 16px);
+  height: clamp(780px, calc(100svh - 16px), 980px);
+  min-height: 780px;
+  margin: 8px 8px 0;
+  padding: 112px 0 34px;
+  border-radius: 28px;
+}
+
+.home-refinement .hero-reference-revision::before {
+  background:
+    linear-gradient(90deg, rgba(2, 25, 43, .99) 0%, rgba(2, 25, 43, .94) 35%, rgba(2, 25, 43, .58) 52%, rgba(2, 25, 43, .1) 72%, rgba(2, 25, 43, 0) 100%),
+    linear-gradient(180deg, rgba(2, 19, 33, .1), rgba(2, 19, 33, .34));
+}
+
+.home-refinement .hero-reference-revision .hero-video {
+  object-position: center center;
+  filter: brightness(.9) saturate(.93) contrast(1.03);
+}
+
+.home-refinement .hero-reference-revision .hero-video-wash {
+  background: linear-gradient(180deg, transparent 64%, rgba(3, 25, 41, .28));
+}
+
+.home-refinement .hero-reference-revision .hero-content {
+  width: min(1440px, calc(100% - 96px));
+  justify-content: center;
+}
+
+.home-refinement .hero-reference-revision .hero-copy-column {
+  width: min(750px, 53%);
+  max-width: 750px;
+}
+
+.home-refinement .hero-reference-revision .hero-kicker {
+  margin-bottom: 26px;
+  color: #25b6bb;
+  font-size: clamp(.9rem, 1.08vw, 1.08rem);
+  font-weight: 650;
+  letter-spacing: -.01em;
+  text-transform: none;
+}
+
+.home-refinement .hero-reference-revision .status-dot {
+  width: 38px;
+  height: 2px;
+  border-radius: 0;
+  background: #25b6bb;
+  box-shadow: none;
+}
+
+.home-refinement .hero-reference-revision h1 {
+  max-width: 750px;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(3.3rem, 4.65vw, 5rem);
+  font-weight: 650;
+  letter-spacing: -.055em;
+  line-height: 1.03;
+}
+
+.home-refinement .hero-reference-revision h1 > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.home-refinement .hero-reference-revision h1 .hero-title-accent {
+  margin-top: 8px;
+  color: #22a9ae;
+}
+
+.home-refinement .hero-reference-revision .hero-copy {
+  max-width: 650px;
+  margin-top: 28px;
+  color: rgba(255, 255, 255, .9);
+  font-size: clamp(1rem, 1.14vw, 1.15rem);
+  line-height: 1.65;
+}
+
+.home-refinement .hero-reference-revision .hero-audit-form {
+  display: grid;
+  width: min(750px, 53%);
+  min-height: 0;
+  gap: 18px;
+  margin-top: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  grid-template-columns: 1fr;
+}
+
+.home-refinement .hero-reference-revision .hero-form-fields {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home-refinement .hero-reference-revision .hero-audit-form label {
+  display: block;
+}
+
+.home-refinement .hero-reference-revision .hero-audit-form input {
+  width: 100%;
+  min-height: 62px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, .42);
+  border-radius: 10px;
+  background: rgba(4, 30, 49, .56);
+  color: #fff;
+  font-size: .94rem;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .04);
+}
+
+.home-refinement .hero-reference-revision .hero-audit-form input::placeholder {
+  color: rgba(255, 255, 255, .82);
+}
+
+.home-refinement .hero-reference-revision .hero-audit-form input:focus {
+  border-color: #66d8d7;
+  outline: 3px solid rgba(65, 200, 199, .2);
+  outline-offset: 1px;
+}
+
+.home-refinement .hero-reference-revision .hero-form-actions {
+  display: grid;
+  max-width: 680px;
+  align-items: stretch;
+  gap: 18px;
+  grid-template-columns: minmax(300px, .92fr) minmax(320px, 1.08fr);
+}
+
+.home-refinement .hero-reference-revision .hero-form-actions > button {
+  display: inline-flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #209ca2, #2daeb0);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 32px rgba(14, 117, 122, .24);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.home-refinement .hero-reference-revision .hero-form-actions > button:hover,
+.home-refinement .hero-reference-revision .hero-form-actions > button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(14, 117, 122, .32);
+}
+
+.home-refinement .hero-reference-revision .hero-google-rating {
+  display: grid;
+  min-width: 0;
+  min-height: 64px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, .42);
+  border-radius: 10px;
+  background: rgba(4, 30, 49, .56);
+  color: #fff;
+  grid-template-columns: 44px minmax(0, 1fr);
+}
+
+.home-refinement .hero-reference-revision .hero-google-mark {
+  width: 44px;
+  height: 44px;
+}
+
+.home-refinement .hero-reference-revision .hero-google-copy > strong {
+  font-size: .86rem;
+}
+
+.home-refinement .hero-reference-revision .hero-google-copy > span:last-child {
+  font-size: .78rem;
+}
+
+.home-refinement .hero-reference-revision .hero-form-status {
+  min-height: 20px;
+  color: rgba(255, 255, 255, .88);
+  font-size: .78rem;
+}
+
+.home-refinement .specialty-pill > svg {
+  flex: none;
+}
+
+@media (max-width: 1199px) {
+  .home-refinement .hero-reference-revision {
+    height: 820px;
+    min-height: 820px;
+  }
+
+  .home-refinement .hero-reference-revision .hero-copy-column,
+  .home-refinement .hero-reference-revision .hero-audit-form {
+    width: min(700px, 64%);
+  }
+
+  .home-refinement .hero-reference-revision .hero-content {
+    width: calc(100% - 64px);
+  }
+
+  .home-refinement .hero-reference-revision h1 {
+    font-size: clamp(3rem, 5vw, 4rem);
+  }
+}
+
+@media (max-width: 899px) {
+  .home-refinement .hero-reference-revision::before {
+    background: linear-gradient(90deg, rgba(2, 25, 43, .96), rgba(2, 25, 43, .76) 58%, rgba(2, 25, 43, .25));
+  }
+
+  .home-refinement .hero-reference-revision .hero-copy-column,
+  .home-refinement .hero-reference-revision .hero-audit-form {
+    width: min(680px, 82%);
+  }
+
+  .home-refinement .hero-reference-revision .hero-form-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-refinement .hero-reference-revision {
+    width: calc(100% - 12px);
+    height: auto;
+    min-height: 980px;
+    margin: 6px 6px 0;
+    padding: 310px 0 28px;
+    border-radius: 22px;
+  }
+
+  .home-refinement .hero-reference-revision::before {
+    background: linear-gradient(180deg, rgba(3, 21, 35, .02), rgba(3, 21, 35, .18) 24%, rgba(3, 21, 35, .95) 39%, #071d2f 100%);
+  }
+
+  .home-refinement .hero-reference-revision .hero-video {
+    height: 42%;
+    object-position: 78% top;
+  }
+
+  .home-refinement .hero-reference-revision .hero-content {
+    width: calc(100% - 32px);
+    justify-content: flex-end;
+    padding: 0;
+  }
+
+  .home-refinement .hero-reference-revision .hero-copy-column,
+  .home-refinement .hero-reference-revision .hero-audit-form {
+    width: 100%;
+  }
+
+  .home-refinement .hero-reference-revision .hero-kicker {
+    width: auto;
+    min-height: 0;
+    justify-content: flex-start;
+    margin-bottom: 18px;
+    padding: 0;
+    font-size: .78rem;
+    text-align: left;
+  }
+
+  .home-refinement .hero-reference-revision .status-dot {
+    width: 28px;
+  }
+
+  .home-refinement .hero-reference-revision h1 {
+    max-width: 100%;
+    font-size: clamp(2.45rem, 11.4vw, 3.1rem);
+    line-height: 1;
+  }
+
+  .home-refinement .hero-reference-revision h1 > span {
+    white-space: normal;
+  }
+
+  .home-refinement .hero-reference-revision .hero-copy {
+    margin-top: 20px;
+    font-size: .92rem;
+    line-height: 1.55;
+  }
+
+  .home-refinement .hero-reference-revision .hero-audit-form {
+    display: grid;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .home-refinement .hero-reference-revision .hero-form-fields,
+  .home-refinement .hero-reference-revision .hero-form-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .home-refinement .hero-reference-revision .hero-audit-form input {
+    min-height: 50px;
+  }
+
+  .home-refinement .hero-reference-revision .hero-form-actions > button,
+  .home-refinement .hero-reference-revision .hero-google-rating {
+    min-height: 56px;
+  }
+
+  .home-refinement .hero-reference-revision .hero-google-rating {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-refinement .hero-reference-revision .hero-form-actions > button {
+    transition: none;
+  }
+
+  .home-refinement .hero-reference-revision .hero-form-actions > button:hover,
+  .home-refinement .hero-reference-revision .hero-form-actions > button:focus-visible {
+    transform: none;
+  }
+}
+
+/* Match the specificity of the legacy terminal hero cascade. */
+.home-refinement .hero-approved.hero-split.hero-reference-revision {
+  width: calc(100% - 16px);
+  height: clamp(780px, calc(100svh - 16px), 980px);
+  min-height: 780px;
+  margin: 8px 8px 0;
+  padding: 112px 0 34px;
+  border-radius: 28px;
+}
+
+.home-refinement .hero-approved.hero-split.hero-reference-revision::before {
+  background:
+    linear-gradient(90deg, rgba(2, 25, 43, .99) 0%, rgba(2, 25, 43, .94) 35%, rgba(2, 25, 43, .58) 52%, rgba(2, 25, 43, .1) 72%, rgba(2, 25, 43, 0) 100%),
+    linear-gradient(180deg, rgba(2, 19, 33, .1), rgba(2, 19, 33, .34));
+}
+
+.home-refinement .hero-approved.hero-split.hero-reference-revision .hero-content {
+  width: min(1440px, calc(100% - 96px));
+  justify-content: center;
+}
+
+.home-refinement .hero-approved.hero-split.hero-reference-revision .hero-copy-column,
+.home-refinement .hero-approved.hero-split.hero-reference-revision .hero-audit-form {
+  width: min(750px, 53%);
+  max-width: 750px;
+}
+
+.home-refinement .hero-approved.hero-split.hero-reference-revision h1 {
+  max-width: 750px;
+  margin: 0;
+  font-size: clamp(3.3rem, 4.65vw, 5rem);
+  font-weight: 650;
+  letter-spacing: -.055em;
+  line-height: 1.03;
+}
+
+.home-refinement .hero-approved.hero-split.hero-reference-revision h1 > span {
+  color: #fff;
+  white-space: nowrap;
+}
+
+.home-refinement .hero-approved.hero-split.hero-reference-revision h1 > .hero-title-accent {
+  color: #22a9ae;
+}
+
+.home-refinement .hero-approved.hero-split.hero-reference-revision .hero-copy {
+  max-width: 650px;
+  margin-top: 28px;
+  color: rgba(255, 255, 255, .9);
+  font-size: clamp(1rem, 1.14vw, 1.15rem);
+  line-height: 1.65;
+}
+
+.home-refinement .hero-approved.hero-split.hero-reference-revision .hero-audit-form {
+  display: grid;
+  min-height: 0;
+  gap: 18px;
+  margin-top: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  grid-template-columns: 1fr;
+}
+
+.home-refinement .hero-approved.hero-split.hero-reference-revision .hero-audit-form input {
+  min-height: 62px;
+  border-radius: 10px;
+}
+
+@media (max-width: 1199px) {
+  .home-refinement .hero-approved.hero-split.hero-reference-revision {
+    height: 820px;
+    min-height: 820px;
+  }
+
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-content {
+    width: calc(100% - 64px);
+  }
+
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-copy-column,
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-audit-form {
+    width: min(700px, 64%);
+  }
+}
+
+@media (max-width: 899px) {
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-copy-column,
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-audit-form {
+    width: min(680px, 82%);
+  }
+}
+
+@media (max-width: 767px) {
+  .home-refinement .hero-approved.hero-split.hero-reference-revision {
+    width: calc(100% - 12px);
+    height: auto !important;
+    min-height: 980px !important;
+    margin: 6px 6px 0;
+    padding: 310px 0 28px !important;
+    border-radius: 22px;
+  }
+
+  .home-refinement .hero-approved.hero-split.hero-reference-revision::before {
+    background: linear-gradient(180deg, rgba(3, 21, 35, .02), rgba(3, 21, 35, .18) 24%, rgba(3, 21, 35, .95) 39%, #071d2f 100%);
+  }
+
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-content {
+    width: calc(100% - 32px);
+    justify-content: flex-end;
+    padding: 0 !important;
+  }
+
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-copy-column,
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-audit-form {
+    width: 100%;
+  }
+
+  .home-refinement .hero-approved.hero-split.hero-reference-revision h1 {
+    font-size: clamp(2.45rem, 11.4vw, 3.1rem);
+  }
+
+  .home-refinement .hero-approved.hero-split.hero-reference-revision h1 > span {
+    white-space: normal;
+  }
+
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-audit-form {
+    display: grid;
+    margin-top: 22px;
+  }
+
+  .home-refinement .hero-approved.hero-split.hero-reference-revision .hero-audit-form input {
+    min-height: 50px;
+  }
+}

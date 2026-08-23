@@ -1,6 +1,6 @@
 import type { FormEvent } from "react";
 
-export type EnquiryType = "hero-audit" | "billing-audit" | "contact";
+export type EnquiryType = "hero-audit" | "billing-audit" | "ehr-consultation" | "contact";
 export type EnquiryStatus = "idle" | "sending" | "success" | "error";
 
 export async function submitEnquiryForm(event: FormEvent<HTMLFormElement>, type: EnquiryType) {

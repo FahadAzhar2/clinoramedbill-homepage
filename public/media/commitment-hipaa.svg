@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 96" role="img" aria-label="HIPAA compliance badge illustration">
+  <defs>
+    <linearGradient id="hipaa-shield" x1="42" y1="8" x2="117" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3eb0ad"/><stop offset="1" stop-color="#153c53"/>
+    </linearGradient>
+  </defs>
+  <path d="M80 6l39 14v25c0 22-14 36-39 45-25-9-39-23-39-45V20z" fill="url(#hipaa-shield)" stroke="#9be0dc" stroke-width="4"/>
+  <path d="M80 17l27 10v18c0 15-9 26-27 33-18-7-27-18-27-33V27z" fill="#fff" opacity=".12"/>
+  <path d="M80 27v34M69 36h22M72 43c-9 2-7 10 8 12m8-12c9 2 7 10-8 12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <rect x="91" y="51" width="64" height="27" rx="13.5" fill="#247f82" stroke="#fff" stroke-width="3"/>
+  <circle cx="105" cy="64.5" r="6" fill="#6bcac4"/><path d="M102 64.5l2 2 4-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="132" y="69" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="14" font-weight="700">HIPAA</text>
+</svg>

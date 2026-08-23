@@ -1,15 +1,18 @@
 # ClinoraMedBill Homepage
 
-Prototype homepage for ClinoraMedBill, a US-focused medical billing and revenue
+Production website for ClinoraMedBill, a US-focused medical billing and revenue
 cycle management company. The experience is designed to communicate specialty
 expertise, operational clarity, security, and an accessible path to request a
 free billing audit.
 
+**Live website:** [https://clinoramedbill.com](https://clinoramedbill.com)
+
 ## Project status
 
-- Homepage prototype for client review
-- Local preview and production build are working
-- Hosting is intentionally deferred until approval
+- Production design is live on the primary domain
+- Responsive pages, lead forms, service routes, blogs, FAQs, and supplied media are included
+- The static frontend is hosted on the existing GoDaddy cPanel account
+- Enquiry delivery runs through the production Vercel endpoint using the GoDaddy bridge in `deploy/godaddy/`
 - Major design revisions are preserved in Git history
 
 ## Technology stack
@@ -21,13 +24,23 @@ free billing audit.
 | Styling | CSS3 with custom properties, responsive layouts, gradients and keyframe motion |
 | Icons | Lucide React |
 | Development | Vite 8 through vinext |
-| Runtime target | Cloudflare Workers-compatible output |
+| Runtime targets | Static Next.js export for GoDaddy and Vercel Functions for enquiry delivery |
 | Quality | ESLint, TypeScript compilation and Node test runner |
 | Source control | Git with named design-snapshot commits |
 | Continuous integration | GitHub Actions on pushes and pull requests |
 
-The current homepage does not require a database, authentication, or external
-API credentials.
+The website does not require a database or authentication. Production enquiry
+delivery requires the server-side email environment variables documented in
+`.env.example`; secrets are intentionally excluded from Git.
+
+## Production deployment
+
+- `npm run build` generates the static site in `out/` for GoDaddy hosting.
+- `api/enquiry.ts` is deployed as a Vercel Function for validated email delivery.
+- `deploy/godaddy/.htaccess` and `deploy/godaddy/api/enquiry.php` provide the
+  same-domain bridge from the GoDaddy-hosted forms to the Vercel endpoint.
+- Build output, local environment files, deployment archives, and credentials
+  are excluded from this repository.
 
 ## Local development
 
@@ -60,9 +73,14 @@ app/
   globals.css        Global design system, responsive styles and motion
   layout.tsx         Metadata, fonts and root layout
   page.tsx           Homepage content and interactions
+  components/        Shared navigation, conversion forms, and footer
+  content/           Service, FAQ, and editorial content
+api/
+  enquiry.ts         Validated production enquiry endpoint
+deploy/godaddy/      GoDaddy rewrite and form-delivery bridge
 public/
   brand/             Approved logo assets
-  media/             Homepage imagery and hero video
+  media/             Website imagery, icons, and hero video
   og.png             Social sharing image
 tests/
   rendered-html.test.mjs

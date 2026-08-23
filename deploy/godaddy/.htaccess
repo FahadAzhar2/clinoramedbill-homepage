@@ -1,0 +1,6 @@
+Options -Indexes
+
+RewriteEngine On
+RewriteRule ^api/enquiry/?$ api/enquiry.php [L]
+
+ErrorDocument 404 /404.html

@@ -6,6 +6,7 @@ const rateLimit = new Map<string, number[]>();
 const requiredFields = {
   "hero-audit": ["name", "email"],
   "billing-audit": ["name", "practice", "email", "specialty"],
+  "ehr-consultation": ["name", "email"],
   contact: ["name", "practice", "email", "message"],
 } as const;
 
@@ -21,6 +22,7 @@ const allowedFields = new Set([
   "collections",
   "ar",
   "message",
+  "ehr",
   "website",
 ]);
 
@@ -33,11 +35,13 @@ const fieldLabels: Record<string, string> = {
   collections: "Monthly collections",
   ar: "Total A/R",
   message: "How can we help?",
+  ehr: "EHR/EMR system",
 };
 
 const formLabels: Record<EnquiryType, string> = {
   "hero-audit": "Homepage quick audit",
   "billing-audit": "Free billing audit",
+  "ehr-consultation": "EHR/EMR consultation",
   contact: "Contact request",
 };
 

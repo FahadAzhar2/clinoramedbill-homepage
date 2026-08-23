@@ -1,0 +1,411 @@
+/* Browser annotation pass — 2026-08-16. Loaded last to keep these requests local to the homepage. */
+
+/* Sample-led illustrated commitment pictures replace the previous line icons. */
+.home-refinement .home-credibility-strip .metric-ribbon-picture {
+  display: grid;
+  width: 112px;
+  height: 66px;
+  place-items: center;
+  margin-inline: auto;
+}
+
+.home-refinement .home-credibility-strip .metric-ribbon-picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.home-refinement .home-credibility-strip .metric-commitment {
+  gap: 8px;
+}
+
+/* Requested desktop heading rhythm: 50px cap with fluid scaling below that viewport. */
+.home-refinement #partner-intro-title,
+.home-refinement #process .split-heading h2,
+.home-refinement #home-audience-title,
+.home-refinement #specialties .specialty-copy h2,
+.home-refinement #insights .blog-heading h2,
+.home-refinement #audit .consultation-cta-shell h2,
+.home-refinement .footer-faq-heading h2 {
+  font-size: clamp(2.25rem, 3.28vw, 3.125rem);
+}
+
+/* Keep the single who-we-serve image flush with the full text/CTA column. */
+.home-refinement .home-audience-layout {
+  align-items: stretch;
+}
+
+.home-refinement .home-audience-gallery {
+  height: 100%;
+  min-height: 0;
+}
+
+.home-refinement .home-audience-photo-primary {
+  height: 100%;
+}
+
+/* Restore the earlier EHR showcase: form at left, two-column logo list at right. */
+.home-refinement .home-ehr-section {
+  padding-block: clamp(46px, 4vw, 64px);
+}
+
+.home-refinement .home-ehr-shell {
+  gap: 24px;
+  padding: clamp(38px, 4vw, 54px);
+}
+
+.home-refinement .home-ehr-heading h2 {
+  margin-bottom: 12px;
+  font-size: clamp(2.25rem, 3.28vw, 3.125rem);
+}
+
+.home-refinement .home-ehr-showcase {
+  gap: 14px;
+  align-items: stretch;
+}
+
+.home-refinement .home-ehr-contact-form {
+  grid-template-columns: 1fr;
+  gap: 11px;
+  padding: 26px 28px;
+}
+
+.home-refinement .home-ehr-form-heading,
+.home-refinement .home-ehr-contact-form .button,
+.home-refinement .home-ehr-contact-form .form-status {
+  grid-column: auto;
+}
+
+.home-refinement .home-ehr-contact-form label {
+  grid-column: auto;
+}
+
+.home-refinement .home-ehr-contact-form input {
+  min-height: 44px;
+  padding-block: 9px;
+}
+
+.home-refinement .home-ehr-platform-grid {
+  align-self: stretch;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  height: auto;
+  gap: 10px;
+}
+
+.home-refinement .home-ehr-platform-card {
+  min-height: 88px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px 14px;
+  text-align: center;
+}
+
+.home-refinement .home-ehr-platform-card > span {
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+}
+
+.home-refinement .home-ehr-platform-card strong {
+  width: 100%;
+  font-size: 0.76rem;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Approved brand teal replaces the off-brand green call action. */
+.home-refinement .consultation-call {
+  background: rgb(48, 149, 149);
+  box-shadow: 0 12px 24px rgba(48, 149, 149, 0.22);
+}
+
+.home-refinement .consultation-call:hover,
+.home-refinement .consultation-call:focus-visible {
+  background: #247f82;
+}
+
+/* Align the FAQ kicker, heading, prompt, and CTA to one left edge. */
+.home-refinement .footer-faq-heading {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: left;
+}
+
+.home-refinement .footer-faq-heading .eyebrow {
+  width: fit-content;
+  align-self: flex-start;
+  margin: 0;
+  padding-inline: 0;
+  text-align: left;
+}
+
+.home-refinement .footer-faq-prompt {
+  width: 100%;
+}
+
+@media (max-width: 980px) {
+  .home-refinement .home-audience-gallery {
+    min-height: 500px;
+  }
+
+  .home-refinement .home-ehr-contact-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-refinement .home-ehr-contact-form label,
+  .home-refinement .home-ehr-contact-form label:nth-of-type(4),
+  .home-refinement .home-ehr-contact-form label:nth-of-type(5) {
+    grid-column: auto;
+  }
+
+  .home-refinement .home-ehr-platform-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    height: auto;
+  }
+
+  .home-refinement .home-ehr-platform-card {
+    min-height: 88px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .home-refinement .home-ehr-platform-card strong {
+    font-size: 0.76rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Promote the approved homepage mobile header treatment to every route. */
+  .site-header {
+    right: 0;
+    left: 0;
+  }
+
+  .site-header .header-inner {
+    width: calc(100% - 20px);
+    min-height: 68px;
+    margin-inline: auto;
+    padding: 6px 7px 6px 12px;
+    border-radius: 15px;
+  }
+
+  .site-header .logo-link {
+    width: 174px;
+  }
+
+  .site-header .header-logo-mark {
+    width: 30px;
+    height: auto;
+  }
+
+  .site-header .header-logo-wordmark {
+    width: 130px;
+    height: auto;
+  }
+
+  .site-header .mobile-menu-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .site-header .mobile-nav {
+    right: 10px;
+    left: 10px;
+    border-radius: 18px;
+  }
+
+  .home-refinement .home-credibility-strip .metric-ribbon-picture {
+    width: 92px;
+    height: 58px;
+  }
+
+  .home-refinement #partner-intro-title,
+  .home-refinement #process .split-heading h2,
+  .home-refinement #home-audience-title,
+  .home-refinement #specialties .specialty-copy h2,
+  .home-refinement #insights .blog-heading h2,
+  .home-refinement #audit .consultation-cta-shell h2,
+  .home-refinement .footer-faq-heading h2 {
+    font-size: clamp(2.1rem, 10vw, 2.5rem);
+  }
+
+  .home-refinement .home-audience-gallery {
+    width: min(calc(100% - 32px), 380px);
+    min-height: 360px;
+    margin-inline: auto;
+    justify-self: center;
+  }
+
+  .home-refinement .home-audience-photo-primary {
+    inset: 0;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .home-refinement .home-audience-photo-primary img {
+    object-position: center center;
+  }
+
+  .home-refinement .human-benefits-story {
+    right: auto !important;
+    left: auto !important;
+    width: min(calc(100% - 32px), 398px) !important;
+    max-width: 398px;
+    align-self: center;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .home-refinement .consultation-trust-row {
+    display: grid;
+    width: 100%;
+    max-width: 390px;
+    align-items: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-inline: auto;
+  }
+
+  .home-refinement .consultation-trust-row span {
+    min-width: 0;
+    min-height: 52px;
+    justify-content: center;
+    padding: 8px 6px;
+    border: 1px solid rgba(48, 149, 149, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.58);
+    font-size: 0.68rem;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  /* Shared conversion footer: use the approved centered mobile treatment on every route. */
+  .site-footer .footer-brand {
+    align-items: center;
+    text-align: center;
+  }
+
+  .site-footer .footer-brand > img,
+  .site-footer .footer-brand > p,
+  .site-footer .footer-brand > .button {
+    margin-inline: auto;
+  }
+
+  .site-footer .footer-brand > p {
+    max-width: 360px;
+  }
+
+  .site-footer .footer-brand .footer-socials {
+    justify-content: center;
+  }
+
+  .site-footer .footer-column:last-child {
+    display: grid;
+    align-items: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 18px;
+    text-align: center;
+  }
+
+  .site-footer .footer-column:last-child h2 {
+    grid-column: 1 / -1;
+    margin-inline: auto;
+  }
+
+  .site-footer .footer-column:last-child a {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .site-footer .footer-contact {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .site-footer .footer-contact a,
+  .site-footer .footer-contact > div {
+    width: fit-content;
+    max-width: 100%;
+    justify-content: center;
+    grid-template-columns: 20px minmax(0, auto);
+    text-align: center;
+  }
+
+  .site-footer .footer-contact span {
+    text-align: center;
+  }
+
+  .site-footer .footer-bottom {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .site-footer .footer-bottom p {
+    margin-inline: auto;
+  }
+
+  .site-footer .footer-bottom div {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Privacy Policy has its own legal footer; keep it visually consistent too. */
+  .legal-footer .legal-footer-inner {
+    justify-items: center;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .legal-footer .legal-footer-inner > div {
+    align-items: center;
+  }
+
+  .legal-footer .legal-footer-inner img,
+  .legal-footer .legal-footer-inner p {
+    margin-inline: auto;
+  }
+
+  .legal-footer .legal-footer-inner nav {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .legal-footer .legal-footer-bottom {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .home-refinement .home-ehr-shell {
+    padding: 30px 18px;
+  }
+
+  .home-refinement .home-ehr-contact-form {
+    grid-template-columns: 1fr;
+    padding: 24px 18px;
+  }
+
+  .home-refinement .home-ehr-contact-form label {
+    grid-column: auto;
+  }
+
+  .home-refinement .home-ehr-form-heading,
+  .home-refinement .home-ehr-contact-form .button,
+  .home-refinement .home-ehr-contact-form .form-status {
+    grid-column: auto;
+  }
+
+  .home-refinement .home-ehr-platform-card {
+    min-height: 104px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}

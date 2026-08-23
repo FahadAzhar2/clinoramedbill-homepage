@@ -1,86 +1,48 @@
-# Revenue Problem Content Replacement — Design QA
+# Specialties icon design QA
 
-## Scope
+- Source visual truth: `/Users/fahadazhar/Desktop/Screenshot 2026-08-17 at 8.16.25 AM.png`
+- Desktop implementation: `qa/specialties-icons-desktop.png`
+- Mobile implementation: `qa/specialties-icons-mobile.png`
+- Combined comparison: `qa/specialties-icons-comparison.png`
+- Desktop viewport: 1280 x 720 CSS px, device scale factor 1
+- Mobile viewport: 430 x 932 CSS px, device scale factor 1
+- Source pixels: 874 x 1550
+- State: specialty directory, front face, default All filter
 
-- Page: `http://localhost:4174/#revenue-problem`
-- Replaced the previous revenue-problem heading, CTA, and three process cards.
-- Added the supplied heading and both supplied body paragraphs.
-- Added one contextual 4K healthcare image in a responsive heading/body/image composition.
+## Full-view comparison evidence
 
-## Reference and implementation
+The combined comparison confirms that the implemented cards use the reference's pale aqua icon tile, teal medical icon treatment, uppercase category label, and navy specialty name. The existing Clinora card dimensions and interaction pattern were intentionally preserved because the requested scope was icon replacement rather than a directory redesign.
 
-- Reference: `/Users/fahadazhar/Desktop/Screenshot 2026-08-12 at 7.59.24 PM.png` (1326 × 1334)
-- Desktop QA: `/Users/fahadazhar/Downloads/ClinoraMedBill Branding/Clinora Logo 400x400 SVG/clinora-homepage/qa-partner-intro-desktop.png` (1525 × 1044)
-- Mobile QA: `/Users/fahadazhar/Downloads/ClinoraMedBill Branding/Clinora Logo 400x400 SVG/clinora-homepage/qa-partner-intro-mobile.png` (390 × 844)
-- Image asset: `public/media/services/01-revenue-cycle-management-4k.jpg` (4096 × 2160)
+## Focused region comparison evidence
 
-## Responsive review
+The first eight cards were compared at readable size on desktop and mobile. Family Medicine, Internal Medicine, Pediatrics, Geriatrics, Urgent Care, Emergency Medicine, Cardiology, and Gastroenterology now have distinct specialty-specific symbols instead of repeating generic icons. The mapping covers all 43 specialties.
 
-- Desktop: two-column layout; copy is left aligned and the image is the right-side visual anchor.
-- Tablet: balanced two-column layout with reduced gap and fluid heading scale.
-- Mobile: copy and image stack in reading order; no horizontal overflow or text clipping.
-- Image uses `object-fit: cover`, responsive `sizes`, and an intentional focal position.
-- Reduced-motion preferences are respected.
+## Required fidelity surfaces
 
-## Verification
+- Fonts and typography: existing production typography and weights remain unchanged; category/name hierarchy matches the established Clinora system.
+- Spacing and layout rhythm: icon tiles remain centered and consistently sized across the four-column desktop and two-column mobile grids. No overflow or card misalignment was observed.
+- Colors and visual tokens: icon color and tile background remain within the existing teal/aqua brand tokens and visually align with the reference.
+- Image quality and asset fidelity: vector icons render sharply at both tested viewport sizes. Semantic organ/procedure icons replace the earlier repeated generic set.
+- Copy and content: all specialty names, categories, descriptions, filters, and search copy are unchanged.
 
-- `npm run build`: passed.
-- Local page response on port 4174: HTTP 200.
-- Desktop visual QA: passed.
-- Mobile visual QA: passed.
-- Text content matches the supplied screenshot verbatim.
+## Interaction and browser checks
 
-Final Design QA Result: Passed
+- Card flip toggled from `aria-pressed="false"` to `aria-pressed="true"` and back successfully on mobile.
+- Desktop console errors: none.
+- Mobile console errors: none.
+- Production build: passed, 24 static pages generated.
 
-## Footer Social Links and EHR Logo Visibility
+## Findings
 
-- Added linked Facebook and Instagram icons to the shared site footer.
-- Retained a clearly identified LinkedIn icon as a non-clickable placeholder until its URL is supplied.
-- Standardized the EHR logo stages and switched the 20 directory logos to eager native image loading so every supplied brand mark renders reliably.
-- Browser audit confirmed all 20 EHR logos completed with valid intrinsic dimensions and visible rendered bounds.
-- Desktop and mobile visual checks confirmed readable logos, responsive cards, and visible footer social icons.
-- `npm run build`: passed; 24 static pages generated.
-- `/ehr-software/`: HTTP 200 on localhost.
+- No actionable P0, P1, or P2 differences remain for the requested icon-replacement scope.
 
-final result: passed
+## Comparison history
 
-## EHR Software Directory — Logo and Content Pass
+- Initial implementation replaced the cyclic generic icon array with a 43-item specialty-name mapping.
+- Post-fix desktop and mobile captures confirmed centered, distinct, brand-colored icons without layout regressions.
 
-- Replaced the generic software icons with branded logos for exactly 20 requested EHR platforms.
-- Preserved the supplied order, platform names, descriptions, and official destination links.
-- Standardized every logo inside a consistent 98px contain-fit stage and every card to a 342px minimum height.
-- Added accessible logo alt text, full-card external links, visible focus states, and responsive single-column behavior.
-- Verified all 20 local logo assets return HTTP 200.
+## Follow-up polish
 
-Verification:
-
-- `npm run build`: passed; 24 static pages generated.
-- `/ehr-software/`: HTTP 200 on localhost.
-- Desktop and mobile card sizing/content QA: passed.
-
-final result: passed
-
-Final Design QA Result: Passed
-
-## Nine-revision homepage completion pass
-
-- Removed the duplicated credibility strip and the separate flow-bridge block.
-- Restyled the remaining credibility strip without an outer section fill and added restrained brand motion.
-- Replaced the revenue-problem module with the supplied trusted-partner heading, two paragraphs, and a contextual image.
-- Made the final service card span the complete tablet row while preserving the single-column mobile layout.
-- Replaced the process dashboard with a simpler six-stage responsive timeline.
-- Added the supplied Benefits of Outsourcing Medical Billing copy and four disclosure rows.
-- Reorganized the EHR logo constellation around the central workflow hub.
-- Removed scroll-reveal animation from the homepage insights section.
-- Preserved responsive layouts with no horizontal overflow at desktop, tablet, or mobile widths.
-
-Verification:
-
-- `npm test`: 9/9 passed.
-- `npm run build`: passed; 24 static pages generated.
-- Desktop (1525px), tablet (1024px), and mobile (390px) browser QA: passed.
-- Benefits disclosure interaction and service-card responsive layout: passed.
-
-Final Design QA Result: Passed
+- P3: some organ-specific symbols are naturally more detailed than the simpler Phosphor line icons; this is acceptable at the current card size and improves semantic accuracy.
 
 final result: passed
