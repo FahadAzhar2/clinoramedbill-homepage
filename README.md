@@ -1,4 +1,4 @@
-# ClinoraMedBill Homepage
+# ClinoraMedBill — Website and Backend Source
 
 Production website for ClinoraMedBill, a US-focused medical billing and revenue
 cycle management company. The experience is designed to communicate specialty
@@ -6,6 +6,10 @@ expertise, operational clarity, security, and an accessible path to request a
 free billing audit.
 
 **Live website:** [https://clinoramedbill.com](https://clinoramedbill.com)
+
+## Client source files
+
+Start with [Client handoff](docs/CLIENT-HANDOFF.md) for the complete file map, download instructions and account requirements. [Backend setup](docs/BACKEND.md) covers the enquiry API, email configuration and GoDaddy bridge.
 
 ## Project status
 
@@ -29,7 +33,7 @@ free billing audit.
 | Source control | Git with named design-snapshot commits |
 | Continuous integration | GitHub Actions on pushes and pull requests |
 
-The website does not require a database or authentication. Production enquiry
+The website has no application database or login system. Published content is read from the hosted Sanity CMS, with local fallbacks. Production enquiry
 delivery requires the server-side email environment variables documented in
 `.env.example`; secrets are intentionally excluded from Git.
 
@@ -52,7 +56,7 @@ delivery requires the server-side email environment variables documented in
 ### Setup
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
